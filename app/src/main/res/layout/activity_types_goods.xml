@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/coordinator_type_goods"
+    android:background="@color/white"
+    tools:context="com.app.bickupdriver.TypesGoods">
+    <include layout="@layout/toolbar_layout"
+        android:layout_height="@dimen/dp_60"
+        android:layout_width="match_parent"
+        android:id="@+id/toolbar"></include>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar">
+        <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#ffffff"
+
+        android:layout_marginTop="20dp">
+
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:paddingStart="15dp"
+           android:orientation="vertical"
+           android:paddingTop="10dp"
+           android:paddingEnd="15dp">
+           <EditText
+               android:layout_width="match_parent"
+               android:layout_height="40dp"
+               android:layout_marginStart="5dp"
+               android:layout_marginEnd="5dp"
+               android:gravity="center_vertical"
+               android:padding="5dp"
+               android:textSize="@dimen/sp_16"
+               android:drawablePadding="5dp"
+               android:id="@+id/search_goods"
+               android:hint="@string/txt_Search"
+               android:drawableStart="@drawable/search_placeholder"
+               android:background="@drawable/searchbackground"
+               />
+
+           <ListView
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"
+               android:layout_marginEnd="5dp"
+               android:divider="@null"
+               android:dividerHeight="0dp"
+               android:id="@+id/list_types_goods"></ListView>
+       </LinearLayout>
+
+    </LinearLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

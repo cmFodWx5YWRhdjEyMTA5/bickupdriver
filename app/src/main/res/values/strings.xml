@@ -1,0 +1,286 @@
+<resources>
+    <!--<string name="app_name">Bickup</string>-->
+    <string name="app_name">Bickup Driver</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_splash">SplashActivity</string>
+    <string name="title_activity_login">Sign in</string>
+    <string name="facebook_app_id" translatable="false">2072705686282046</string>
+    <string name="fb_login_protocol_scheme" translatable="false">fb2072705686282046</string>
+    <!--<string name="google_maps_key" translatable="false">AIzaSyBiOdHzYXYHCxWBKZSX2H5Fy7cjBwNL5-8</string> -->
+    <string name="google_maps_key">AIzaSyAB5rtn6Pi4w43KbbxUFJkRcwQMaaa2aV0</string><!-- API key 4-->
+    <string name="gcm_sender_id">759505761052</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password (optional)</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required @@</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="iconnection_availability">Internet connection is not available</string>
+    <string name="title_activity_base">BaseActivity</string>
+    <string name="tv_enter_mobile">Please enter your registered Mobile Number</string>
+    <string name="mobile_number">Mobile Number</string>
+    <string name="txt_submit">Submit</string>
+    <string name="txt_forgot_pasword">Forgot Password?</string>
+    <string name="txt_reset_pasword">Reset Password</string>
+    <string name="txt_title">Title</string>
+
+    <string name="txt_header_otp">Please enter OTP received on</string>
+    <string name="otp"> Enter OTP</string>
+    <string name="txt_resend_otp">Resend OTP</string>
+    <string name="enter_otp">Enter OTP</string>
+    <string name="new_password">New Password</string>
+    <string name="old_password">Old Password</string>
+    <string name="text_confirm_password">Confirm Password</string>
+    <string name="txt_head_password">Please enter a new password</string>
+    <string name="txt_pick_up">Pickup Location</string>
+    <string name="txt_drop">Drop Location</string>
+    <string name="txt_password">Password</string>
+    <string name="txt_Login">Login</string>
+    <string name="txt_first_name">First Name</string>
+    <string name="txt_last_name">Last Name</string>
+    <string name="txt_choose_password">Password</string>
+    <string name="txt_email">Email ID</string>
+    <string name="txt_signUP">Sign Up</string>
+
+    <string name="txt_building_name">Building Name</string>
+    <string name="txt_signin">Sign In</string>
+    <string name="txt_forgot_password">Forgot Password?</string>
+    <string name="txt_term_conditions">I Accept Terms and Conditions of  the App</string>
+    <string name="txt_check_details">Check Details</string>
+    <string name="txt_small_pickUP">Small Pick Up</string>
+    <string name="txt_disAgree">Disagree</string>
+    <string name="txt_agree">Agree</string>
+    <string name="txt_payment_info">Payment Info</string>
+    <string name="txt_deliveries">Deliveries</string>
+    <string name="txt_schedule">Scheduled</string>
+    <string name="txt_setting">Settings</string>
+    <string name="txt_invite_earn">Invite and Earns</string>
+    <string name="txt_contactus">Contact Us</string>
+    <string name="txt_about_us">About Us</string>
+    <string name="txt_privacy_policy">Privacy Policy</string>
+    <string name="txt_change_password">Change Password</string>
+    <string name="txt_faq">FAQ</string>
+    <string name="txt_help">Help</string>
+    <string name="txt_Search">Search</string>
+    <string name="txt_tracking_status">Tracking Status</string>
+    <string name="txt_tracking_driver">Track Driver</string>
+    <string name="txt_booking_status">Booking Status</string>
+    <string name="txt_on_the_way">On The Way</string>
+    <string name="txt_on_the_way_time">On The Way Time</string>
+    <string name="txt_arrived">Arrived</string>
+    <string name="txt_loading">Loading</string>
+    <string name="txt_Enroute">Enroute</string>
+    <string name="txt_reached">Reached Drop Off Location</string>
+    <string name="txt_helper">Helpers</string>
+    <string name="txt_helpe">Helper</string>
+    <string name="txt_choose">(Choose helpers at $5 price each)</string>
+    <string name="txt_no_helper_required">No helpers required</string>
+    <string name="txt_single_bed">Single Bed</string>
+    <string name="txt_air_conditioner">Air Conditioner</string>
+    <string name="txt_five_plus">5 +</string>
+    <string name="txt_Netork_error">Something went wrong please try again</string>
+
+    <string name="txt_description">Description</string>
+    <string name="txt_coming_time">Coming Time</string>
+    <string name="txt_coming_now">Come Now</string>
+    <string name="txt_coming_later">Come Later</string>
+    <string name="txt_save">Save</string>
+    <string name="txt_confirm">Confirm</string>
+    <string name="txt_start_loading">Start Loading</string>
+    <string name="txt_proceed">Proceed</string>
+    <string name="txt_pickup_location_details">Pickup Location Details</string>
+    <string name="txt_pickup_contact_details">Pickup Contact Details</string>
+    <string name="txt_drop_location_details">Drop Location Details</string>
+    <string name="txt_drop_contact_details">Drop Contact Details</string>
+    <string name="txt_number_of_helpers">Number of helpers If any</string>
+    <string name="txt_types_of_goods">Types of Goods</string>
+    <string name="txt_contacts_number">Contact Number</string>
+    <string name="txt_amount_details">Amount Details</string>
+    <string name="txt_paid_by_me">Paid by me</string>
+    <string name="txt_others">Other</string>
+    <string name="txt_accept">Accept</string>
+    <string name="txt_reject">Reject</string>
+    <string name="txt_others_contacts">Other Contact</string>
+    <string name="txt_contact_person_name">Contact Person Name</string>
+    <string name="txt_contact_person_number">Contact Person Number</string>
+    <string name="txt_booking_confirmation">Booking Confirmation!</string>
+    <string name="txt_done">Done</string>
+    <string name="txt_goods_details">Good Details</string>
+    <string name="txt_assign_another">Assign Other</string>
+    <string name="title_activity_delivery">DeliveryActivity</string>
+    <string name="txt_arrived_to_location">Arrived To Location </string>
+
+    <string name="txt_ongoing">Ongoing</string>
+    <string name="txt_waiting">Waiting</string>
+    <string name="txt_waiting_to_accept">Waiting To Accept</string>
+    <string name="txt_completed">Completed</string>
+    <string name="txt_missed">Missed</string>
+
+    <string name="txt_history">History</string>
+    <string name="txt_rate_now">Rate Driver Now</string>
+    <string name="txt_form">From</string>
+    <string name="txt_to">To</string>
+    <string name="txt_apx_fare">Apx Fare</string>
+    <string name="txt_booking_to_accept">Booking To Accept</string>
+    <string name="txt_cancel">Cancel</string>
+    <string name="txt_reschedule">Reschedule</string>
+    <string name="txt_schedule_delivery">Scheduled Delivery</string>
+    <string name="txt_notification">Notification</string>
+
+    <string name="txt_job_provided_by_bick_up">Job provided by Bickup</string>
+    <string name="txt_revenues">Revenues</string>
+
+    <string name="txt_logout">Log Out</string>
+    <string name="txt_fev">Favourite Places</string>
+    <string name="txt_please_fill_pickup_location_details">Please fill pickup location details</string>
+    <string name="txt_please_fill_pickup_contact_details">Please fill pickup contact details</string>
+    <string name="txt_building">Building</string>
+
+    <string name="txt_villa">Villa</string>
+    <string name="txt_floor_number">Floor Number</string>
+    <string name="txt_unit_number">Unit Number</string>
+    <string name="txt_additional_comments">Additional Comments</string>
+
+    <string name="txt_me">Me</string>
+
+
+    <string name="txt_vaidate_first_name">Please enter first name</string>
+    <string name="txt_vaidate_last_name">Please enter last name</string>
+    <string name="txt_vaidate_mobile_number">Mobile no. can not be less than 6 digits</string>
+    <string name="txt_vaidate_password">Please enter password</string>
+    <string name="txt_vaidate_old_password">Please enter old password</string>
+    <string name="txt_vaidate_emailID">Please enter the valid email address</string>
+    <string name="txt_vaidate_password_strength">The password must be at least 8 characters long</string>
+    <string name="txt_vaidate_confirm_password">Please enter confirm password</string>
+    <string name="txt_vaidate_confirm_password_and_password">Password and confirm password do not match</string>
+    <string name="txt_vaidate_term_and_conditions">Please check terms and conditions</string>
+    <string name="txt_vaidate_otp">Please enter OTP</string>
+    <string name="txt_vaidate_mobile">Please enter mobile number</string>
+
+    <string name="txt_vaidate_account_number">Please enter account number</string>
+    <string name="txt_vaidate_confirm_account_number">Please confirm Account number</string>
+    <string name="txt_vaidate_bank_name">Please enter bank name</string>
+
+    <string name="txt_validate_fron_image">Please upload front image</string>
+    <string name="txt_validate_back_image">Please upload back image</string>
+    <string name="txt_expiry_date">Expiry date</string>
+
+    <string name="txt_validate_left_image">Please upload left image</string>
+
+    <string name="txt_validate_full_name">Please enter full name</string>
+    <string name="txt_validate_right_image">Please upload right image</string>
+
+    <string name="txt_validate_licence_number">Please enter license number</string>
+    <string name="txt_validate_expiry_date">Please enter expiry date</string>
+    <string name="txt_validate_insurence_number">Please enter Insurance paper number</string>
+    <string name="txt_validate_trade_licence_number">Please enter trade License number</string>
+    <string name="txt_validate_registration_cirtification">Please enter registration certification number</string>
+
+    <string name="txt_vaidate_account_number_confirm_account_number">Account number and confirm account number does not match</string>
+
+    <string name="txt_vaidate_contact_person_name">Please enter contact person name</string>
+    <string name="txt_vaidate_contact_persson_number">Please enter contact person mobile number</string>
+
+    <string name="txt_invalid_date">Date must be greater than current date</string>
+
+    <string name="txt_ok">OK</string>
+    <string name="txt_hours">Hours: </string>
+    <string name="txt_minuts">Minutes: </string>
+
+    <string name="txt_view_details">View Details</string>
+
+    <string name="txt_full_name">Full Name</string>
+
+    <string name="txt_edt_profile">Edit Profile</string>
+    <string name="txt_profile">Profile</string>
+    <string name="txt_post">Post</string>
+    <string name="txt_change_profile">Edit Profile</string>
+
+
+    <string name="txt_disagree">Disagree</string>
+    <string name="txt_assign_another_driver">Do you really want to assign it to another driver?</string>
+    <string name="txt_logout_confirmation">Are you sure that you want to logout?</string>
+    <string name="txt_close_app">Are you sure that you want to close the app?</string>
+    <string name="txt_yes">Yes</string>
+    <string name="txt_No">No</string>
+
+    <string name="txt_book_a_pick_up">Book a Pickup</string>
+
+    <string name="txt_change_number">Change Number</string>
+    <string name="txt_change">Change</string>
+
+    <string name="txt_front_side">Front Side</string>
+    <string name="txt_back_side">Back Side</string>
+    <string name="txt_licence_number">License Number</string>
+    <string name="txt_licence_expiry_date">License Expiry Date</string>
+    <string name="txt_insurance_expiry_date">Insurance Expiry Date</string>
+    <string name="txt__trade_expiry_date">Trade insurance Expiry Date</string>
+    <string name="txt__certificate_expiry_date">Certificate Expiry Date</string>
+    <string name="txt_date_hint">DD/MM/YY</string>
+    <string name="txt_next">Next</string>
+
+    <string name="txt_insurence_paper_number">Insurance Paper Number</string>
+
+    <string name="txt_trade_licence_number">Trade License Paper Number</string>
+    <string name="txt_trade_licence_paper">Trade License Paper</string>
+
+    <string name="txt_registration_number">Registration Certificate Number</string>
+    <string name="txt_cirtificate_expiry_date">Certificate Expiry Date</string>
+
+    <string name="txt_bank_name">Bank Name</string>
+    <string name="txt_account_number">Account Number</string>
+    <string name="txt__confirm_account_number">Confirm account Number</string>
+
+    <string name="txt_vehical_fron">Vehicle Front Image</string>
+    <string name="txt_vehical_back">Vehicle Back Image</string>
+    <string name="txt_vehical_right">Vehicle Right Image</string>
+    <string name="txt_vehical_left">Vehicle Left Image</string>
+
+    <string name="txt_vehical_image">Vehicle Images</string>
+    <string name="txt_trade_license">Trade License Paper</string>
+    <string name="txt_insurence_paper">Insurance Paper</string>
+    <string name="txt_registration_cirtificate">Registration Certificate</string>
+    <string name="txt_driving_license">Driving License</string>
+    <string name="txt_personal_details">Personal Details</string>
+    <string name="title_activity_revenue">RevenueActivity</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+
+    <string name="txt_all">All</string>
+    <string name="txt_cash">Cash</string>
+    <string name="txt_card">Card</string>
+    <string name="txt_revenue">Revenue</string>
+    <string name="txt_booking_date">Booking Date</string>
+    <string name="txt_booking_time">Booking Time</string>
+    <string name="txt_time_left">Time Left: </string>
+    <string name="txt_contact_details">Contact Details</string>
+    <string name="txt_time_left_to_accept_booking">Time Left to Accept Booking</string>
+
+    <string name="txt_earn_credits">Share App to Earn More Credits and Improve</string>
+    <string name="txt_your_bank">Your Bank.</string>
+    <string name="txt_refrel_code">Your Refferal Code</string>
+    <string name="edit_profile">Edit Profile</string>
+
+    <string-array name="ride_status">
+        <item>On the Way</item>
+        <item>Arrived</item>
+        <item>Loading</item>
+        <item>Enroute</item>
+        <item>Reached drop off location</item>
+        <item>Unload</item>
+        <item>Delivered</item>
+    </string-array>
+</resources>

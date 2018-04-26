@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/transparent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="60dp"
+        android:background="@android:color/transparent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:background="@drawable/dialog_background"
+            android:paddingBottom="5dp">
+
+            <TextView
+                android:id="@+id/txt_driver_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="70dp"
+                android:gravity="center"
+                android:text="Ronaldo Crew"
+                android:textColor="@color/grey_text_color"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <RelativeLayout
+                android:id="@+id/rl_fare_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txt_driver_name"
+                android:layout_marginTop="20dp">
+
+                <TextView
+                    android:id="@+id/row_label_txt_fare"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="@string/txt_apx_fare"
+                    android:textColor="@color/otp_text_color"
+                    android:textSize="@dimen/sp_14" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/txt_apx_fare"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rl_fare_layout"
+                android:layout_centerInParent="true"
+                android:text="$21"
+                android:textColor="@color/otp_text_color"
+                android:textSize="25dp" />
+
+            <RatingBar
+                android:id="@+id/ratingBar1"
+                style="@style/customRatingBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txt_apx_fare"
+                android:layout_centerHorizontal="true"
+                android:max="5"
+                android:rating="1"
+                android:stepSize="1" />
+
+
+            <!--<com.iarcuschin.simpleratingbar.SimpleRatingBar
+                android:id="@+id/ratingBar1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srb_starSize="25dp"
+                app:srb_stepSize="1"
+                android:numStars="5"
+                app:srb_starBorderWidth="0.1"
+                app:srb_starCornerRadius="5"
+                app:srb_rating="1"
+                style="@style/customRatingBar"
+                app:srb_pressedStarBackgroundColor="@color/otp_text_color"
+                app:srb_starsSeparation="30dp"
+                app:srb_starBackgroundColor="@color/greyColor"
+                android:layout_below="@+id/txt_apx_fare"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp" />
+-->
+
+
+            <LinearLayout
+                android:id="@+id/description_container"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+
+                android:layout_below="@+id/ratingBar1"
+                android:layout_marginTop="15dp"
+                android:background="#ffffff"
+                android:orientation="vertical"
+                android:paddingEnd="20dp"
+                android:paddingStart="20dp"
+                android:visibility="visible">
+
+                <TextView
+                    android:id="@+id/txt_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="start"
+                    android:paddingBottom="8dp"
+                    android:paddingTop="8dp"
+                    android:text="@string/txt_additional_comments"
+                    android:textColor="@color/greyColor"
+                    android:textSize="@dimen/sp_12" />
+
+                <EditText
+                    android:id="@+id/edt_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:background="@drawable/edit_text_background"
+                    android:gravity="start"
+                    android:padding="8dp"
+                    android:textColor="@color/greyColor"
+                    android:textCursorDrawable="@null"
+                    android:textSize="@dimen/sp_12" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/dialog_footer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/description_container"
+                android:layout_marginEnd="20dp"
+                android:layout_marginStart="20dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btn_agree"
+                    style="@style/btn_style"
+                    android:layout_width="160dp"
+                    android:layout_height="70dp"
+                    android:layout_below="@+id/text_enter_mobile"
+                    android:elevation="5dp"
+                    android:paddingBottom="12dp"
+                    android:stateListAnimator="@null"
+                    android:text="@string/txt_post"
+                    android:translationZ="5dp" />
+            </LinearLayout>
+        </RelativeLayout>
+
+
+        <!--<com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/img_driver"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            android:adjustViewBounds="true"
+            android:layout_centerHorizontal="true"
+            android:scaleType="centerCrop"
+            app:riv_oval="true"
+            android:src="@drawable/driver" />-->
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/img_driver"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            android:layout_centerHorizontal="true"
+            android:scaleType="centerCrop"
+            android:src="@drawable/driver" />
+    </RelativeLayout>
+</RelativeLayout>

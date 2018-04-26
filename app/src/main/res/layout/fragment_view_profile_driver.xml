@@ -1,0 +1,663 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    tools:context="com.app.bickupdriver.fragments.LoginFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/container_signup"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/dp_20"
+            android:paddingEnd="@dimen/dp_20"
+            android:paddingStart="@dimen/dp_20">
+
+            <RelativeLayout
+                android:id="@+id/id_image_container"
+                android:layout_width="110dp"
+                android:layout_height="100dp"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/dp_18"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:visibility="visible">
+
+                <!--<com.makeramen.roundedimageview.RoundedImageView
+                    android:id="@+id/userImage"
+                    android:layout_width="@dimen/dp_100"
+                    android:layout_height="@dimen/dp_100"
+                    app:riv_oval="true"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/driver" />-->
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/userImage"
+                    android:layout_width="@dimen/dp_100"
+                    android:layout_height="@dimen/dp_100"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/driver" />
+
+                <ImageView
+                    android:layout_width="@dimen/dp_30"
+                    android:layout_height="@dimen/dp_30"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentEnd="true"
+                    android:src="@drawable/add_photo"
+                    android:visibility="gone" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_30"
+                android:orientation="vertical"
+                android:visibility="visible">
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/label_full_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_forgot_heading"
+                    android:layout_marginTop="5dp"
+                    app:hintTextAppearance="@style/TextAppearence.App.TextInputLayout">
+
+                    <EditText
+                        android:id="@+id/edt_Value_full_name"
+                        style="@style/mediumTextSize"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/greyColor"
+                        android:digits="QWERTYUIOPASDFGHJKLZXCVBNM1234567890qwertyuiopasdfghjklzxcvbnm/\!@#$%*|?"
+                        android:enabled="false"
+                        android:hint="@string/txt_full_name"
+                        android:maxLines="1"
+                        android:paddingBottom="15dp"
+                        android:paddingTop="0dp"
+                        android:textColor="@color/grey_text_color"
+                        android:textCursorDrawable="@null" />
+                </android.support.design.widget.TextInputLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:clickable="false"
+                    android:gravity="center_vertical">
+
+                    <View
+                        android:layout_width="0.5dp"
+                        android:layout_height="18dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="50dp"
+                        android:background="@color/greyColor"
+                        android:paddingBottom="-10dp"
+                        android:visibility="gone" />
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:hintTextAppearance="@style/TextAppearence.App.TextInputLayout">
+
+                        <EditText
+                            android:id="@+id/edt_mobile_number_signup"
+                            style="@style/mediumTextSize"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:backgroundTint="@color/greyColor"
+                            android:enabled="false"
+                            android:hint="@string/mobile_number"
+
+                            android:inputType="number"
+                            android:maxLines="1"
+                            android:paddingBottom="16dp"
+                            android:paddingTop="0dp"
+                            android:textColor="@color/grey_text_color"
+                            android:textCursorDrawable="@null" />
+                    </android.support.design.widget.TextInputLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/edt_country_code_input_layout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/dp_12">
+
+                        <TextView
+                            android:id="@+id/edt_country_code"
+                            style="@style/mediumTextSize"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:backgroundTint="@color/white"
+                            android:gravity="center_vertical"
+                            android:inputType="number"
+                            android:maxLines="1"
+                            android:paddingTop="0dp"
+                            android:text="+91"
+                            android:textColor="@color/greyColor"
+                            android:textCursorDrawable="@null"
+                            android:visibility="gone" />
+
+                    </RelativeLayout>
+
+
+                </RelativeLayout>
+
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/label_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_forgot_heading"
+                    android:layout_marginTop="5dp"
+                    app:hintTextAppearance="@style/TextAppearence.App.TextInputLayout">
+
+                    <EditText
+                        android:id="@+id/edt_Value_email_id"
+                        style="@style/mediumTextSize"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/greyColor"
+                        android:digits="QWERTYUIOPASDFGHJKLZXCVBNM1234567890qwertyuiopasdfghjklzxcvbnm/\!@#$%*|?"
+                        android:enabled="false"
+                        android:hint="@string/txt_email"
+                        android:maxLines="1"
+                        android:paddingBottom="15dp"
+                        android:paddingTop="0dp"
+                        android:textColor="@color/grey_text_color"
+                        android:textCursorDrawable="@null" />
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/label_bank_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_forgot_heading"
+                    android:layout_marginTop="5dp"
+                    app:hintTextAppearance="@style/TextAppearence.App.TextInputLayout">
+
+                    <EditText
+                        android:id="@+id/edt_Value_bank_name"
+                        style="@style/mediumTextSize"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/greyColor"
+                        android:digits="QWERTYUIOPASDFGHJKLZXCVBNM1234567890qwertyuiopasdfghjklzxcvbnm/\!@#$%*|?"
+                        android:enabled="false"
+                        android:hint="@string/txt_bank_name"
+                        android:maxLines="1"
+                        android:paddingBottom="15dp"
+                        android:paddingTop="0dp"
+                        android:textColor="@color/grey_text_color"
+                        android:textCursorDrawable="@null" />
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/label_account_number"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_forgot_heading"
+                    android:layout_marginTop="5dp"
+                    app:hintTextAppearance="@style/TextAppearence.App.TextInputLayout">
+
+                    <EditText
+                        android:id="@+id/edt_Value_account_number"
+                        style="@style/mediumTextSize"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/greyColor"
+                        android:digits="1234567890qwertyuiopasdfghjklzxcvbnm/\!@#$%*|?"
+                        android:enabled="false"
+                        android:hint="@string/txt_account_number"
+                        android:maxLines="1"
+                        android:paddingBottom="15dp"
+                        android:paddingTop="0dp"
+                        android:textColor="@color/grey_text_color"
+                        android:textCursorDrawable="@null" />
+                </android.support.design.widget.TextInputLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:id="@+id/txt_driving_license"
+                            style="@style/smallTextSize"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="@string/txt_driving_license"
+                            android:textColor="@color/grey_text_color" />
+
+                        <TextView
+                            android:id="@+id/txt_driving_license_expiry"
+                            style="@style/smallTextSize"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_below="@+id/txt_driving_license"
+                            android:text="@string/txt_driving_license"
+                            android:textColor="@color/red" />
+
+                        <RelativeLayout
+                            android:id="@+id/rl_driving_license"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/txt_driving_license_expiry"
+                            android:layout_marginTop="5dp">
+
+                            <!--<com.makeramen.roundedimageview.RoundedImageView
+                                android:id="@+id/frontdrivingLicense"
+                                android:layout_width="@dimen/dp_40"
+                                android:layout_height="@dimen/dp_40"
+                                android:scaleType="centerCrop"
+                                app:riv_oval="true"
+                                android:src="@drawable/ac_sing_helper" />-->
+
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                android:id="@+id/frontdrivingLicense"
+                                android:layout_width="@dimen/dp_40"
+                                android:layout_height="@dimen/dp_40"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/ac_sing_helper" />
+
+                            <!--<com.makeramen.roundedimageview.RoundedImageView
+                                android:id="@+id/backdrivinglicense"
+                                android:layout_width="@dimen/dp_40"
+                                android:layout_height="@dimen/dp_40"
+                                android:scaleType="centerCrop"
+                                app:riv_oval="true"
+                                android:layout_marginStart="-30dp"
+                                android:layout_toEndOf="@+id/frontdrivingLicense"
+                                android:src="@drawable/ac_sing_helper" />-->
+
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                android:id="@+id/backdrivinglicense"
+                                android:layout_width="@dimen/dp_40"
+                                android:layout_height="@dimen/dp_40"
+                                android:layout_marginStart="-30dp"
+                                android:layout_toEndOf="@+id/frontdrivingLicense"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/ac_sing_helper" />
+                        </RelativeLayout>
+
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:id="@+id/txt_registration_cirtificate"
+                            style="@style/smallTextSize"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/txt_registration_cirtificate"
+                            android:textColor="@color/grey_text_color" />
+
+                        <TextView
+                            android:id="@+id/txt_registration_cirtificate_expiry"
+                            style="@style/smallTextSize"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/txt_registration_cirtificate"
+                            android:text="@string/txt_registration_cirtificate"
+                            android:textColor="@color/red" />
+
+
+                        <RelativeLayout
+                            android:id="@+id/rl_registration_cirtificate"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/txt_registration_cirtificate_expiry"
+                            android:layout_marginTop="5dp"
+
+                            >
+
+                            <!--<com.makeramen.roundedimageview.RoundedImageView
+                                android:id="@+id/front_registration_Cirtificate"
+                                android:layout_width="@dimen/dp_40"
+                                android:layout_height="@dimen/dp_40"
+                                android:scaleType="centerCrop"
+                                app:riv_oval="true"
+                                android:src="@drawable/ac_sing_helper" />-->
+
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                android:id="@+id/front_registration_Cirtificate"
+                                android:layout_width="@dimen/dp_40"
+                                android:layout_height="@dimen/dp_40"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/ac_sing_helper" />
+
+                            <!--<com.makeramen.roundedimageview.RoundedImageView
+                                android:id="@+id/back_registration_cirtificate"
+                                android:layout_width="@dimen/dp_40"
+                                android:layout_height="@dimen/dp_40"
+                                android:scaleType="centerCrop"
+                                app:riv_oval="true"
+                                android:layout_marginStart="-30dp"
+                                android:layout_toEndOf="@+id/front_registration_Cirtificate"
+                                android:src="@drawable/ac_sing_helper" />-->
+
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                android:id="@+id/back_registration_cirtificate"
+                                android:layout_width="@dimen/dp_40"
+                                android:layout_height="@dimen/dp_40"
+                                android:layout_marginStart="-30dp"
+                                android:layout_toEndOf="@+id/front_registration_Cirtificate"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/ac_sing_helper" />
+                        </RelativeLayout>
+
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:id="@+id/txt_insurence_paper"
+                            style="@style/smallTextSize"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="@string/txt_insurence_paper"
+                            android:textColor="@color/grey_text_color" />
+
+
+                        <TextView
+                            android:id="@+id/txt_insurence_paper_expiry"
+                            style="@style/smallTextSize"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_below="@+id/txt_insurence_paper"
+                            android:text="@string/txt_insurence_paper"
+                            android:textColor="@color/red" />
+
+
+                        <RelativeLayout
+                            android:id="@+id/rl_insurence"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/txt_insurence_paper_expiry"
+                            android:layout_marginTop="5dp">
+
+                            <!--<com.makeramen.roundedimageview.RoundedImageView
+                                android:id="@+id/frontInsurence"
+                                android:layout_width="@dimen/dp_40"
+                                android:layout_height="@dimen/dp_40"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/ac_sing_helper"
+                                app:riv_oval="true" />-->
+
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                android:id="@+id/frontInsurence"
+                                android:layout_width="@dimen/dp_40"
+                                android:layout_height="@dimen/dp_40"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/ac_sing_helper" />
+
+                            <!--<com.makeramen.roundedimageview.RoundedImageView
+                                android:id="@+id/backInsurence"
+                                android:layout_width="@dimen/dp_40"
+                                android:layout_height="@dimen/dp_40"
+                                android:layout_marginStart="-30dp"
+                                android:layout_toEndOf="@+id/frontInsurence"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/ac_sing_helper"
+                                app:riv_oval="true" />-->
+
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                android:id="@+id/backInsurence"
+                                android:layout_width="@dimen/dp_40"
+                                android:layout_height="@dimen/dp_40"
+                                android:layout_marginStart="-30dp"
+                                android:layout_toEndOf="@+id/frontInsurence"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/ac_sing_helper" />
+                        </RelativeLayout>
+
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:id="@+id/txt_trade_license_paper"
+                            style="@style/smallTextSize"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/txt_trade_licence_paper"
+                            android:textColor="@color/grey_text_color" />
+
+                        <TextView
+                            android:id="@+id/txt_trade_license_paper_expiry"
+                            style="@style/smallTextSize"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/txt_trade_license_paper"
+                            android:text="@string/txt_trade_licence_paper"
+                            android:textColor="@color/red" />
+
+
+                        <RelativeLayout
+                            android:id="@+id/rl_trade_insurence"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/txt_trade_license_paper_expiry"
+                            android:layout_marginTop="5dp"
+
+                            >
+
+                            <!--<com.makeramen.roundedimageview.RoundedImageView
+                                android:id="@+id/front_trade"
+                                android:layout_width="@dimen/dp_40"
+                                android:layout_height="@dimen/dp_40"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/ac_sing_helper"
+                                app:riv_oval="true" />-->
+
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                android:id="@+id/front_trade"
+                                android:layout_width="@dimen/dp_40"
+                                android:layout_height="@dimen/dp_40"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/ac_sing_helper" />
+
+                            <!--<com.makeramen.roundedimageview.RoundedImageView
+                                android:id="@+id/back_trade"
+                                android:layout_width="@dimen/dp_40"
+                                android:layout_height="@dimen/dp_40"
+                                android:layout_marginStart="-30dp"
+                                android:layout_toEndOf="@+id/front_trade"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/ac_sing_helper"
+                                app:riv_oval="true" />-->
+
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                android:id="@+id/back_trade"
+                                android:layout_width="@dimen/dp_40"
+                                android:layout_height="@dimen/dp_40"
+                                android:layout_marginStart="-30dp"
+                                android:layout_toEndOf="@+id/front_trade"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/ac_sing_helper" />
+                        </RelativeLayout>
+
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:id="@+id/txt_vehical_images"
+                            style="@style/smallTextSize"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="@string/txt_vehical_image"
+                            android:textColor="@color/grey_text_color" />
+
+                        <RelativeLayout
+                            android:id="@+id/rl_vehicle_image"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/txt_vehical_images"
+                            android:layout_marginTop="5dp">
+
+                            <!--<com.makeramen.roundedimageview.RoundedImageView
+                                android:id="@+id/frontVehical"
+                                android:layout_width="@dimen/dp_40"
+                                android:layout_height="@dimen/dp_40"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/ac_sing_helper"
+                                app:riv_oval="true" />-->
+
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                android:id="@+id/frontVehical"
+                                android:layout_width="@dimen/dp_40"
+                                android:layout_height="@dimen/dp_40"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/ac_sing_helper" />
+
+                            <!--                            <com.makeramen.roundedimageview.RoundedImageView
+                                                            android:id="@+id/backVehical"
+                                                            android:layout_width="@dimen/dp_40"
+                                                            android:layout_height="@dimen/dp_40"
+                                                            android:layout_marginStart="-30dp"
+                                                            android:layout_toEndOf="@+id/frontVehical"
+                                                            android:scaleType="centerCrop"
+                                                            android:src="@drawable/ac_sing_helper"
+                                                            app:riv_oval="true" />-->
+
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                android:id="@+id/backVehical"
+                                android:layout_width="@dimen/dp_40"
+                                android:layout_height="@dimen/dp_40"
+                                android:layout_marginStart="-30dp"
+                                android:layout_toEndOf="@+id/frontVehical"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/ac_sing_helper" />
+
+                            <!--<com.makeramen.roundedimageview.RoundedImageView
+                                android:id="@+id/leftVehical"
+                                android:layout_width="@dimen/dp_40"
+                                android:layout_height="@dimen/dp_40"
+                                android:layout_marginStart="-30dp"
+                                android:layout_toEndOf="@+id/backVehical"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/ac_sing_helper"
+                                app:riv_oval="true" />-->
+
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                android:id="@+id/leftVehical"
+                                android:layout_width="@dimen/dp_40"
+                                android:layout_height="@dimen/dp_40"
+                                android:layout_marginStart="-30dp"
+                                android:layout_toEndOf="@+id/backVehical"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/ac_sing_helper" />
+
+                            <!--                            <com.makeramen.roundedimageview.RoundedImageView
+                                                            android:id="@+id/rightVehical"
+                                                            android:layout_width="@dimen/dp_40"
+                                                            android:layout_height="@dimen/dp_40"
+                                                            android:layout_marginStart="-30dp"
+                                                            android:layout_toEndOf="@+id/leftVehical"
+                                                            android:scaleType="centerCrop"
+                                                            android:src="@drawable/ac_sing_helper"
+                                                            app:riv_oval="true" />-->
+
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                android:id="@+id/rightVehical"
+                                android:layout_width="@dimen/dp_40"
+                                android:layout_height="@dimen/dp_40"
+                                android:layout_marginStart="-30dp"
+                                android:layout_toEndOf="@+id/leftVehical"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/ac_sing_helper" />
+                        </RelativeLayout>
+
+
+                    </RelativeLayout>
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btn_change"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_80"
+                android:layout_marginEnd="-12dp"
+                android:layout_marginStart="-12dp"
+                android:layout_marginTop="@dimen/dp_18"
+                android:background="@drawable/lg_btn"
+                android:paddingBottom="@dimen/dp_14"
+                android:text="@string/txt_change"
+                android:textAllCaps="false"
+                android:textColor="@color/white" />
+        </LinearLayout>
+
+    </ScrollView>
+
+    <com.github.rahatarmanahmed.cpv.CircularProgressView xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/progress_view"
+        android:layout_width="@dimen/dp_50"
+        android:layout_height="@dimen/dp_50"
+        android:layout_gravity="center"
+        android:visibility="gone"
+        app:cpv_animAutostart="true"
+        app:cpv_color="@color/appcolor"
+        app:cpv_indeterminate="true" />
+
+    <RelativeLayout
+        android:id="@+id/view_pager_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></android.support.v4.view.ViewPager>
+    </RelativeLayout>
+</FrameLayout>

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.app.bickupdriver.SettingActivity">
+
+    <include layout="@layout/toolbar_layout"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="7dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:layout_alignParentStart="true"
+            style="@style/mediumTextSize"
+            android:text="@string/txt_notification"
+            android:textColor="@color/grey_text_color"/>
+
+
+        <Switch
+            android:id="@+id/simpleSwitch"
+            android:layout_width="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:theme="@style/SwitchCompatTheme"
+            android:checked="false"
+            android:padding="10dp"
+            android:layout_height="wrap_content"/>
+
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/greyColor"/>
+
+    <RelativeLayout
+        android:id="@+id/edit_profile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="7dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:layout_alignParentStart="true"
+            style="@style/mediumTextSize"
+            android:text="@string/edit_profile"
+            android:textColor="@color/grey_text_color"/>
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/greyColor"/>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        >
+
+
+
+        <Button
+            android:id="@+id/btn_logout"
+            android:layout_width="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_height="@dimen/dp_75"
+            android:paddingBottom="@dimen/dp_14"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:textAllCaps="false"
+            android:layout_marginBottom="20dp"
+            android:text="@string/txt_logout"
+            android:textColor="#ffffff"
+            android:background="@drawable/btn_red"
+            android:layout_below="@+id/text_enter_mobile"/>
+    </RelativeLayout>
+
+
+
+
+
+</LinearLayout>

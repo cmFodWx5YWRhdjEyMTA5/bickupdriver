@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/transparent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:background="@android:color/transparent"
+        android:paddingEnd="20dp"
+        android:paddingStart="20dp">
+
+        <RelativeLayout
+            android:id="@+id/card_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/txt_track_status"
+            android:layout_marginBottom="20dp">
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/id_card_driver"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="10dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="170dp"
+                    android:background="@color/white">
+
+                    <!--<com.makeramen.roundedimageview.RoundedImageView
+                        android:id="@+id/img_driver"
+                        android:layout_width="110dp"
+                        android:layout_height="100dp"
+                        android:adjustViewBounds="true"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/driver"
+                        android:visibility="gone"
+                        app:riv_corner_radius_bottom_left="0dp"
+                        app:riv_corner_radius_bottom_right="10dp"
+                        app:riv_corner_radius_top_left="10dp"
+                        app:riv_corner_radius_top_right="-0dp" />-->
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/img_driver"
+                        android:layout_width="110dp"
+                        android:layout_height="110dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/driver"
+                        android:visibility="gone" />
+
+
+                    <LinearLayout
+                        android:id="@+id/timing_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp_20"
+                        android:layout_toEndOf="@+id/img_driver"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/txt_on_the_way_card"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:paddingLeft="5dp"
+                            android:text="@string/txt_on_the_way_time"
+                            android:textColor="@color/greyColor"
+                            android:textSize="@dimen/sp_16" />
+
+                        <TextView
+                            android:id="@+id/txt_time"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:paddingLeft="5dp"
+                            android:text="05:30 min"
+                            android:textColor="@color/grey_text_color"
+                            android:textSize="@dimen/sp_18" />
+                    </LinearLayout>
+
+                    <Button
+                        android:id="@+id/btn_asign"
+                        style="@style/btn_style"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp_75"
+                        android:layout_below="@+id/timing_layout"
+                        android:layout_marginEnd="12dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="@dimen/dp_20"
+                        android:paddingBottom="@dimen/dp_14" />
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/call_driver"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/card_container"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="-35dp"
+            android:paddingTop="6dp"
+            android:src="@drawable/navigation" />
+
+        <!--
+                <ImageView
+                    android:id="@+id/ivUpDownArrow"
+                    android:src="@drawable/up_arrow"
+                    android:gravity="center"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />-->
+
+        <TextView
+            android:id="@+id/txt_track_status"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_60"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/bottom_sheet_behaviour"
+            android:gravity="center"
+            android:text="@string/txt_tracking_status"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp_12" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/design_bottom_sheet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        app:layout_behavior="android.support.design.widget.BottomSheetBehavior">
+
+        <include layout="@layout/bottom_sheet_layout" />
+
+    </RelativeLayout>
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar_main_activity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:alpha="0.9"
+        android:background="#ffffff">
+
+        <ImageView
+            android:id="@+id/backImage_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:src="@drawable/back_black" />
+
+        <TextView
+            android:id="@+id/txt_activty_header"
+            style="@style/toolbar_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/right_header_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginEnd="@dimen/dp_10"
+            android:src="@drawable/information_black" />
+    </android.support.v7.widget.Toolbar>
+
+
+</android.support.design.widget.CoordinatorLayout>
+

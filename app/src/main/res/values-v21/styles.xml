@@ -1,0 +1,164 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorControlActivated">@color/greyColor</item>
+        <item name="colorControlHighlight">@color/greyColor</item>
+        <!-- Customize your theme here. -->
+        <!-- <item name="colorControlNormal">@color/appcolor</item>
+
+      <item name="colorControlHighlight">@color/appcolor</item>-->
+        <!-- <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorControlNormal">@color/appcolor</item>
+        <item name="colorControlActivated">@color/colorAccent</item>
+        <item name="colorControlHighlight">@color/colorAccent</item>-->
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+
+    <style name="heading_text" parent="@android:style/TextAppearance">
+        <!--<item name="android:textColor"></item>-->
+        <item name="android:textSize">@dimen/sp_16</item>
+        <item name="android:textColor">@color/greyColor</item>
+        <!-- <item name="android:fontStyle"></item>-->
+    </style>
+
+    <style name="heading_black" parent="@android:style/TextAppearance">
+        <!--<item name="android:textColor"></item>-->
+        <item name="android:textSize">@dimen/sp_15</item>
+        <item name="android:textColor">@color/grey_text_color</item>
+        <!-- <item name="android:fontStyle"></item>-->
+    </style>
+
+    <style name="header_text" parent="@android:style/TextAppearance">
+        <!--<item name="android:textColor"></item>-->
+        <item name="android:textSize">@dimen/sp_16</item>
+        <item name="android:textColor">@color/appcolor</item>
+        <!-- <item name="android:fontStyle"></item>-->
+    </style>
+
+    <style name="toolbar_text" parent="@android:style/TextAppearance">
+        <!--<item name="android:textColor"></item>-->
+        <item name="android:textSize">@dimen/sp_16</item>
+        <item name="android:textColor">@color/appcolor</item>
+        <!-- <item name="android:fontStyle"></item>-->
+    </style>
+
+    <style name="edit_text" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@color/grey_text_color</item>
+        <item name="android:textSize">@dimen/sp_15</item>
+        <item name="android:backgroundTint">@color/greyColor</item>
+        <item name="android:paddingBottom">@dimen/dp_12</item>
+        <item name="android:paddingTop">0dp</item>
+    </style>
+
+    <style name="edit_textSignup" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@color/edit_text_color</item>
+        <item name="android:textSize">@dimen/sp_14</item>
+        <item name="android:backgroundTint">@color/grey_text_color</item>
+        <item name="android:paddingBottom">@dimen/edit_padding</item>
+    </style>
+
+
+    <style name="TextAppearence.App.TextInputLayout" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@color/grey_text_color</item>
+        <item name="android:textSize">@dimen/sp_12</item>
+
+
+    </style>
+
+    <style name="TextAppearence.App.TextInputLayoutMobile" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@color/grey_text_color</item>
+        <item name="android:backgroundTint">@null</item>
+
+    </style>
+
+    <style name="TextAppearence.App.TextInputLayoutotp" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@color/otp_text_color</item>
+    </style>
+
+    <style name="TextLabel" parent="TextAppearance.Design.Hint">
+        <item name="android:textSize">9dp</item>
+        <item name="android:textColor">@color/greyColor</item>
+    </style>
+
+    <style name="btn_style" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@color/btn_text_color</item>
+        <item name="android:textSize">@dimen/sp_16</item>
+        <item name="android:background">@drawable/lg_btn</item>
+        <item name="android:paddingBottom">@dimen/dp_14</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <style name="smallTextSize">
+        <item name="android:textSize">@dimen/sp_12</item>
+
+    </style>
+
+    <style name="mediumTextSize">
+        <item name="android:textSize">@dimen/sp_14</item>
+
+    </style>
+
+    <style name="largeTextSize">
+        <item name="android:textSize">@dimen/sp_16</item>
+
+    </style>
+
+    <style name="xtraLargeTextSize">
+        <item name="android:textSize">@dimen/sp_20</item>
+
+    </style>
+
+    <style name="scrollbar_shape_style">
+        <item name="android:scrollbarAlwaysDrawHorizontalTrack">true</item>
+        <item name="android:scrollbars">horizontal</item>
+        <item name="android:fadeScrollbars">true</item>
+        <item name="android:scrollbarThumbHorizontal">@drawable/scroll_thumb</item>
+        <item name="android:scrollbarTrackHorizontal">@drawable/scroll_thumb_track</item>
+        <item name="android:fastScrollEnabled">true</item>
+
+
+    </style>
+
+    <style name="SwitchCompatTheme">
+        <item name="colorControlActivated">#ffffff</item>
+        <item name="android:trackTint">@color/green_color</item>
+        <item name="android:track">@color/green_color</item>
+
+    </style>
+
+
+    <style name="DialogAnimation">
+        <item name="android:windowEnterAnimation">@anim/flip_animation</item>
+        <item name="android:windowExitTransition">@anim/flip_animation2</item>
+    </style>
+
+
+    <style name="customRatingBar" parent="@android:style/Widget.RatingBar">
+        <item name="android:progressDrawable">@drawable/rating_star</item>
+        <item name="android:minHeight">50dip</item>
+        <item name="android:maxHeight">50dip</item>
+
+
+    </style>
+
+    <style name="customTabLayout" parent="Widget.Design.TabLayout">
+        <item name="tabIndicatorColor">@color/appcolor</item>
+    </style>
+
+    <style name="custome_zoom" parent="Theme.AppCompat.Dialog.Alert">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+</resources>

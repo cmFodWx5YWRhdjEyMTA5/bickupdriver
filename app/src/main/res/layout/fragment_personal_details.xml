@@ -1,0 +1,202 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    tools:context="com.app.bickupdriver.fragments.LoginFragment">
+
+    <RelativeLayout
+        android:id="@+id/container_signup"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FAFAFA"
+        android:clickable="true"
+        android:orientation="vertical"
+        android:paddingEnd="18dp"
+        android:paddingStart="18dp">
+
+        <RelativeLayout
+            android:id="@+id/id_image_container"
+            android:layout_width="@dimen/dp_110"
+            android:layout_height="@dimen/dp_100"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/dp_30"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="visible">
+            <!--<com.makeramen.roundedimageview.RoundedImageView
+                android:layout_width="@dimen/dp_100"
+                android:layout_height="@dimen/dp_100"
+                android:scaleType="centerCrop"
+                android:src="@drawable/profile_placeholder"
+                app:riv_oval="true"
+                android:id="@+id/img_user"
+                />-->
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/img_user"
+                android:layout_width="@dimen/dp_100"
+                android:layout_height="@dimen/dp_100"
+                android:scaleType="centerCrop"
+                android:src="@drawable/profile_placeholder" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true">
+
+                <ImageView
+                    android:layout_width="@dimen/dp_30"
+                    android:layout_height="@dimen/dp_30"
+                    android:layout_marginBottom="@dimen/dp_3"
+                    android:layout_marginEnd="@dimen/dp_8"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/add_photo"
+
+                    />
+            </RelativeLayout>
+
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/id_image_container"
+            android:layout_marginTop="@dimen/dp_30"
+            android:orientation="vertical"
+            android:visibility="visible">
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/text_enter_first_name_signup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_forgot_heading"
+                android:layout_marginTop="10dp"
+                app:hintTextAppearance="@style/TextAppearence.App.TextInputLayout">
+
+                <EditText
+                    android:id="@+id/edt_bank_name"
+                    style="@style/mediumTextSize"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/greyColor"
+                    android:hint="@string/txt_bank_name"
+                    android:inputType="textCapWords"
+                    android:maxLines="1"
+                    android:paddingBottom="15dp"
+                    android:paddingTop="0dp"
+                    android:textCursorDrawable="@null" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/text_last_name_signup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_forgot_heading"
+                android:layout_marginTop="10dp"
+                app:hintTextAppearance="@style/TextAppearence.App.TextInputLayout">
+
+                <EditText
+                    android:id="@+id/edt_account_number"
+                    style="@style/mediumTextSize"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/greyColor"
+                    android:hint="@string/txt_account_number"
+                    android:inputType="number"
+                    android:maxLength="19"
+                    android:maxLines="1"
+                    android:paddingBottom="15dp"
+                    android:paddingTop="0dp"
+                    android:textCursorDrawable="@null" />
+            </android.support.design.widget.TextInputLayout>
+
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/text_enter_emailID_signup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_forgot_heading"
+                android:layout_marginTop="10dp"
+                app:hintTextAppearance="@style/TextAppearence.App.TextInputLayout">
+
+                <EditText
+                    android:id="@+id/edt_confirm_account_number"
+                    style="@style/mediumTextSize"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/greyColor"
+                    android:hint="@string/txt__confirm_account_number"
+                    android:inputType="number"
+                    android:maxLength="19"
+                    android:maxLines="1"
+                    android:paddingBottom="15dp"
+                    android:paddingTop="0dp"
+                    android:textCursorDrawable="@null" />
+            </android.support.design.widget.TextInputLayout>
+
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/btn_proceed"
+        style="@style/btn_style"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_75"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/text_enter_mobile"
+        android:layout_marginBottom="@dimen/dp_50"
+        android:layout_marginEnd="@dimen/dp_18"
+        android:layout_marginLeft="-4dp"
+        android:layout_marginRight="-4dp"
+        android:layout_marginStart="@dimen/dp_18"
+        android:paddingBottom="@dimen/dp_12"
+        android:text="@string/txt_proceed"
+        android:textAllCaps="false" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_40"
+        android:layout_alignParentBottom="true">
+
+        <TextView
+            android:id="@+id/txt_steps"
+            style="@style/largeTextSize"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:background="@color/white"
+            android:gravity="center"
+            android:text="Step 1 of 6"
+            android:textColor="@color/grey_text_color" />
+
+        <TextView
+            android:id="@+id/txt_skip"
+            style="@style/largeTextSize"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:background="@color/white"
+            android:gravity="center"
+            android:paddingEnd="@dimen/dp_18"
+            android:text="Skip"
+            android:textColor="@color/grey_text_color" />
+    </RelativeLayout>
+
+
+    <com.github.rahatarmanahmed.cpv.CircularProgressView xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/progress_view"
+        android:layout_width="@dimen/dp_50"
+        android:layout_height="@dimen/dp_50"
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+        app:cpv_animAutostart="true"
+        app:cpv_color="@color/appcolor"
+        app:cpv_indeterminate="true" />
+
+</RelativeLayout>

@@ -1,0 +1,20 @@
+{
+    "logs": [
+        {
+            "outputFile": "/home/manish/AndroidStudioProjects/BickupDriver/calender/build/intermediates/incremental/mergeDebugAndroidTestResources/merged.dir/values/values.xml",
+            "map": [
+                {
+                    "source": "/home/manish/AndroidStudioProjects/BickupDriver/calender/build/intermediates/bundles/debug/res/values/values.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,26,27,32,38",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,95,150,214,272,330,1017,1074,1128,1177,1233,1287,1336,1396,1444,1482,1529,1576,1629,1679,1741,1901,1934,2114,2398",
+                        "endLines": "2,3,4,5,6,7,9,10,11,12,13,14,15,16,17,18,19,20,21,22,25,26,31,37,41",
+                        "endColumns": "39,54,63,57,57,39,56,53,48,55,53,48,59,47,37,46,46,52,49,61,12,32,12,12,12",
+                        "endOffsets": "90,145,209,267,325,365,1069,1123,1172,1228,1282,1331,1391,1439,1477,1524,1571,1624,1674,1736,1896,1929,2109,2393,2550"
+                    }
+                }
+            ]
+        }
+    ]
+}

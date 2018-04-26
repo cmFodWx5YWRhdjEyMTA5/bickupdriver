@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/transparent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:background="@android:color/transparent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:background="@drawable/dialog_background">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="90dp"
+                android:textSize="@dimen/sp_14"
+                android:gravity="center"
+                android:id="@+id/txt_booking_confirmation"
+                android:textColor="@color/grey_text_color"
+                android:text="@string/txt_booking_confirmation"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:id="@+id/txt_booking_id"
+                android:layout_marginTop="5dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txt_booking_confirmation"
+                android:textSize="@dimen/sp_12"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:textColor="@color/grey_text_color"
+                android:text="#RJYS5558056"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:id="@+id/devider"
+                android:background="@color/greyColor"
+                android:layout_below="@+id/txt_booking_id"
+                android:layout_marginTop="10dp"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/rl_container"
+
+                android:layout_below="@+id/devider"
+                android:alpha="0.9"
+                android:background="@drawable/search_main"
+                android:padding="10dp">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:id="@+id/pic_drop_view"
+                    android:gravity="center"
+                    android:orientation="vertical">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/pick_location"/>
+
+                    <View
+                        android:layout_width="0.5dp"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="-10dp"
+                        android:background="@color/greyColor"/>
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="-8dp"
+                        android:src="@drawable/drop_location"/>
+
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_toEndOf="@+id/pic_drop_view">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/img_container_booking_details"
+                        android:visibility="visible"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/label_pickup_location_dialog"
+                            android:layout_marginTop="7dp"
+                            android:layout_toEndOf="@+id/txt_helper"
+                            android:text="@string/txt_pick_up"
+                            android:textColor="@color/greyColor"
+                            android:textSize="@dimen/sp_12" />
+                        <TextView
+                            android:id="@+id/edt_pickup_location"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:paddingStart="-2dp"
+
+
+                            android:text="123 6th St. Melbourne, FL 32940"
+                            android:textColor="@color/grey_text_color"
+                            android:textSize="@dimen/sp_12" />
+
+
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:visibility="visible"
+                        android:orientation="vertical">
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/label_drop_location"
+                            android:layout_marginTop="7dp"
+                            android:layout_toEndOf="@+id/txt_helper"
+                            android:text="@string/txt_drop"
+                            android:textColor="@color/greyColor"
+                            android:textSize="@dimen/sp_12" />
+                        <TextView
+                            android:id="@+id/edt_drop_location"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingStart="-2dp"
+                            android:layout_marginTop="5dp"
+
+                            android:text="123 6th St. Melbourne, FL 32940"
+                            android:textColor="@color/grey_text_color"
+                            android:textSize="@dimen/sp_12" />
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+            </RelativeLayout>
+
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:id="@+id/devider2"
+
+                android:background="@color/greyColor"
+                android:layout_below="@+id/rl_container" />
+
+
+
+
+<TextView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:layout_below="@+id/devider2"
+    android:id="@+id/txt_total"
+    android:layout_marginTop="20dp"
+    android:textColor="@color/otp_text_color"
+    android:text="Total: $57.90"
+    android:textSize="20dp"/>
+
+                <Button
+                    android:id="@+id/btn_done"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="95dp"
+                    android:layout_marginEnd="95dp"
+                    android:stateListAnimator="@null"
+                    android:layout_marginTop="20dp"
+                    android:paddingBottom="15dp"
+                    android:textAllCaps="false"
+                    android:text="@string/txt_done"
+                    style="@style/btn_style"
+                    android:layout_below="@+id/txt_total"/>
+
+
+
+
+
+        </RelativeLayout>
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:padding="20dp"
+            android:id="@+id/img_traveller"
+            android:layout_centerHorizontal="true"
+            android:scaleType="centerCrop"
+            android:src="@drawable/single_logo"
+            android:background="@drawable/non_stroke_circle"/>
+
+
+    </RelativeLayout>
+
+</RelativeLayout>

@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@android:color/transparent">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:background="@drawable/search_main"
+        android:padding="8dp"
+        android:orientation="vertical">
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:paddingStart="30dp"
+    android:layout_marginTop="8dp"
+    android:paddingEnd="30dp"
+    android:layout_height="wrap_content">
+<TextView
+    android:layout_width="70dp"
+    android:layout_height="70dp"
+    android:id="@+id/hourtext"
+    android:layout_alignParentStart="true"
+    android:background="@drawable/grey_background"
+    android:textSize="20dp"
+    android:gravity="center"
+    android:text="1"
+    android:textColor="@color/grey_text_color"
+    />
+    <TextView
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:id="@+id/minuit_txt"
+        android:textSize="20dp"
+        android:gravity="center"
+        android:text="15"
+        android:background="@drawable/grey_background"
+        android:textColor="@color/grey_text_color"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:elevation="2dp"
+        android:textColor="@color/grey_text_color"
+        android:text=":"
+        android:textSize="30dp"/>
+
+
+
+</RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:padding="5dp"
+                android:gravity="center"
+                android:elevation="2dp"
+                android:textColor="@color/grey_text_color"
+                android:text="@string/txt_hours"
+                android:textSize="@dimen/sp_12"/>
+            <com.xw.repo.BubbleSeekBar
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/seekbar"
+                android:layout_marginTop="8dp"
+                app:bsb_hide_bubble="true"
+                app:bsb_progress="10"
+                app:bsb_second_track_color="#4BCC54"
+                app:bsb_section_text_position="bottom_sides"
+                app:bsb_show_progress_in_float="false"
+                app:bsb_show_section_mark="false"
+                app:bsb_show_section_text="false"
+                app:bsb_section_text_size="0dp"
+                app:bsb_show_thumb_text="false"
+                app:bsb_thumb_radius="10dp"
+                app:bsb_max="24"
+                app:bsb_min="1"
+                android:elevation="10dp"
+                app:bsb_track_size="0.6dp"
+                app:bsb_track_color="@color/greyColor"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:padding="5dp"
+                android:gravity="center"
+                android:elevation="2dp"
+                android:textColor="@color/grey_text_color"
+                android:text="@string/txt_minuts"
+                android:textSize="@dimen/sp_12"/>
+
+        </LinearLayout>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="40dp"
+    android:layout_marginTop="10dp"
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
+    <TextView
+        android:layout_width="50dp"
+        android:layout_height="30dp"
+        android:layout_centerInParent="true"
+        android:id="@+id/fifteen_minuit"
+        android:padding="5dp"
+        android:gravity="center"
+        android:elevation="2dp"
+        android:background="@drawable/minuits_background"
+        android:textColor="@color/greyColor"
+        android:layout_marginStart="5dp"
+        android:text="15"
+        android:textSize="@dimen/sp_12"/>
+    <TextView
+        android:layout_width="50dp"
+        android:layout_height="30dp"
+        android:layout_centerInParent="true"
+        android:padding="5dp"
+        android:id="@+id/thirty_minuit"
+        android:gravity="center"
+        android:elevation="2dp"
+        android:background="@drawable/minuits_background"
+        android:textColor="@color/greyColor"
+        android:layout_marginStart="5dp"
+        android:text="30"
+        android:textSize="@dimen/sp_12"/>
+    <TextView
+        android:layout_width="50dp"
+        android:layout_height="30dp"
+        android:id="@+id/fourty_minuit"
+        android:layout_centerInParent="true"
+        android:padding="5dp"
+        android:gravity="center"
+        android:elevation="2dp"
+        android:background="@drawable/minuits_background"
+        android:textColor="@color/greyColor"
+        android:layout_marginStart="5dp"
+        android:text="45"
+        android:textSize="@dimen/sp_12"/>
+
+
+
+</LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/dialog_footer"
+            android:weightSum="2"
+            android:paddingStart="5dp"
+            android:paddingEnd="5dp"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp">
+            <Button
+                android:id="@+id/btn_cancel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:elevation="10dp"
+                android:translationZ="20dp"
+                android:layout_marginEnd="5dp"
+                android:textAllCaps="false"
+                android:text="@string/txt_cancel"
+                android:background="@drawable/hollow_btn_background"
+                android:layout_below="@+id/text_enter_mobile"/>
+
+            <Button
+                android:id="@+id/btn_ok"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="5dp"
+                android:text="@string/txt_ok"
+                android:textColor="@color/white"
+                android:background="@drawable/btn_background"
+                android:layout_below="@+id/text_enter_mobile"/>
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+
+
+
+
+</RelativeLayout>

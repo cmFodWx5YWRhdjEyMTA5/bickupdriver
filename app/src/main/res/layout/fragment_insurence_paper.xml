@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar"
+        android:background="#FAFAFA"
+        android:clickable="true">
+
+        <LinearLayout
+            android:id="@+id/img_container"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_200"
+            android:weightSum="2">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <RelativeLayout
+                    android:layout_width="@dimen/dp_120"
+                    android:layout_height="@dimen/dp_120"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/upload_doc"
+                    android:clickable="true">
+
+                    <!--<com.makeramen.roundedimageview.RoundedImageView
+                        android:id="@+id/img_front"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        android:adjustViewBounds="true"
+                        app:riv_corner_radius_bottom_left="10dp"
+                        app:riv_corner_radius_top_left="10dp"
+                        app:riv_corner_radius_bottom_right="10dp"
+                        app:riv_corner_radius_top_right="10dp" />-->
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/img_front"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop" />
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/txt_front_side"
+                    style="@style/smallTextSize"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:text="@string/txt_front_side"
+                    android:textColor="@color/greyColor" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <RelativeLayout
+                    android:layout_width="@dimen/dp_120"
+                    android:layout_height="@dimen/dp_120"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/upload_doc"
+                    android:clickable="true">
+
+                    <!--<com.makeramen.roundedimageview.RoundedImageView
+                        android:id="@+id/img_back"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:adjustViewBounds="true"
+                        android:scaleType="centerCrop"
+                        app:riv_corner_radius_bottom_left="10dp"
+                        app:riv_corner_radius_bottom_right="10dp"
+                        app:riv_corner_radius_top_left="10dp"
+                        app:riv_corner_radius_top_right="10dp" />-->
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/img_back"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop" />
+
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/txt_back_side"
+                    style="@style/smallTextSize"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:text="@string/txt_back_side"
+                    android:textColor="@color/greyColor" />
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/img_container"
+            android:layout_marginTop="@dimen/dp_18"
+            android:orientation="vertical"
+            android:paddingEnd="@dimen/dp_20"
+            android:paddingStart="@dimen/dp_20"
+            android:visibility="visible">
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/text_enter_first_name_signup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_forgot_heading"
+                android:layout_marginTop="@dimen/dp_10"
+                app:hintTextAppearance="@style/TextAppearence.App.TextInputLayout">
+
+                <EditText
+
+                    android:id="@+id/edt_insurence_paper_number"
+                    style="@style/edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/greyColor"
+                    android:hint="@string/txt_insurence_paper_number"
+                    android:inputType="textCapCharacters"
+                    android:maxLines="1"
+                    android:textCursorDrawable="@null" />
+            </android.support.design.widget.TextInputLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_18">
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/text_last_name_signup"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:hintTextAppearance="@style/TextAppearence.App.TextInputLayout">
+
+                    <EditText
+                        android:id="@+id/edt_expiry_date"
+                        style="@style/edit_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:backgroundTint="@color/greyColor"
+                        android:enabled="false"
+                        android:hint="@string/txt_insurance_expiry_date"
+                        android:inputType="number"
+                        android:maxLines="1"
+                        android:paddingBottom="15dp"
+                        android:textCursorDrawable="@null" />
+                </android.support.design.widget.TextInputLayout>
+
+                <ImageView
+                    android:id="@+id/calender_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:clickable="true"
+                    android:src="@drawable/calander_bg" />
+            </RelativeLayout>
+
+
+            <Button
+                android:id="@+id/btn_next"
+                style="@style/btn_style"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_75"
+                android:layout_below="@+id/text_enter_mobile"
+                android:layout_marginEnd="-4dp"
+                android:layout_marginStart="-4dp"
+                android:layout_marginTop="@dimen/dp_15"
+                android:text="@string/txt_next"
+                android:textAllCaps="false" />
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/txt_steps"
+            style="@style/mediumTextSize"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_40"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:background="@color/white"
+            android:gravity="center"
+            android:text="Step 4 of 6"
+            android:textColor="@color/grey_text_color" />
+
+        <com.github.rahatarmanahmed.cpv.CircularProgressView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/progress_view"
+            android:layout_width="@dimen/dp_50"
+            android:layout_height="@dimen/dp_50"
+            android:layout_centerInParent="true"
+            android:visibility="gone"
+            app:cpv_animAutostart="true"
+            app:cpv_color="@color/appcolor"
+            app:cpv_indeterminate="true" />
+
+    </RelativeLayout>
+
+
+</LinearLayout>

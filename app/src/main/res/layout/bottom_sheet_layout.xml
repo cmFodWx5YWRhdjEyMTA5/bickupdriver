@@ -1,0 +1,636 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="@dimen/dp_40"
+    android:background="@android:color/transparent"
+    app:behavior_hideable="true"
+    app:behavior_peekHeight="100dp">
+    <!--
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+
+            android:layout_height="match_parent">-->
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/dp_20"
+        android:background="@android:color/transparent"
+        android:paddingEnd="20dp"
+        android:paddingStart="20dp">
+
+        <RelativeLayout
+            android:id="@+id/rl_bottomSheet"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:id="@+id/rl_upper_containe"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="2dp"
+                android:background="@android:color/transparent">
+
+                <RelativeLayout
+                    android:id="@+id/card_container"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <android.support.v7.widget.CardView
+                        android:id="@+id/id_card_driver"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        app:cardCornerRadius="10dp">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/dp_180">
+
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                android:id="@+id/img_driver_bottomshet"
+                                android:layout_width="@dimen/dp_110"
+                                android:layout_height="@dimen/dp_110"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/driver"
+                                android:visibility="gone" />
+
+
+                            <!--<com.makeramen.roundedimageview.RoundedImageView
+                                android:id="@+id/img_driver_bottomshet"
+                                android:layout_width="@dimen/dp_110"
+                                android:layout_height="@dimen/dp_110"
+                                android:adjustViewBounds="true"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/driver"
+                                android:visibility="gone"
+                                app:riv_corner_radius_bottom_left="0dp"
+                                app:riv_corner_radius_bottom_right="10dp"
+                                app:riv_corner_radius_top_left="10dp"
+                                app:riv_corner_radius_top_right="-0dp" />-->
+
+                            <LinearLayout
+                                android:id="@+id/time_layout_bottom_sheet"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/dp_20"
+                                android:layout_toEndOf="@+id/img_driver_bottomshet"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/txt_on_the_way_card_bottom_sheet"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center_horizontal"
+                                    android:paddingLeft="5dp"
+                                    android:text="@string/txt_on_the_way_time"
+                                    android:textColor="@color/greyColor"
+                                    android:textSize="@dimen/sp_16" />
+
+                                <TextView
+                                    android:id="@+id/txt_time_bottom_sheet"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center_horizontal"
+                                    android:paddingLeft="5dp"
+                                    android:text="05:30 min"
+                                    android:textColor="@color/grey_text_color"
+                                    android:textSize="@dimen/sp_18" />
+                            </LinearLayout>
+
+                            <Button
+                                android:id="@+id/btn_asign_bottomsheet"
+                                style="@style/btn_style"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/dp_75"
+                                android:layout_below="@+id/time_layout_bottom_sheet"
+                                android:layout_marginEnd="12dp"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginTop="@dimen/dp_26"
+                                android:paddingBottom="@dimen/dp_14" />
+                        </RelativeLayout>
+                    </android.support.v7.widget.CardView>
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <ImageView
+                android:id="@+id/img_call_bottomsheet"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentTop="true"
+                android:src="@drawable/navigation" />
+
+            <TextView
+                android:id="@+id/txt_track_status"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_alignParentBottom="true"
+                android:background="@drawable/bottom_sheet_behaviour"
+                android:gravity="center"
+                android:text="@string/txt_tracking_status"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp_12"
+                android:visibility="gone" />
+
+            <LinearLayout
+                android:id="@+id/bottomSheet_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/rl_upper_containe"
+                android:layout_marginTop="2dp"
+                android:background="@drawable/bottom_sheet_behaviour"
+                android:orientation="vertical"
+                android:paddingStart="5dp">
+                <!--
+                            <ImageView
+                                android:id="@+id/ivUpDownArrow"
+                                android:src="@drawable/down_arrow"
+                                android:layout_gravity="center_vertical"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />-->
+
+                <TextView
+                    android:id="@+id/track_status_bottomSheet"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:paddingBottom="5dp"
+                    android:paddingTop="10dp"
+                    android:text="@string/txt_tracking_status"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sp_12" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingEnd="@dimen/dp_10"
+                    android:paddingStart="@dimen/dp_10">
+
+                    <TextView
+                        android:id="@+id/txt_booking_status"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="start"
+                        android:text="@string/txt_booking_status"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sp_12" />
+
+                    <TextView
+                        android:id="@+id/txt_booking_status_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dp_10"
+                        android:layout_toEndOf="@+id/txt_booking_status"
+                        android:drawablePadding="10dp"
+                        android:drawableStart="@drawable/time_placeholder"
+                        android:textColor="@color/greyColor"
+                        android:textSize="@dimen/sp_12" />
+
+                    <LinearLayout
+                        android:id="@+id/checkbox_img"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="@dimen/dp_10"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/cbBookingStatus"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="-10dp"
+                            android:drawablePadding="5dp"
+                            android:drawableStart="@drawable/time_placeholder"
+                            android:src="@drawable/de_checkbox"
+                            android:text="@string/txt_tracking_status"
+                            android:textColor="@color/grey_text_color"
+                            android:textSize="@dimen/sp_12" />
+
+                        <ImageView
+                            android:layout_width="1dp"
+                            android:layout_height="@dimen/dp_20"
+                            android:layout_below="@+id/checkbox_img"
+                            android:layout_gravity="center"
+                            android:background="@color/greyColor" />
+                    </LinearLayout>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingEnd="@dimen/dp_10"
+                    android:paddingStart="@dimen/dp_10">
+
+                    <TextView
+                        android:id="@+id/txt_on_the_way"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="start"
+                        android:text="@string/txt_on_the_way"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sp_12" />
+
+                    <TextView
+                        android:id="@+id/txt_on_the_way_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dp_10"
+                        android:layout_toEndOf="@+id/txt_on_the_way"
+                        android:drawablePadding="10dp"
+                        android:drawableStart="@drawable/time_placeholder"
+                        android:gravity="center_vertical"
+
+                        android:textColor="@color/greyColor"
+                        android:textSize="@dimen/sp_12" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="@dimen/dp_10"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/checkbox_on_the_way"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="-10dp"
+                            android:drawablePadding="5dp"
+                            android:drawableStart="@drawable/time_placeholder"
+                            android:src="@drawable/de_checkbox"
+                            android:text="@string/txt_tracking_status"
+                            android:textColor="@color/grey_text_color"
+                            android:textSize="@dimen/sp_12" />
+
+                        <ImageView
+                            android:layout_width="1dp"
+                            android:layout_height="@dimen/dp_20"
+                            android:layout_below="@+id/checkbox_on_the_way"
+                            android:layout_gravity="center"
+
+                            android:background="@color/greyColor" />
+                    </LinearLayout>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingEnd="@dimen/dp_10"
+                    android:paddingStart="@dimen/dp_10">
+
+                    <TextView
+                        android:id="@+id/txt_arrived"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="start"
+                        android:text="@string/txt_arrived"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sp_12" />
+
+                    <TextView
+                        android:id="@+id/txt_arrived_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dp_10"
+                        android:layout_toEndOf="@+id/txt_arrived"
+                        android:drawablePadding="10dp"
+                        android:drawableStart="@drawable/time_placeholder"
+                        android:gravity="center_vertical"
+
+                        android:textColor="@color/greyColor"
+                        android:textSize="@dimen/sp_12" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="@dimen/dp_10"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/checkbox_arrived"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="-10dp"
+                            android:drawablePadding="5dp"
+                            android:drawableStart="@drawable/time_placeholder"
+                            android:src="@drawable/de_checkbox"
+                            android:text="@string/txt_tracking_status"
+                            android:textColor="@color/grey_text_color"
+                            android:textSize="@dimen/sp_12" />
+
+                        <ImageView
+                            android:layout_width="1dp"
+                            android:layout_height="@dimen/dp_20"
+                            android:layout_below="@+id/checkbox_on_the_way"
+                            android:layout_gravity="center"
+                            android:background="@color/greyColor" />
+                    </LinearLayout>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingEnd="@dimen/dp_10"
+                    android:paddingStart="@dimen/dp_10">
+
+                    <TextView
+                        android:id="@+id/txt_loading"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="start"
+                        android:text="@string/txt_loading"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sp_12" />
+
+                    <TextView
+                        android:id="@+id/txt_loading_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dp_10"
+                        android:layout_toEndOf="@+id/txt_loading"
+                        android:drawablePadding="10dp"
+                        android:drawableStart="@drawable/time_placeholder"
+                        android:gravity="center_vertical"
+
+                        android:textColor="@color/greyColor"
+                        android:textSize="@dimen/sp_12" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="@dimen/dp_10"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/loading_checkbox"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="-10dp"
+                            android:drawablePadding="5dp"
+                            android:drawableStart="@drawable/time_placeholder"
+                            android:src="@drawable/de_checkbox"
+                            android:text="@string/txt_tracking_status"
+                            android:textColor="@color/grey_text_color"
+                            android:textSize="@dimen/sp_12" />
+
+                        <ImageView
+                            android:layout_width="1dp"
+                            android:layout_height="@dimen/dp_20"
+                            android:layout_below="@+id/checkbox_on_the_way"
+                            android:layout_gravity="center"
+
+                            android:background="@color/greyColor" />
+                    </LinearLayout>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingEnd="@dimen/dp_10"
+                    android:paddingStart="@dimen/dp_10">
+
+                    <TextView
+                        android:id="@+id/txt_enroute"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="start"
+                        android:text="@string/txt_Enroute"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sp_12" />
+
+                    <TextView
+                        android:id="@+id/txt_enroute_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dp_10"
+                        android:layout_toEndOf="@+id/txt_enroute"
+                        android:drawablePadding="10dp"
+                        android:drawableStart="@drawable/time_placeholder"
+                        android:gravity="center_vertical"
+
+                        android:textColor="@color/greyColor"
+                        android:textSize="@dimen/sp_12" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="@dimen/dp_10"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/checkbox_enroute"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="-10dp"
+                            android:drawablePadding="5dp"
+                            android:drawableStart="@drawable/time_placeholder"
+                            android:src="@drawable/de_checkbox"
+                            android:text="@string/txt_tracking_status"
+                            android:textColor="@color/grey_text_color"
+                            android:textSize="@dimen/sp_12" />
+
+                        <ImageView
+                            android:layout_width="1dp"
+                            android:layout_height="@dimen/dp_20"
+                            android:layout_below="@+id/checkbox_on_the_way"
+                            android:layout_gravity="center"
+
+                            android:background="@color/greyColor" />
+                    </LinearLayout>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingEnd="@dimen/dp_10"
+                    android:paddingStart="@dimen/dp_10">
+
+                    <TextView
+                        android:id="@+id/txt_reached_drop_off"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="start"
+                        android:text="@string/txt_reached"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sp_12" />
+
+                    <TextView
+                        android:id="@+id/txt_reached_drop_off_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dp_10"
+                        android:layout_toEndOf="@+id/txt_reached_drop_off"
+                        android:drawablePadding="10dp"
+                        android:drawableStart="@drawable/time_placeholder"
+                        android:gravity="center_vertical"
+                        android:textColor="@color/greyColor"
+                        android:textSize="@dimen/sp_12" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="@dimen/dp_10"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/checkbox_reached_drop_off"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="-10dp"
+                            android:drawablePadding="5dp"
+                            android:drawableStart="@drawable/time_placeholder"
+                            android:src="@drawable/de_checkbox"
+                            android:text="@string/txt_tracking_status"
+                            android:textColor="@color/grey_text_color"
+                            android:textSize="@dimen/sp_12" />
+
+                        <ImageView
+                            android:layout_width="1dp"
+                            android:layout_height="@dimen/dp_20"
+                            android:layout_below="@+id/checkbox_on_the_way"
+                            android:layout_gravity="center"
+                            android:background="@color/greyColor" />
+                    </LinearLayout>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingEnd="@dimen/dp_10"
+                    android:paddingStart="@dimen/dp_10">
+
+                    <TextView
+                        android:id="@+id/txt_unload"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="start"
+                        android:text="Unloading"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sp_12" />
+
+                    <TextView
+                        android:id="@+id/txt_unload_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dp_10"
+                        android:layout_toEndOf="@+id/txt_unload"
+                        android:drawablePadding="10dp"
+                        android:drawableStart="@drawable/time_placeholder"
+                        android:gravity="center_vertical"
+
+                        android:textColor="@color/greyColor"
+                        android:textSize="@dimen/sp_12" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="@dimen/dp_10"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/checkbox_unload"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="-10dp"
+                            android:drawablePadding="5dp"
+                            android:drawableStart="@drawable/time_placeholder"
+                            android:src="@drawable/de_checkbox"
+                            android:text="@string/txt_tracking_status"
+                            android:textColor="@color/grey_text_color"
+                            android:textSize="@dimen/sp_12" />
+
+                        <ImageView
+                            android:layout_width="1dp"
+                            android:layout_height="@dimen/dp_20"
+                            android:layout_below="@+id/checkbox_on_the_way"
+                            android:layout_gravity="center"
+                            android:background="@color/greyColor" />
+                    </LinearLayout>
+                </RelativeLayout>
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingEnd="@dimen/dp_10"
+                    android:paddingStart="@dimen/dp_10">
+
+                    <TextView
+                        android:id="@+id/txt_delivered"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="start"
+                        android:text="Delivered"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sp_12" />
+
+                    <TextView
+                        android:id="@+id/txt_delivered_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dp_10"
+                        android:layout_toEndOf="@+id/txt_delivered"
+                        android:drawablePadding="10dp"
+                        android:drawableStart="@drawable/time_placeholder"
+                        android:gravity="center_vertical"
+                        android:textColor="@color/greyColor"
+                        android:textSize="@dimen/sp_12" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="@dimen/dp_10"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/checkbox_delivered"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="-10dp"
+                            android:drawablePadding="5dp"
+                            android:drawableStart="@drawable/time_placeholder"
+                            android:src="@drawable/de_checkbox"
+                            android:text="@string/txt_tracking_status"
+                            android:textColor="@color/grey_text_color"
+                            android:textSize="@dimen/sp_12" />
+                    </LinearLayout>
+                </RelativeLayout>
+
+
+            </LinearLayout>
+        </RelativeLayout>
+
+    </RelativeLayout>
+</android.support.v4.widget.NestedScrollView>

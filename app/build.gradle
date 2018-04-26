@@ -1,0 +1,101 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 26
+
+
+
+        lintOptions {
+            checkReleaseBuilds false
+            // Or, if you prefer, you can continue to check for errors in release builds,
+            // but continue the build even when errors are found:
+            abortOnError false
+
+    }
+
+
+    defaultConfig {
+        applicationId "com.app.bickupdriver"
+        minSdkVersion 19
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        multiDexEnabled true
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
+
+    }
+
+    aaptOptions {
+        cruncherEnabled = false
+    }
+
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    sourceSets {
+        main {
+            res.srcDirs = ['src/main/res', 'src/main/res/values-ar']
+            assets.srcDirs = ['src/main/assets', 'src/main/assets/2', 'src/main/res/assets/', 'src/main/assets/']
+        }
+    }
+   /* compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }*/
+
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile project(path: ':volley')
+    compile project(path: ':duo-navigation-drawer')
+    compile project(path: ':calender')
+    compile 'com.android.support:appcompat-v7:26.1.0'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile 'com.google.android.gms:play-services-auth:9.8.0'
+    //compile 'com.android.support:support-v4:26.+'
+    compile 'com.facebook.android:facebook-android-sdk:[4,5)'
+    compile 'com.github.citux:datetimepicker:0.2.0'
+    compile 'de.hdodenhof:circleimageview:2.2.0'
+    compile 'com.google.android.gms:play-services:9.8.0'
+    compile 'com.xw.repo:bubbleseekbar:3.6-lite'
+    compile 'com.android.support:multidex:1.0.1'
+    compile 'com.applandeo:material-calendar-view:1.1.0'
+    compile 'com.wajahatkarim3.EasyFlipView:EasyFlipView:1.0.2'
+    compile 'com.flipboard:bottomsheet-core:1.5.3'
+    compile 'com.iarcuschin:simpleratingbar:0.1.+'
+    compile 'at.blogc:expandabletextview:1.0.5'
+    compile 'com.kyleduo.switchbutton:library:1.4.6'
+    compile 'com.github.rahatarmanahmed:circularprogressview:2.5.0'
+    compile 'com.github.mukeshsolanki:country-picker-android:1.1.9'
+    compile 'com.squareup.picasso:picasso:2.5.2'
+    compile 'com.koushikdutta.ion:ion:2.+'
+    testCompile 'junit:junit:4.12'
+    compile 'com.github.chrisbanes:PhotoView:2.1.3'
+    //Divya
+    compile 'com.google.firebase:firebase-core:9.8.0'
+    /*compile 'com.squareup.retrofit2:retrofit:2.3.0'
+        compile 'com.squareup.retrofit2:converter-gson:2.3.0'*/
+    compile 'com.google.code.gson:gson:2.8.0'
+    compile 'com.squareup.retrofit2:retrofit:2.1.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.0.2'
+    compile 'com.squareup.okhttp3:logging-interceptor:3.9.1'
+    compile('io.socket:socket.io-client:1.0.0') {
+        // excluding org.json which is provided by Android
+        exclude group: 'org.json', module: 'json'
+    }
+    implementation 'com.android.support:design:26.0.0-alpha1'
+}
+apply plugin: 'com.google.gms.google-services'
+
+/*repositories {
+    maven { url "https://jitpack.io" }
+}*/

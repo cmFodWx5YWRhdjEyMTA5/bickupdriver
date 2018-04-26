@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#ffffff</color>
+    <color name="colorPrimaryDark">#FFF1F1F1</color>
+    <color name="colorAccent">#FFAAAAAA</color>
+    <color name="appcolor">#2cbfc9</color>
+    <color name="btn_color">#2cbfc9</color>
+    <color name="btn_pressed_Color">#D127EFEF</color>
+    <color name="greyColor">#aaaaaa</color>
+    <color name="edit_text_color">#000000</color>
+    <color name="edit_tint_color">#D127EFEF</color>
+    <color name="btn_text_color">#ffffff</color>
+    <color name="text_heading_color">#FFAAAAAA</color>
+    <color name="otp_text_color">#FFE6BA14</color>
+    <color name="green_color">#FF1AA856</color>
+    <color name="grey_text_color">#333333</color>
+    <color name="black">#000000</color>
+    <color name="red">#d32f2e</color>
+    <color name="white">#ffffff</color>
+    <color name="screen_background">#f2f0f0</color>
+    <color name="screen_tab">#FFE7E6E6</color>
+    <color name="black_transparent">#73000000</color>
+    <color name="grey_light">#FFFDFDFD</color>
+</resources>

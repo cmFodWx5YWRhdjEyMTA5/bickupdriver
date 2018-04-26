@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.app.bickupdriver">
+
+    <!-- To auto-complete the email text field in the login form with the user's emails -->
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.READ_PROFILE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <uses-feature android:name="android.hardware.location.gps" />
+
+    <application
+        android:name="com.app.bickupdriver.controller.AppController"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:largeHeap="true"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <!--android:launchMode="singleTask"-->
+
+        <activity
+            android:name="com.app.bickupdriver.MainActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="com.app.bickupdriver.SplashActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.app.bickupdriver.LoginActivity"
+            android:label="@string/title_activity_login"
+            android:screenOrientation="portrait" />
+
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+
+        <receiver
+            android:name="com.app.bickupdriver.broadcastreciever.InternetConnectionBroadcast"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+        </receiver>
+
+        <activity
+            android:name=".BaseActivity"
+            android:label="@string/title_activity_base"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name="com.app.bickupdriver.ResetAndForgetPasswordActivity"
+            android:largeHeap="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="com.app.bickupdriver.TypesGoods"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.app.bickupdriver.utility.ZoomActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/custome_zoom" />
+
+
+        <activity
+            android:name="com.app.bickupdriver.TrackDriverActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.app.GoodsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.app.bickupdriver.GoodsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.app.bickupdriver.DeliveryActivity"
+            android:label="@string/title_activity_delivery"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name="com.app.bickupdriver.ScheduledActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.app.bickupdriver.SettingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.app.bickupdriver.PickupLocationActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.app.bickupdriver.InviteAndEarn"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.app.bickupdriver.EditProfileActivity"
+            android:largeHeap="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".RatedriverActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.app.bickupdriver.RevenueActivity"
+            android:label="@string/title_activity_revenue"
+            android:theme="@style/AppTheme" />
+        <activity android:name="com.app.bickupdriver.utility.CMSActivity" />
+        <activity android:name="com.app.bickupdriver.ImagesActivity"
+            android:theme="@style/TransparentCompat"></activity>
+
+        <service
+            android:name=".notifications.CustomFirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
+        <service
+            android:name=".notifications.CustomFirebaseInstanceIdService">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+            </intent-filter>
+        </service>
+    </application>
+
+</manifest>

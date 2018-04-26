@@ -1,0 +1,17 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.app.bickupdriver.fragments.LoginFragment">
+    <include layout="@layout/toolbar_layout"
+        android:id="@+id/toobar_layout"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/profile_container"
+        android:layout_below="@+id/toobar_layout"
+        ></RelativeLayout>
+
+</RelativeLayout>

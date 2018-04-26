@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "759505761052",
+    "firebase_url": "https://bickup-driver.firebaseio.com",
+    "project_id": "bickup-driver",
+    "storage_bucket": "bickup-driver.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:759505761052:android:3674e705a6ff3c39",
+        "android_client_info": {
+          "package_name": "com.app.bickupdriver"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "759505761052-i6hap4f9g9mgnr1evg7dtsrgbe1cfm25.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.app.bickupdriver",
+            "certificate_hash": "5541904a3392af981810633440af0973d6f20207"
+          }
+        },
+        {
+          "client_id": "759505761052-ohgks8hc4i1dtn0fkhtnml6ho13eul4d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCDWqSI08JDJzvCgI3nbF1dTrYjENu3zSA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "759505761052-ohgks8hc4i1dtn0fkhtnml6ho13eul4d.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

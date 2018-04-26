@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar"
+        android:background="#FAFAFA"
+        android:clickable="true">
+
+        <LinearLayout
+            android:id="@+id/img_container_upper"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_150"
+            android:weightSum="2">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <RelativeLayout
+                    android:layout_width="@dimen/dp_100"
+                    android:layout_height="@dimen/dp_100"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/upload_doc"
+                    android:clickable="true">
+
+                    <!--<com.makeramen.roundedimageview.RoundedImageView
+                        android:id="@+id/img_front"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:adjustViewBounds="true"
+                        android:scaleType="centerCrop"
+                        app:riv_corner_radius_bottom_left="10dp"
+                        app:riv_corner_radius_top_left="10dp"
+                        app:riv_corner_radius_bottom_right="10dp"
+                        app:riv_corner_radius_top_right="10dp" />-->
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/img_front"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop" />
+
+
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/txt_front_side"
+                    style="@style/smallTextSize"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:text="@string/txt_vehical_fron"
+                    android:textColor="@color/greyColor" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <RelativeLayout
+                    android:layout_width="@dimen/dp_100"
+                    android:layout_height="@dimen/dp_100"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/upload_doc"
+                    android:clickable="true">
+
+
+                    <!--<com.makeramen.roundedimageview.RoundedImageView
+                        android:id="@+id/img_back"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:adjustViewBounds="true"
+                        android:scaleType="centerCrop"
+                        app:riv_corner_radius_bottom_left="10dp"
+                        app:riv_corner_radius_bottom_right="10dp"
+                        app:riv_corner_radius_top_left="10dp"
+                        app:riv_corner_radius_top_right="10dp" />-->
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/img_back"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop" />
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/txt_back_side"
+                    style="@style/smallTextSize"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:text="@string/txt_vehical_back"
+                    android:textColor="@color/greyColor" />
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/img_container"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_150"
+            android:layout_below="@+id/img_container_upper"
+            android:weightSum="2">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <RelativeLayout
+                    android:layout_width="@dimen/dp_100"
+                    android:layout_height="@dimen/dp_100"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/upload_doc"
+                    android:clickable="true">
+
+                    <!--<com.makeramen.roundedimageview.RoundedImageView
+                        android:id="@+id/img_right"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:adjustViewBounds="true"
+                        android:scaleType="centerCrop"
+                        app:riv_corner_radius_bottom_left="10dp"
+                        app:riv_corner_radius_bottom_right="10dp"
+                        app:riv_corner_radius_top_left="10dp"
+                        app:riv_corner_radius_top_right="10dp" />-->
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/img_right"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop" />
+
+
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/txt_right_side"
+                    style="@style/smallTextSize"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:text="@string/txt_vehical_right"
+                    android:textColor="@color/greyColor" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <RelativeLayout
+                    android:layout_width="@dimen/dp_100"
+                    android:layout_height="@dimen/dp_100"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/upload_doc"
+                    android:clickable="true">
+
+                    <!--<com.makeramen.roundedimageview.RoundedImageView
+                        android:id="@+id/img_left"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:adjustViewBounds="true"
+                        android:scaleType="centerCrop"
+                        app:riv_corner_radius_bottom_left="10dp"
+                        app:riv_corner_radius_bottom_right="10dp"
+                        app:riv_corner_radius_top_left="10dp"
+                        app:riv_corner_radius_top_right="10dp" />-->
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/img_left"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop" />
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/txt_left_side"
+                    style="@style/smallTextSize"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:text="@string/txt_vehical_left"
+                    android:textColor="@color/greyColor" />
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+
+        <Button
+            android:id="@+id/btn_next_license_number"
+            style="@style/btn_style"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_75"
+            android:layout_above="@+id/txt_steps_license"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="@dimen/dp_30"
+            android:layout_marginEnd="@dimen/dp_20"
+            android:layout_marginStart="@dimen/dp_20"
+            android:text="@string/txt_proceed"
+            android:textAllCaps="false" />
+
+        <TextView
+            android:id="@+id/txt_steps_license"
+            style="@style/mediumTextSize"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_40"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:background="@color/white"
+            android:gravity="center"
+            android:text="Step 6 of 6"
+            android:textColor="@color/grey_text_color"
+            android:visibility="visible" />
+
+        <com.github.rahatarmanahmed.cpv.CircularProgressView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/progress_view"
+            android:layout_width="@dimen/dp_50"
+            android:layout_height="@dimen/dp_50"
+            android:layout_centerInParent="true"
+            android:visibility="gone"
+            app:cpv_animAutostart="true"
+            app:cpv_color="@color/appcolor"
+            app:cpv_indeterminate="true" />
+
+    </RelativeLayout>
+
+
+</LinearLayout>
