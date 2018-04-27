@@ -193,7 +193,6 @@ public class MainActivity extends AppCompatActivity implements
             Utils.printLogs(TAG, "Permission Granted");
             return true;
         } else {
-
             ActivityCompat.requestPermissions(this, new String[]{
                             Manifest.permission.ACCESS_COARSE_LOCATION,
                             Manifest.permission.ACCESS_FINE_LOCATION},
@@ -605,7 +604,7 @@ public class MainActivity extends AppCompatActivity implements
                 .setPositiveButton(getResources().getString(R.string.txt_yes), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        finish();
+                        finishAffinity();
                     }
 
                 })

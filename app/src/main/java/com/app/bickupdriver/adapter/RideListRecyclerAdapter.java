@@ -13,6 +13,7 @@ import com.app.bickupdriver.GoodsActivity;
 import com.app.bickupdriver.R;
 import com.app.bickupdriver.TrackDriverActivity;
 import com.app.bickupdriver.model.Ride;
+import com.app.bickupdriver.utility.ConstantValues;
 import com.app.bickupdriver.utility.DateHelper;
 
 import java.util.ArrayList;
@@ -104,7 +105,8 @@ public class RideListRecyclerAdapter extends RecyclerView.Adapter<RideListRecycl
                     activity.startActivity(intent);
                 } else {
                     Intent intent = new Intent(activity, GoodsActivity.class);
-                    intent.putExtra("ride", rideList.get(position));
+                    String ride_id = rideList.get(position).rideId;
+                    intent.putExtra(ConstantValues.RIDE_ID, ride_id);
                     activity.startActivity(intent);
                 }
             }

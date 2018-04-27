@@ -122,7 +122,7 @@ public class TrackDriverActivity extends AppCompatActivity implements OnMapReady
     private static final long INTERVAL = 1000 * 60 * 1; //1 minute
     private static final long FASTEST_INTERVAL = 1000 * 60 * 1; // 1 minute
     private static final float SMALLEST_DISPLACEMENT = 0.25F; //quarter of a meter
-    private String rideId;
+    //private String rideId;
 
 
     @Override
@@ -162,12 +162,8 @@ public class TrackDriverActivity extends AppCompatActivity implements OnMapReady
      * Fetches values from Intent
      */
     private void getIntentValues() {
-        Intent intent = getIntent();
-        if (intent != null) {
-            rideId = intent.getStringExtra(ConstantValues.RIDE_ID);
-        }
-        //ride = (Ride) getIntent().getSerializableExtra(ConstantValues.RIDE);
-        txtHeaderText.setText("Booking Number - " + rideId);
+        ride = (Ride) getIntent().getSerializableExtra(ConstantValues.RIDE);
+        txtHeaderText.setText("Booking Number - " + ride.rideId);
     }
 
     /**
@@ -190,7 +186,7 @@ public class TrackDriverActivity extends AppCompatActivity implements OnMapReady
                 String accessToken = sharedPreferences.getString(
                         ConstantValues.USER_ACCESS_TOKEN, "");
 
-                Call<RideStatusResponse> call = service.getStatusOfRide(accessToken, rideId);
+                Call<RideStatusResponse> call = service.getStatusOfRide(accessToken, ride.rideId);
 
                 call.enqueue(new Callback<RideStatusResponse>() {
                     @Override
@@ -710,6 +706,7 @@ public class TrackDriverActivity extends AppCompatActivity implements OnMapReady
     public void onBackPressed() {
         Intent mainIntent = new Intent(this, MainActivity.class);
         startActivity(mainIntent);
+        finish();
         //super.onBackPressed();
     }
 

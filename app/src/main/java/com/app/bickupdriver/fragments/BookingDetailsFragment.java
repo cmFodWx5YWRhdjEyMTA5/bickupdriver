@@ -26,7 +26,6 @@ import android.widget.TextView;
 import com.app.bickupdriver.GoodsActivity;
 import com.app.bickupdriver.MainActivity;
 import com.app.bickupdriver.R;
-import com.app.bickupdriver.TrackDriverActivity;
 import com.app.bickupdriver.adapter.GoodsImageListAdapter;
 import com.app.bickupdriver.adapter.TypesOfGoodsAdapter;
 import com.app.bickupdriver.controller.AppConstants;
@@ -98,7 +97,8 @@ public class BookingDetailsFragment extends Fragment implements View.OnClickList
     private Context context = mActivityReference;
     private GoogleMap googleMap;
     private GpsTracker gpsTracker;
-    private String latitude, longitude;
+    private String latitude;
+    private String longitude;
     private Polyline line;
     private PolylineOptions options;
 
@@ -125,8 +125,8 @@ public class BookingDetailsFragment extends Fragment implements View.OnClickList
 
         String urlTopass = makeURL(gpsTracker.getLatitude(),
                 gpsTracker.getLongitude(),
-                Double.valueOf(mActivityReference.ride.dropLatitude),
-                Double.valueOf(mActivityReference.ride.dropLongitude));
+                Double.valueOf(mActivityReference.rideNew.dropLatitude),
+                Double.valueOf(mActivityReference.rideNew.dropLongitude));
         new MapRouteAsyncTask(getActivity()
                 , urlTopass).execute();
         return view;
@@ -343,13 +343,10 @@ public class BookingDetailsFragment extends Fragment implements View.OnClickList
 
     private void fixZoom() {
         List<LatLng> points = options.getPoints(); // route is instance of PolylineOptions
-
         LatLngBounds.Builder bc = new LatLngBounds.Builder();
-
         for (LatLng item : points) {
             bc.include(item);
         }
-
         googleMap.moveCamera(CameraUpdateFactory.newLatLngBounds(bc.build(), 50));
     }
 
@@ -384,14 +381,12 @@ public class BookingDetailsFragment extends Fragment implements View.OnClickList
         if (line != null) {
             googleMap.clear();
         }
-
         googleMap.addMarker(new MarkerOptions()
-                .position(new LatLng(Double.valueOf(mActivityReference.ride.dropLatitude),
-                        Double.valueOf(mActivityReference.ride.dropLongitude)))
+                .position(new LatLng(Double.valueOf(mActivityReference.rideNew.dropLatitude),
+                        Double.valueOf(mActivityReference.rideNew.dropLongitude)))
                 .icon(BitmapDescriptorFactory
                         .fromResource(R.drawable.drop_location_pin)));
         //googleMap.addMarker(new MarkerOptions().position(currentLatLng));
-
         try {
             // Tranform the string into a json object
             final JSONObject json = new JSONObject(result);
@@ -579,7 +574,7 @@ public class BookingDetailsFragment extends Fragment implements View.OnClickList
                         ConstantValues.USER_ACCESS_TOKEN, "");
 
                 Call<ServerResult> call = service.acceptOrRejectDelivery(accessToken,
-                        mActivityReference.ride.rideId, isAccepted);
+                        mActivityReference.rideNew.rideId, isAccepted);
 
                 call.enqueue(new Callback<ServerResult>() {
                     @Override

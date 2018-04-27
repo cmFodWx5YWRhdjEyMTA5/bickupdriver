@@ -49,7 +49,8 @@ public class GoodsActivity extends AppCompatActivity implements HandlerGoodsNavi
     private CoordinatorLayout mCoordinatorLayout;
     private String TAG = getClass().getSimpleName();
     private Context context = GoodsActivity.this;
-    public Ride ride, rideNew;
+    //public Ride ride;
+    public Ride rideNew;
     //private BookingDetailsFragment bookingDetailsFragments;
     private BookingDetailsFragment bookingDetailsFragment;
     public String rideId;
@@ -169,7 +170,6 @@ public class GoodsActivity extends AppCompatActivity implements HandlerGoodsNavi
                                         apiResponse.ride);
                                 if (apiResponse.ride != null) {
                                     rideNew = apiResponse.ride;
-                                    ride = apiResponse.ride;
                                     addBookingDetailsFragment();
                                 } else {
                                     Utils.showToast(apiResponse.message, context);
@@ -221,7 +221,7 @@ public class GoodsActivity extends AppCompatActivity implements HandlerGoodsNavi
     @Override
     public void callTrackDriverActivity() {
         Intent intent = new Intent(this, TrackDriverActivity.class);
-        intent.putExtra("ride", ride);
+        intent.putExtra("ride", rideNew);
         startActivity(intent);
         finish();
     }
@@ -249,21 +249,9 @@ public class GoodsActivity extends AppCompatActivity implements HandlerGoodsNavi
 
     @Override
     public void onBackPressed() {
-        /*if(getSupportFragmentManager().getBackStackEntryCount()>1){
-            getSupportFragmentManager().popBackStackImmediate();
-            Fragment fragment=getCurrentFragment();
-            if(fragment instanceof BookingDetailsFragment){
-                txtHeader.setText("Booking Number - " + ride.rideId);
-            }
-            if(fragment instanceof GoodsDetailsFragments){
-                txtHeader.setText(getResources().getString(R.string.txt_goods_details));
-            }
-
-        }else {*/
         Intent mainIntent = new Intent(this, MainActivity.class);
         startActivity(mainIntent);
         finish();
-        // }
     }
 
     public void moveToMainScreen() {

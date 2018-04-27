@@ -208,9 +208,9 @@
                 android:id="@+id/rvGoodsImage"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="10dp"
                 android:layout_marginBottom="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
                 android:orientation="horizontal"
                 android:scrollbars="none" />
 
@@ -331,22 +331,22 @@
                 android:id="@+id/goodsDetailLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="10dp"
                 android:orientation="horizontal"
                 android:scrollbars="none"
-                android:layout_marginBottom="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
                 android:visibility="gone" />
-<!--
-            <include
-                android:id="@+id/goodsDetailLayout"
-                layout="@layout/goods_detail_layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:visibility="gone" />-->
+            <!--
+                        <include
+                            android:id="@+id/goodsDetailLayout"
+                            layout="@layout/goods_detail_layout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="20dp"
+                            android:visibility="gone" />-->
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -432,12 +432,12 @@
                 android:layout_marginTop="@dimen/dp_20"
                 android:background="@color/white"
                 android:elevation="5dp"
-                android:visibility="gone"
                 android:orientation="horizontal"
                 android:padding="@dimen/dp_10"
                 android:paddingEnd="@dimen/dp_26"
                 android:paddingStart="@dimen/dp_26"
-                android:translationZ="5dp">
+                android:translationZ="5dp"
+                android:visibility="gone">
 
                 <TextView
                     style="@style/mediumTextSize"
