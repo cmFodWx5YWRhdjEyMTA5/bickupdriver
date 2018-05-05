@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
     android:id="@+id/contactDetailsLayout"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
@@ -11,25 +11,25 @@
         android:layout_marginTop="10dp"
         android:orientation="vertical"
         android:visibility="visible">
-        
+
         <TextView
             android:id="@+id/label_pickup_location"
+            style="@style/smallTextSize"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_toEndOf="@+id/txt_helper"
             android:text="@string/txt_pickup_location_details"
-            android:textColor="@color/greyColor"
-            style="@style/smallTextSize" />
+            android:textColor="@color/greyColor" />
 
         <TextView
             android:id="@+id/value_pickup_location"
+            style="@style/mediumTextSize"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
             android:text="123 6th St. Melbourne, FL 32940"
-            android:textColor="@color/grey_text_color"
-            style="@style/mediumTextSize" />
+            android:textColor="@color/grey_text_color" />
     </LinearLayout>
 
     <LinearLayout
@@ -38,34 +38,34 @@
         android:layout_marginTop="10dp"
         android:orientation="vertical"
         android:visibility="visible">
-        
+
         <TextView
             android:id="@+id/label_pickup_contact"
+            style="@style/smallTextSize"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_toEndOf="@+id/txt_helper"
             android:text="@string/txt_pickup_contact_details"
-            android:textColor="@color/greyColor"
-            style="@style/smallTextSize" />
+            android:textColor="@color/greyColor" />
 
         <TextView
             android:id="@+id/value_pickup_contact_name"
+            style="@style/mediumTextSize"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
             android:text="Andrew Smith"
-            android:textColor="@color/grey_text_color"
-            style="@style/mediumTextSize" />
+            android:textColor="@color/grey_text_color" />
 
         <TextView
             android:id="@+id/value_pickup_contact_number"
+            style="@style/mediumTextSize"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
             android:text="+91-8894635648"
-            android:textColor="@color/grey_text_color"
-            style="@style/mediumTextSize" />
+            android:textColor="@color/grey_text_color" />
     </LinearLayout>
 
     <LinearLayout
@@ -77,22 +77,22 @@
 
         <TextView
             android:id="@+id/label_drop_location"
+            style="@style/smallTextSize"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_toEndOf="@+id/txt_helper"
             android:text="@string/txt_drop_location_details"
-            android:textColor="@color/greyColor"
-            style="@style/smallTextSize" />
+            android:textColor="@color/greyColor" />
 
         <TextView
             android:id="@+id/value_drop_location"
+            style="@style/mediumTextSize"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
             android:text="123 6th St. Melbourne, FL 32940"
-            android:textColor="@color/grey_text_color"
-            style="@style/mediumTextSize" />
+            android:textColor="@color/grey_text_color" />
     </LinearLayout>
 
     <LinearLayout
@@ -104,31 +104,31 @@
 
         <TextView
             android:id="@+id/label_drop_contact"
+            style="@style/smallTextSize"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_toEndOf="@+id/txt_helper"
             android:text="@string/txt_pickup_contact_details"
-            android:textColor="@color/greyColor"
-            style="@style/smallTextSize" />
+            android:textColor="@color/greyColor" />
 
         <TextView
             android:id="@+id/value_drop_contact_name"
+            style="@style/mediumTextSize"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
             android:text="Andrew Smith"
-            android:textColor="@color/grey_text_color"
-            style="@style/mediumTextSize" />
+            android:textColor="@color/grey_text_color" />
 
         <TextView
             android:id="@+id/value_drop_contact_number"
+            style="@style/mediumTextSize"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
             android:text="+91-8894635648"
-            android:textColor="@color/grey_text_color"
-            style="@style/mediumTextSize" />
+            android:textColor="@color/grey_text_color" />
 
 
     </LinearLayout>
@@ -142,13 +142,15 @@
 
         <TextView
             android:id="@+id/label_number_of_helpers"
+            style="@style/smallTextSize"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_toEndOf="@+id/txt_helper"
             android:text="@string/txt_number_of_helpers"
-            android:textColor="@color/greyColor"
-            style="@style/smallTextSize" />
+            android:textColor="@color/greyColor" />
+
+
 
         <ImageView
             android:id="@+id/img_helpers"

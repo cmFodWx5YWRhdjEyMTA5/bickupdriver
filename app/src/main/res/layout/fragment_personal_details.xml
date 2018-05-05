@@ -84,7 +84,7 @@
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/greyColor"
                     android:hint="@string/txt_bank_name"
-                    android:inputType="textCapWords"
+                    android:inputType="textCapCharacters"
                     android:maxLines="1"
                     android:paddingBottom="15dp"
                     android:paddingTop="0dp"

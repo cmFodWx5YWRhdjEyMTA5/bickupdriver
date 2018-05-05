@@ -98,7 +98,7 @@
         </RelativeLayout>
 
         <ImageView
-            android:id="@+id/call_driver"
+            android:id="@+id/iv_navigation_normall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_above="@+id/card_container"

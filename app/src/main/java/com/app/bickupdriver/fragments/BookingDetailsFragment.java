@@ -123,12 +123,20 @@ public class BookingDetailsFragment extends Fragment implements View.OnClickList
         gpsTracker = new GpsTracker(getActivity(), getActivity());
         this.checkForLocationPermission();
 
+
+        Utils.printLogs(TAG, "Opening Booking Details Fragment ... ");
+        Utils.printLogs(TAG, "Current Latitude : " + gpsTracker.getLatitude());
+        Utils.printLogs(TAG, "Current Longitude : " + gpsTracker.getLongitude());
+        Utils.printLogs(TAG, "Drop Latitude : " + mActivityReference.rideNew.dropLatitude);
+        Utils.printLogs(TAG, "Drop Longitude : " + mActivityReference.rideNew.dropLongitude);
+
         String urlTopass = makeURL(gpsTracker.getLatitude(),
                 gpsTracker.getLongitude(),
                 Double.valueOf(mActivityReference.rideNew.dropLatitude),
                 Double.valueOf(mActivityReference.rideNew.dropLongitude));
-        new MapRouteAsyncTask(getActivity()
-                , urlTopass).execute();
+        Utils.printLogs(TAG, "Url to Pass on Booking Details : : " + urlTopass);
+
+        new MapRouteAsyncTask(getActivity(), urlTopass).execute();
         return view;
     }
 
@@ -224,6 +232,7 @@ public class BookingDetailsFragment extends Fragment implements View.OnClickList
         rvGoodsImage.setHasFixedSize(true);
 
         goodsDetailLayout.setHasFixedSize(true);
+
     }
 
     /**
@@ -288,11 +297,6 @@ public class BookingDetailsFragment extends Fragment implements View.OnClickList
     }
 
     private void setGoogleMap() {
-        /*SupportMapFragment mAupportMapFragment = (SupportMapFragment)
-                getActivity().getSupportFragmentManager()
-                .findFragmentById(R.id.map);
-        mAupportMapFragment.getMapAsync(this);*/
-
         SupportMapFragment mapFragment = (SupportMapFragment) this.getChildFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
@@ -367,7 +371,7 @@ public class BookingDetailsFragment extends Fragment implements View.OnClickList
 
                 CameraUpdate myLocation = CameraUpdateFactory.newLatLngZoom(
                         currentBounds.getCenter(),
-                        8);
+                        15);
                 googleMap.animateCamera(myLocation);
                 UiSettings mUiSetting = googleMap.getUiSettings();
                 mUiSetting.setTiltGesturesEnabled(true);

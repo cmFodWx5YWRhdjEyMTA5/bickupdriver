@@ -46,6 +46,9 @@ public class Utils {
 
     private static final String TAG = "Utils";
     public static final boolean LOG_ON = true;
+    public static final String GOODS_ACTIVITY_NOTIFICATION_BROADCAST_ACTION = "com.app.bickupdriver.";
+
+
     //public static final int CUSTOM_SHARE_ARTICLE_DIALOG_CONST 				= 870;
 
     /**

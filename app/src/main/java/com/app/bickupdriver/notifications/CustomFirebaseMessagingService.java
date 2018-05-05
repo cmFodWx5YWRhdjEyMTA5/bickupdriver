@@ -20,6 +20,8 @@ import com.google.firebase.messaging.RemoteMessage;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Map;
+
 /**
  * <H1>Bickup DriverBickup</H1>
  * <H1>CustomFirebaseMessagingService</H1>
@@ -42,6 +44,7 @@ public class CustomFirebaseMessagingService extends FirebaseMessagingService {
      */
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
+
         Utils.printLogs(TAG, "Remote Message : " + remoteMessage);
         // Not getting messages here? See why this may be: https://goo.gl/39bRNJ
         Utils.printLogs(TAG, "From: " + remoteMessage.getFrom());
@@ -55,23 +58,55 @@ public class CustomFirebaseMessagingService extends FirebaseMessagingService {
 
 
         if (remoteMessage.getData() != null) {
-            JSONObject notification;
+            //JSONObject notification;
 
             try {
-                notification = new JSONObject(remoteMessage.getData().toString());
+              /*  notification = new JSONObject(remoteMessage.getData().toString());
 
                 //JSONObject data = notification.getJSONObject("data");
                 String notificationType = notification.getString(ConstantValues.NOTIFICATION_TYPE);
                 String rideId = notification.getString(ConstantValues.RIDE_ID);
+                String pickupTime = notification.getString("pickup_time");
+                String pickupTimeType = notification.getString("pickup_time_type");
+                String message = notification.getString("body");
+                String title = notification.getString("title");
+
 
                 Utils.printLogs(TAG, "Notification Type Notification : " + notificationType);
                 Utils.printLogs(TAG, "Ride Id notification : " + rideId);
+                Utils.printLogs(TAG, "Pickup Time  : " + pickupTime);
+                Utils.printLogs(TAG, "Pickup Time Type : " + pickupTimeType);
+                Utils.printLogs(TAG, "tITLE : " + title);*/
+
+
+                Map<String, String> notificationData = remoteMessage.getData();
+                String notificationType = notificationData.get("notification_type");
+                String rideId = notificationData.get(ConstantValues.RIDE_ID);
+                String pickupTime = notificationData.get("pickup_time");
+                String pickupTimeType = notificationData.get("pickup_time_type");
+                String message = notificationData.get("message");
+                String title = notificationData.get("title");
+
+
+                Utils.printLogs(TAG, "Notification Type Notification : " + notificationType);
+                Utils.printLogs(TAG, "Ride Id notification : " + rideId);
+                Utils.printLogs(TAG, "Pickup Time  : " + pickupTime);
+                Utils.printLogs(TAG, "Pickup Time Type : " + pickupTimeType);
+                Utils.printLogs(TAG, "tITLE : " + title);
+                /**
+                 * Automatic Update when a new Notification is arrived.
+                 */
+                Intent intent = new Intent();
+                intent.putExtra(ConstantValues.RIDE_ID, rideId);
+                intent.setAction(Utils.GOODS_ACTIVITY_NOTIFICATION_BROADCAST_ACTION);
+                sendBroadcast(intent);
+                /////----------------
+
 
                 Class toBeOpenedClass = this.filterNotifications(Integer.parseInt(notificationType));
+                this.sendNotification(title, message, rideId, toBeOpenedClass, notificationType);
 
-                this.sendNotification(remoteMessage.getNotification().getBody(), rideId, toBeOpenedClass, notificationType);
-
-            } catch (JSONException e) {
+            } catch (Exception e) {
                 Utils.printLogs(TAG, "Exception : " + e.getMessage());
                 e.printStackTrace();
             }
@@ -84,12 +119,13 @@ public class CustomFirebaseMessagingService extends FirebaseMessagingService {
      *
      * @param messageBody FCM message body received.
      */
-    private void sendNotification(String messageBody, String rideId, Class toBeOpenedClass,
+    private void sendNotification(String title, String messageBody, String rideId, Class toBeOpenedClass,
                                   String status) {
 
         Intent intent = new Intent(this, toBeOpenedClass);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         intent.putExtra(ConstantValues.RIDE_ID, rideId);
+
 
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent,
                 PendingIntent.FLAG_UPDATE_CURRENT);
@@ -97,7 +133,7 @@ public class CustomFirebaseMessagingService extends FirebaseMessagingService {
         Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
                 .setSmallIcon(getNotificationIcon())
-                .setContentTitle(getString(R.string.app_name))
+                .setContentTitle(title)
                 .setContentText(messageBody)
                 .setAutoCancel(true)
                 .setSound(defaultSoundUri)
@@ -156,18 +192,5 @@ public class CustomFirebaseMessagingService extends FirebaseMessagingService {
                 Utils.printLogs(TAG, "Status 3 ");
                 return SplashActivity.class;
         }
-
-        /*switch (status) {
-            case 1:
-                return GoodsActivity.class;
-            case 2:
-            case 3:
-            case 6:
-                return MainActivity.class;
-            case 9:
-                return MainActivity.class;
-            default:
-                return SplashActivity.class;
-        }*/
     }
 }

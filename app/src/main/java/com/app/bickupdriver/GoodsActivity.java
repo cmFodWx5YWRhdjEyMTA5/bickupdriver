@@ -1,8 +1,10 @@
 package com.app.bickupdriver;
 
 import android.app.ProgressDialog;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -54,6 +56,7 @@ public class GoodsActivity extends AppCompatActivity implements HandlerGoodsNavi
     //private BookingDetailsFragment bookingDetailsFragments;
     private BookingDetailsFragment bookingDetailsFragment;
     public String rideId;
+    private BroadcastReceiver broadcastReceiver;
 
 
     @Override
@@ -66,8 +69,39 @@ public class GoodsActivity extends AppCompatActivity implements HandlerGoodsNavi
         Utils.printLogs(TAG, "Opening Goods Activity ... ");
         initializeViews();
 
+
+        /**
+         * Implement Broadcast Receiver
+         */
+        broadcastReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                if (intent.getAction().equals(Utils.GOODS_ACTIVITY_NOTIFICATION_BROADCAST_ACTION)) {
+                    rideId = intent.getStringExtra(ConstantValues.RIDE_ID);
+                    fetchRideDetails();
+                } else {
+                    Utils.printLogs(TAG, "Action don't matches Broadcast Receiver .. GoodsActivity");
+                }
+            }
+        };
+
+
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction(Utils.GOODS_ACTIVITY_NOTIFICATION_BROADCAST_ACTION);
+
+        registerReceiver(broadcastReceiver, intentFilter);
+
         this.getIntentValues();
         this.fetchRideDetails();
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (broadcastReceiver != null) {
+            unregisterReceiver(broadcastReceiver);
+        }
     }
 
     /**

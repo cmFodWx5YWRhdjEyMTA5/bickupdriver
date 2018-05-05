@@ -426,6 +426,7 @@ public class PersonalDetailsFragment extends Fragment implements View.OnClickLis
         if (imgFile != null) {
             Ion.with(this)
                     .load(createUserUrl)
+                    .setLogging("TEST", Log.DEBUG)
                     .setHeader(ConstantValues.USER_ACCESS_TOKEN, User.getInstance().getAccesstoken())
                     .setMultipartFile("profile_image", imgFile)
                     .setMultipartParameter("bank_name", bankName)
@@ -642,6 +643,4 @@ public class PersonalDetailsFragment extends Fragment implements View.OnClickLis
             mActivityReference.callFragment(ConstantValues.LICENSE_NUMBER);
         }
     }
-
-
 }

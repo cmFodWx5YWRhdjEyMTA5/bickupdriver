@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Typeface;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -23,6 +24,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.app.bickupdriver.broadcastreciever.InternetConnectionBroadcast;
 import com.app.bickupdriver.controller.AppConstants;
@@ -54,6 +56,7 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
+import com.koushikdutta.ion.builder.Builders;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -122,6 +125,10 @@ public class TrackDriverActivity extends AppCompatActivity implements OnMapReady
     private static final long INTERVAL = 1000 * 60 * 1; //1 minute
     private static final long FASTEST_INTERVAL = 1000 * 60 * 1; // 1 minute
     private static final float SMALLEST_DISPLACEMENT = 0.25F; //quarter of a meter
+
+
+    private ImageView ivNavigation;
+    private ImageView ivNavigationNormal;
     //private String rideId;
 
 
@@ -384,6 +391,8 @@ public class TrackDriverActivity extends AppCompatActivity implements OnMapReady
     @SuppressLint("ClickableViewAccessibility")
     private void initiTializeViews() {
         //mCoordinatorLayout = (CoordinatorLayout) findViewById(R.id.coordinator_track_driver);
+        // points = new ArrayList<>();
+
         activity = this;
         mActivityreference = this;
         mTypefaceRegular = Typeface.createFromAsset(activity.getAssets(), ConstantValues.TYPEFACE_REGULAR);
@@ -403,6 +412,12 @@ public class TrackDriverActivity extends AppCompatActivity implements OnMapReady
         imgDriverImage = (ImageView) findViewById(R.id.img_driver);
         callDriverBottomSheet = (ImageView) findViewById(R.id.img_call_bottomsheet);
         callDriver = (ImageView) findViewById(R.id.call_driver);*/
+        ivNavigation = findViewById(R.id.iv_navigation);
+        ivNavigation.setOnClickListener(this);
+
+        ivNavigationNormal = findViewById(R.id.iv_navigation_normall);
+        ivNavigationNormal.setOnClickListener(this);
+
         ImageView imgBack = (ImageView) findViewById(R.id.backImage_header);
         imgBack.setVisibility(View.VISIBLE);
         imgBack.setOnClickListener(this);
@@ -490,6 +505,7 @@ public class TrackDriverActivity extends AppCompatActivity implements OnMapReady
             bc.include(item);
         }
 
+        googleMap.setPadding(10, 130, 10, 500);
         googleMap.moveCamera(CameraUpdateFactory.newLatLngBounds(bc.build(), 50));
     }
 
@@ -666,10 +682,7 @@ public class TrackDriverActivity extends AppCompatActivity implements OnMapReady
     }
 
     public void showSnackBar(String mString) {
-       /* snackbar = Snackbar
-                .make(mCoordinatorLayout, mString, Snackbar.LENGTH_INDEFINITE);
-        snackbar.setText(mString);
-        snackbar.show();*/
+        Toast.makeText(activity, mString, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -699,7 +712,27 @@ public class TrackDriverActivity extends AppCompatActivity implements OnMapReady
                 this.changeCurrentStatusOfRide();
                 //showPopUp();
                 break;
+
+            case R.id.iv_navigation:
+                openGoogleNavigation();
+                break;
+
+            case R.id.iv_navigation_normall:
+                openGoogleNavigation();
+                break;
         }
+    }
+
+    private void openGoogleNavigation() {
+        Utils.printLogs(TAG, "Opening Google Navigation ... ");
+        String sourceLatitude = ride.pickupLatitude;
+        String sourceLongitude = ride.pickupLongitude;
+
+        String destinationLatitude = ride.dropLatitude;
+        String destinationLongitude = ride.dropLongitude;
+        String uri = "http://maps.google.com/maps?saddr=" + sourceLatitude + "," + sourceLongitude + "&daddr=" + destinationLatitude + "," + destinationLongitude;
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
+        startActivity(intent);
     }
 
     @Override
@@ -1001,7 +1034,8 @@ public class TrackDriverActivity extends AppCompatActivity implements OnMapReady
      */
     private void reDrawPolyLine() {
 
-        googleMap.clear();  //clears all Markers and Polylines
+        // googleMap.clear();  //clears all Markers and Polylines
+
 
         PolylineOptions options = new PolylineOptions().width(20).color(
                 getResources().getColor(R.color.appcolor)).geodesic(true);

@@ -772,7 +772,7 @@ public class MainActivity extends AppCompatActivity implements
 
                 CameraUpdate myLocation = CameraUpdateFactory.newLatLngZoom(
                         currentBounds.getCenter(),
-                        10);
+                        15);
                 googleMap.animateCamera(myLocation);
                 UiSettings mUiSetting = googleMap.getUiSettings();
                 mUiSetting.setTiltGesturesEnabled(true);
@@ -812,6 +812,7 @@ public class MainActivity extends AppCompatActivity implements
             bc.include(item);
         }
 
+        googleMap.setPadding(10, 100, 10, 300);
         googleMap.moveCamera(CameraUpdateFactory.newLatLngBounds(bc.build(), 50));
     }
 
@@ -977,6 +978,8 @@ public class MainActivity extends AppCompatActivity implements
      * Tracks current location of user
      */
     private void trackCurrentLocation() {
+
+
 
         gpsTracker = new GpsTracker(context, this);
         if (gpsTracker.canGetLocation()) {
