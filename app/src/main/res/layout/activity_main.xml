@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<nl.psdcompany.duonavigationdrawer.views.DuoDrawerLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<nl.psdcompany.duonavigationdrawer.views.DuoDrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/drawer_layout"
@@ -35,9 +34,19 @@
                     android:id="@+id/map"
                     class="com.google.android.gms.maps.SupportMapFragment"
                     android:layout_width="match_parent"
-                    android:layout_marginTop="@dimen/dp_120"
-                    android:layout_height="match_parent">
-                </fragment>
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/dp_160"></fragment>
+
+                <ImageView
+                    android:id="@+id/btn_current_location"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/dp_5"
+                    android:layout_marginTop="160dp"
+                    android:visibility="gone"
+                    app:srcCompat="@drawable/ic_my_location" />
+
                 <include layout="@layout/main_page_layout" />
             </RelativeLayout>
         </android.support.design.widget.CoordinatorLayout>

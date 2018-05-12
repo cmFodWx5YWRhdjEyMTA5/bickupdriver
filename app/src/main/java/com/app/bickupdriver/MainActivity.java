@@ -64,8 +64,13 @@ import com.app.bickupdriver.utility.CMSActivity;
 import com.app.bickupdriver.utility.CommonMethods;
 import com.app.bickupdriver.utility.ConstantValues;
 import com.app.bickupdriver.utility.GpsTracker;
+import com.app.bickupdriver.utility.MapUtils;
 import com.app.bickupdriver.utility.SharedPreferencesManager;
 import com.app.bickupdriver.utility.Utils;
+import com.directions.route.Route;
+import com.directions.route.RouteException;
+import com.directions.route.Routing;
+import com.directions.route.RoutingListener;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -105,7 +110,7 @@ import static com.app.bickupdriver.utility.ConstantValues.KEY_CAMERA_POSITION;
 public class MainActivity extends AppCompatActivity implements
         NavigationView.OnNavigationItemSelectedListener,
         InternetConnectionBroadcast.ConnectivityRecieverListener,
-        OnMapReadyCallback, View.OnClickListener, LocationChangeCallback {
+        OnMapReadyCallback, View.OnClickListener, LocationChangeCallback, RoutingListener {
 
     private static final String TAG = "NAVIGATION";
 
@@ -133,13 +138,16 @@ public class MainActivity extends AppCompatActivity implements
             txtOnline, valueBookingPovided;
     private Polyline line;
     private LatLng currentLatLng;
-    private LatLng destinationLatLng, pickupLatLng;
+    private LatLng dropLatLng;
+    private LatLng pickupLatLng;
     private String destinationAddress, pickupAddress;
     private ArrayList<Ride> rideList;
     private PolylineOptions options;
     public static boolean isOngoing = false;
 
     private String rideId;
+    private List<Polyline> polylines;
+    private ImageView btnCurrentLocation;
 
 
     /**
@@ -154,6 +162,7 @@ public class MainActivity extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mActivityreference = MainActivity.this;
+        polylines = new ArrayList<>();
         intializeViews();
         // setLayoutForSmallTraveller();
         setGoogleMap();
@@ -216,34 +225,77 @@ public class MainActivity extends AppCompatActivity implements
         Utils.printLogs(TAG, "Fetching route details ...");
         if (rideList != null) {
             for (int i = 0; i < rideList.size(); i++) {
+                Utils.printLogs(TAG, "Ride completed Status : " + rideList.get(0).rideCompletedStatus);
+
                 if (rideList.get(i).rideCompletedStatus == 1) {
                     isOngoing = true;
-                    destinationLatLng = new LatLng(
+                    dropLatLng = new LatLng(
                             Double.valueOf(rideList.get(i).dropLatitude),
                             Double.valueOf(rideList.get(i).dropLongitude));
-
                     pickupLatLng = new LatLng(
                             Double.valueOf(rideList.get(i).pickupLatitude),
                             Double.valueOf(rideList.get(i).pickupLongitude));
-
                     destinationAddress = rideList.get(i).dropLocationAddress;
                     pickupAddress = rideList.get(i).pickupLocationAddress;
                     Utils.printLogs(TAG, "Pickup Address : " + pickupAddress);
                     Utils.printLogs(TAG, "Destination Address : " + destinationAddress);
-
-                    String urlTopass = this.makeURL(gpsTracker.getLatitude(),
+                    /*String urlTopass = this.makeURL(gpsTracker.getLatitude(),
                             gpsTracker.getLongitude(),
                             destinationLatLng.latitude,
                             destinationLatLng.longitude,
                             Double.valueOf(rideList.get(i).pickupLatitude),
                             Double.valueOf(rideList.get(i).pickupLongitude));
-
-                    new MapRouteAsyncTask(MainActivity.this, urlTopass).execute();
+                    new MapRouteAsyncTask(MainActivity.this, urlTopass).execute();*/
+                    List<LatLng> latLngList = new ArrayList<>();
+                    latLngList.add(pickupLatLng);
+                    latLngList.add(dropLatLng);
+                    zoomRoute(googleMap, latLngList);
+                    drawRouteBetweenTwoPlaces(pickupLatLng, dropLatLng);
                     i = rideList.size();
+                } else if (rideList.get(i).rideCompletedStatus == 0) {
+                    btnCurrentLocation.setVisibility(View.VISIBLE);
+                    Utils.currentLocation(googleMap, this);
                 }
             }
         }
     }
+
+    public static void zoomRoute(GoogleMap googleMap, List<LatLng> lstLatLngRoute) {
+
+        if (googleMap == null || lstLatLngRoute == null || lstLatLngRoute.isEmpty()) return;
+        googleMap.setPadding(100, 10, 100, 300);   // left, top, right, bottom
+        LatLngBounds.Builder boundsBuilder = new LatLngBounds.Builder();
+        for (LatLng latLngPoint : lstLatLngRoute)
+            boundsBuilder.include(latLngPoint);
+
+        int routePadding = 1;
+        LatLngBounds latLngBounds = boundsBuilder.build();
+
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngBounds(latLngBounds, routePadding));
+    }
+
+    private void drawRouteBetweenTwoPlaces(LatLng pickupLatLng, LatLng dropLatLng) {
+        if (pickupLatLng != null) {
+            if (dropLatLng != null) {
+                MapUtils.addMarker(googleMap, pickupLatLng, "", R.drawable.pin_location_pin);
+                MapUtils.addMarker(googleMap, dropLatLng, "", R.drawable.drop_location_pin);
+
+                Routing routing = new Routing.Builder()
+                        .travelMode(Routing.TravelMode.DRIVING)
+                        .withListener(this)
+                        .waypoints(pickupLatLng, dropLatLng)
+                        .key(getString(R.string.google_maps_key))
+                        .build();
+                routing.execute();
+
+            } else {
+                Utils.printLogs(TAG, "Drop LatLng is null");
+            }
+        } else {
+            Utils.printLogs(TAG, "Pickup LatLng is null");
+        }
+    }
+
 
     /**
      * Fetches revenue details from server
@@ -445,6 +497,9 @@ public class MainActivity extends AppCompatActivity implements
      * Initializes views
      */
     private void intializeViews() {
+
+        btnCurrentLocation = findViewById(R.id.btn_current_location);
+        btnCurrentLocation.setOnClickListener(this);
 
         mTypefaceRegular = Typeface.createFromAsset(getAssets(), ConstantValues.TYPEFACE_REGULAR);
         mTypefaceBold = Typeface.createFromAsset(getAssets(), ConstantValues.TYPEFACE_BOLD);
@@ -729,12 +784,10 @@ public class MainActivity extends AppCompatActivity implements
     public void onMapReady(GoogleMap googleMap) {
         if (googleMap != null) {
             this.googleMap = googleMap;
-            MapStyleOptions style = MapStyleOptions.loadRawResourceStyle(
-                    this, R.raw.map_style);
-            this.googleMap.setMapStyle(style);
-            if (this.checkForLocationPermission()) {
+
+            /*if (this.checkForLocationPermission()) {
                 this.trackCurrentLocation();
-            }
+            }*/
         }
     }
 
@@ -807,7 +860,7 @@ public class MainActivity extends AppCompatActivity implements
         }
     }
 
-    private void fixZoom() {
+    /*private void fixZoom() {
         List<LatLng> points = options.getPoints(); // route is instance of PolylineOptions
 
         LatLngBounds.Builder bc = new LatLngBounds.Builder();
@@ -818,12 +871,17 @@ public class MainActivity extends AppCompatActivity implements
 
         googleMap.setPadding(10, 100, 10, 300);
         googleMap.moveCamera(CameraUpdateFactory.newLatLngBounds(bc.build(), 50));
-    }
+    }*/
 
     @Override
     public void onClick(View view) {
         int id = view.getId();
         switch (id) {
+
+            case R.id.btn_current_location:
+                MapUtils.currentLocation(googleMap, MainActivity.this);
+                break;
+
             case R.id.navigation_menu:
                 if (drawerLayout.isDrawerOpen(Gravity.RIGHT)) {
                     drawerLayout.closeDrawer(Gravity.RIGHT);
@@ -1032,7 +1090,7 @@ public class MainActivity extends AppCompatActivity implements
         });
     }
 
-    public void drawPath(String result) {
+    /*public void drawPath(String result) {
 
         if (line != null) {
             googleMap.clear();
@@ -1041,7 +1099,7 @@ public class MainActivity extends AppCompatActivity implements
 
         // Drop off location marker
         googleMap.addMarker(new MarkerOptions()
-                .position(destinationLatLng)
+                .position(dropLatLng)
                 .icon(BitmapDescriptorFactory
                         .fromResource(R.drawable.drop_location_pin))
                 .title(destinationAddress));
@@ -1085,7 +1143,7 @@ public class MainActivity extends AppCompatActivity implements
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
+    }*/
 
     /**
      * Decodes the polyline
@@ -1154,5 +1212,41 @@ public class MainActivity extends AppCompatActivity implements
         urlString.append(",");
         urlString.append(Double.toString(wayPointLng));
         return urlString.toString();
+    }
+
+    @Override
+    public void onRoutingFailure(RouteException e) {
+        Utils.printLogs(TAG, "Routing Failure MainActivity : " + e.getMessage());
+    }
+
+    @Override
+    public void onRoutingStart() {
+
+    }
+
+    @Override
+    public void onRoutingSuccess(ArrayList<Route> route, int i2) {
+        Utils.printLogs(TAG, "Routing Success .. ");
+        if (polylines.size() > 0) {
+            for (Polyline poly : polylines) {
+                poly.remove();
+            }
+        }
+
+        polylines = new ArrayList<>();
+        //add route(s) to the map.
+        for (int i = 0; i < route.size(); i++) {
+            PolylineOptions polyOptions = new PolylineOptions();
+            polyOptions.color(getResources().getColor(R.color.blue));
+            polyOptions.width(Utils.THICKNESS_OF_POLYLINE);
+            polyOptions.addAll(route.get(i).getPoints());
+            Polyline polyline = googleMap.addPolyline(polyOptions);
+            polylines.add(polyline);
+        }
+    }
+
+    @Override
+    public void onRoutingCancelled() {
+
     }
 }

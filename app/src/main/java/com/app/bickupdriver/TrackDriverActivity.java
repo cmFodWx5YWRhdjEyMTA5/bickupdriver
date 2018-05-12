@@ -40,7 +40,12 @@ import com.app.bickupdriver.utility.CommonMethods;
 import com.app.bickupdriver.utility.ConstantValues;
 import com.app.bickupdriver.utility.DateHelper;
 import com.app.bickupdriver.utility.GpsTracker;
+import com.app.bickupdriver.utility.MapUtils;
 import com.app.bickupdriver.utility.Utils;
+import com.directions.route.Route;
+import com.directions.route.RouteException;
+import com.directions.route.Routing;
+import com.directions.route.RoutingListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -74,7 +79,7 @@ import retrofit2.Response;
 
 public class TrackDriverActivity extends AppCompatActivity implements OnMapReadyCallback,
         View.OnClickListener, InternetConnectionBroadcast.ConnectivityRecieverListener,
-        LocationChangeCallback {
+        LocationChangeCallback, RoutingListener {
 
     public static String OPENTYPESGOODS = "opentypesgoods";
     private TextView txtTrackStatus, txtHeaderText, txtOntheWay, txtTime;
@@ -130,7 +135,10 @@ public class TrackDriverActivity extends AppCompatActivity implements OnMapReady
     private ImageView ivNavigation;
     private ImageView ivNavigationNormal;
     private RelativeLayout layoutInNormalState;
+    private LatLng pickupLatLng;
+    private LatLng dropLatLng;
     //private String rideId;
+    private List<Polyline> polylines;
 
 
     @Override
@@ -138,6 +146,8 @@ public class TrackDriverActivity extends AppCompatActivity implements OnMapReady
         super.onCreate(savedInstanceState);
         // overridePendingTransition(R.anim.slide_in, R.anim._slide_out);
         setContentView(R.layout.activity_track_driver);
+        polylines = new ArrayList<>();
+
         setGoogleMap();
         initiTializeViews();
 
@@ -155,15 +165,58 @@ public class TrackDriverActivity extends AppCompatActivity implements OnMapReady
 
         TrackDriverActivity.this.connectSocketForLocationUpdates();
 
-        String urlTopass = this.makeURL(gpsTracker.getLatitude(),
+        /*String urlTopass = this.makeURL(gpsTracker.getLatitude(),
                 gpsTracker.getLongitude(),
                 Double.valueOf(ride.dropLatitude),
                 Double.valueOf(ride.dropLongitude),
                 Double.valueOf(ride.pickupLatitude),
                 Double.valueOf(ride.pickupLongitude));
 
-        new MapRouteAsyncTask(TrackDriverActivity.this, urlTopass).execute();
+        new MapRouteAsyncTask(TrackDriverActivity.this, urlTopass).execute();*/
+
+
+        pickupLatLng = new LatLng(Double.parseDouble(ride.pickupLatitude), Double.parseDouble(ride.pickupLongitude));
+        dropLatLng = new LatLng(Double.parseDouble(ride.dropLatitude), Double.parseDouble(ride.dropLongitude));
+
     }
+
+
+    public static void zoomRoute(GoogleMap googleMap, List<LatLng> lstLatLngRoute) {
+
+        if (googleMap == null || lstLatLngRoute == null || lstLatLngRoute.isEmpty()) return;
+        googleMap.setPadding(100, 250, 100, 800);   // left, top, right, bottom
+        LatLngBounds.Builder boundsBuilder = new LatLngBounds.Builder();
+        for (LatLng latLngPoint : lstLatLngRoute)
+            boundsBuilder.include(latLngPoint);
+
+        int routePadding = 10;
+        LatLngBounds latLngBounds = boundsBuilder.build();
+
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngBounds(latLngBounds, routePadding));
+    }
+
+    private void drawRouteBetweenTwoPlaces(LatLng pickupLatLng, LatLng dropLatLng) {
+        if (pickupLatLng != null) {
+            if (dropLatLng != null) {
+                MapUtils.addMarker(googleMap, pickupLatLng, "", R.drawable.pin_location_pin);
+                MapUtils.addMarker(googleMap, dropLatLng, "", R.drawable.drop_location_pin);
+
+                Routing routing = new Routing.Builder()
+                        .travelMode(Routing.TravelMode.DRIVING)
+                        .withListener(this)
+                        .waypoints(pickupLatLng, dropLatLng)
+                        .key(getString(R.string.google_maps_key))
+                        .build();
+                routing.execute();
+
+            } else {
+                Utils.printLogs(TAG, "Drop LatLng is null");
+            }
+        } else {
+            Utils.printLogs(TAG, "Pickup LatLng is null");
+        }
+    }
+
 
     /**
      * Fetches values from Intent
@@ -374,7 +427,6 @@ public class TrackDriverActivity extends AppCompatActivity implements OnMapReady
                                     Utils.printLogs(TAG, "Change Status of Ride : " + apiResponse.temp.statusList);
                                     TrackDriverActivity.this.setStatusOfRide(
                                             apiResponse.temp.statusList);
-
                                 } else {
                                     Utils.showToast(apiResponse.message, context);
                                 }
@@ -677,15 +729,32 @@ public class TrackDriverActivity extends AppCompatActivity implements OnMapReady
     }
 
     @Override
-    public void onMapReady(GoogleMap googleMap) {
+    public void onMapReady(final GoogleMap googleMap) {
         if (googleMap != null) {
             this.googleMap = googleMap;
-            MapStyleOptions style = MapStyleOptions.loadRawResourceStyle(
+            /*MapStyleOptions style = MapStyleOptions.loadRawResourceStyle(
                     this, R.raw.map_style);
-            this.googleMap.setMapStyle(style);
-            if (this.checkForLocationPermission()) {
+            this.googleMap.setMapStyle(style);*/
+
+            googleMap.setOnMapLoadedCallback(new GoogleMap.OnMapLoadedCallback() {
+                @Override
+                public void onMapLoaded() {
+                    //Your code where exception occurs goes here...
+                    /**
+                     * Zoom the Map
+                     */
+                    List<LatLng> latLngList = new ArrayList<>();
+                    latLngList.add(pickupLatLng);
+                    latLngList.add(dropLatLng);
+                    zoomRoute(googleMap, latLngList);
+                    drawRouteBetweenTwoPlaces(pickupLatLng, dropLatLng);
+
+                }
+            });
+
+            /*if (this.checkForLocationPermission()) {
                 this.trackCurrentLocation();
-            }
+            }*/
         }
     }
 
@@ -1082,5 +1151,41 @@ public class TrackDriverActivity extends AppCompatActivity implements OnMapReady
         mLocationRequest.setFastestInterval(FASTEST_INTERVAL);
         mLocationRequest.setSmallestDisplacement(SMALLEST_DISPLACEMENT); //added
         mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+    }
+
+    @Override
+    public void onRoutingFailure(RouteException e) {
+        Utils.printLogs(TAG, "Routing Failure : ... " + e.getMessage());
+    }
+
+    @Override
+    public void onRoutingStart() {
+
+    }
+
+    @Override
+    public void onRoutingSuccess(ArrayList<Route> route, int i2) {
+        Utils.printLogs(TAG, "Routing Success .. ");
+        if (polylines.size() > 0) {
+            for (Polyline poly : polylines) {
+                poly.remove();
+            }
+        }
+
+        polylines = new ArrayList<>();
+        //add route(s) to the map.
+        for (int i = 0; i < route.size(); i++) {
+            PolylineOptions polyOptions = new PolylineOptions();
+            polyOptions.color(getResources().getColor(R.color.blue));
+            polyOptions.width(Utils.THICKNESS_OF_POLYLINE);
+            polyOptions.addAll(route.get(i).getPoints());
+            Polyline polyline = googleMap.addPolyline(polyOptions);
+            polylines.add(polyline);
+        }
+    }
+
+    @Override
+    public void onRoutingCancelled() {
+
     }
 }

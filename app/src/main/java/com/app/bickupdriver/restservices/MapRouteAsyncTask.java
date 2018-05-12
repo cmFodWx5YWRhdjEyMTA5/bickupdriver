@@ -45,12 +45,12 @@ public class MapRouteAsyncTask extends AsyncTask<Void, Void, String> {
         super.onPostExecute(result);
         progressDialog.hide();
         if (result != null) {
-            if(context instanceof MainActivity)
-                ((MainActivity)context).drawPath(result);
-            else if(context instanceof TrackDriverActivity)
-                ((TrackDriverActivity)context).drawPath(result);
-            else if(context instanceof BookingDetailsAcceptRejectActivity)
-                ((BookingDetailsAcceptRejectActivity)context).drawPath(result);
+            if(context instanceof MainActivity){}
+                //((MainActivity)context).drawPath(result);
+            else if(context instanceof TrackDriverActivity){}
+                //((TrackDriverActivity)context).drawPath(result);
+            else if(context instanceof BookingDetailsAcceptRejectActivity){}
+                //((BookingDetailsAcceptRejectActivity)context).drawPath(result);
         }
     }
 }

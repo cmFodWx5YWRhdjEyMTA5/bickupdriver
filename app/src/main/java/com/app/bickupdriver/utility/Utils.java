@@ -1,5 +1,6 @@
 package com.app.bickupdriver.utility;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.ProgressDialog;
@@ -24,6 +25,9 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
 import com.app.bickupdriver.R;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.model.LatLng;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -55,6 +59,20 @@ public class Utils {
     //public static final int CUSTOM_SHARE_ARTICLE_DIALOG_CONST 				= 870;
 
 
+    @SuppressLint("MissingPermission")
+    public static void currentLocation(GoogleMap mMap, Context context) {
+        try {
+            mMap.clear();
+            GpsTracker gpsTracker = new GpsTracker(context);
+            mMap.getUiSettings().setCompassEnabled(false);
+            mMap.getUiSettings().setZoomControlsEnabled(false);
+            mMap.setMyLocationEnabled(true);
+            mMap.getUiSettings().setMyLocationButtonEnabled(false);
+            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(gpsTracker.getLatitude(), gpsTracker.getLongitude()), MapUtils.CAMERA_ZOOM_LEVEL));
+        } catch (Exception e) {
+            Utils.printLogs(TAG, "Exception while getting current location : " + e.getMessage());
+        }
+    }
 
 
     public static String getLastCharacters(String word, int charactersFromLast) {

@@ -10,6 +10,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:text="Make Payment" />
+        android:text="Ride Summary" />
 
 </RelativeLayout>
