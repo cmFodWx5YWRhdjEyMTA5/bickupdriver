@@ -23,6 +23,8 @@ import android.util.Log;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
+import com.app.bickupdriver.R;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -30,26 +32,64 @@ import org.json.JSONTokener;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 /**
  * <H1>Bickup DriverBickup</H1>
  * <H1>Utils</H1>
- *
+ * <p>
  * <p>Provides utility methods that are commonly used in the application</p>
  *
  * @author Divya Thakur
- * @since 9/1/16
  * @version 1.0
+ * @since 9/1/16
  */
 public class Utils {
 
     private static final String TAG = "Utils";
     public static final boolean LOG_ON = true;
     public static final String GOODS_ACTIVITY_NOTIFICATION_BROADCAST_ACTION = "com.app.bickupdriver.";
-
+    public static final float THICKNESS_OF_POLYLINE = 8.0f;
 
     //public static final int CUSTOM_SHARE_ARTICLE_DIALOG_CONST 				= 870;
+
+
+
+
+    public static String getLastCharacters(String word, int charactersFromLast) {
+        if (word.length() == charactersFromLast) {
+            return word;
+        } else if (word.length() > charactersFromLast) {
+            return word.substring(word.length() - charactersFromLast);
+        } else {
+            // whatever is appropriate in this case
+            throw new IllegalArgumentException("word has less than " + charactersFromLast + " characters!");
+        }
+    }
+
+
+    // Time stamp : 1525261152000
+    // today 05:09 PM
+    public static String getFormattedDate(Context context, long timeInMillis) {
+        Calendar smsTime = Calendar.getInstance();
+        smsTime.setTimeInMillis(timeInMillis);
+
+        Calendar now = Calendar.getInstance();
+
+        final String timeFormatString = "hh:mm aa";
+        final String dateTimeFormatString = "EEEE, MMMM d, h:mm aa";
+        if (now.get(Calendar.DATE) == smsTime.get(Calendar.DATE)) {
+            return String.format("%s %s", context.getString(R.string.today), android.text.format.DateFormat.format(timeFormatString, smsTime));
+        } else if (now.get(Calendar.DATE) - smsTime.get(Calendar.DATE) == 1) {
+            return String.format("%s %s", context.getString(R.string.yesterday), android.text.format.DateFormat.format(timeFormatString, smsTime));
+        } else if (now.get(Calendar.YEAR) == smsTime.get(Calendar.YEAR)) {
+            return android.text.format.DateFormat.format(dateTimeFormatString, smsTime).toString();
+        } else {
+            return android.text.format.DateFormat.format("MMMM dd yyyy, h:mm aa", smsTime).toString();
+        }
+    }
+
 
     /**
      * Hides the keyboard if the screen is tapped
@@ -175,7 +215,7 @@ public class Utils {
         Utils.printLogs(TAG, "Inside getDeviceUniqueID()");
 
 		/*TelephonyManager telephonyManager = (TelephonyManager)
-		 context.getSystemService(Context.TELEPHONY_SERVICE);
+         context.getSystemService(Context.TELEPHONY_SERVICE);
 		return telephonyManager.getDeviceId();*/
 
         String deviceID = Settings.Secure.getString(context.getContentResolver(),
@@ -391,6 +431,7 @@ public class Utils {
 
     /**
      * Checks if the app is in background or not
+     *
      * @param context Holds the object of context
      * @return the status of app
      */
@@ -424,7 +465,6 @@ public class Utils {
 
         return isInBackground;
     }
-
 
 
 }

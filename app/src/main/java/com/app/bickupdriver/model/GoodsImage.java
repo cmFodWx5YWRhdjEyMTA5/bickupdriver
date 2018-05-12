@@ -19,4 +19,12 @@ public class GoodsImage implements Serializable {
     @SerializedName("image_url")
     public String imageUrl;
 
+    @SerializedName("actual_path")
+    public String actualPath;
+
+    @SerializedName("file_format")
+    public int fileFormat;
+
+    @SerializedName("profile_image")
+    public boolean isProfileImage;
 }

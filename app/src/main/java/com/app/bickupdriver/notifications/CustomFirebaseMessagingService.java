@@ -1,5 +1,6 @@
 package com.app.bickupdriver.notifications;
 
+import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -9,16 +10,13 @@ import android.media.RingtoneManager;
 import android.net.Uri;
 import android.support.v4.app.NotificationCompat;
 
-import com.app.bickupdriver.GoodsActivity;
+import com.app.bickupdriver.BookingDetailsAcceptRejectActivity;
 import com.app.bickupdriver.R;
 import com.app.bickupdriver.SplashActivity;
 import com.app.bickupdriver.utility.ConstantValues;
 import com.app.bickupdriver.utility.Utils;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.Map;
 
@@ -56,29 +54,8 @@ public class CustomFirebaseMessagingService extends FirebaseMessagingService {
             Utils.printLogs(TAG, "Notification is null  ");
         }
 
-
         if (remoteMessage.getData() != null) {
-            //JSONObject notification;
-
             try {
-              /*  notification = new JSONObject(remoteMessage.getData().toString());
-
-                //JSONObject data = notification.getJSONObject("data");
-                String notificationType = notification.getString(ConstantValues.NOTIFICATION_TYPE);
-                String rideId = notification.getString(ConstantValues.RIDE_ID);
-                String pickupTime = notification.getString("pickup_time");
-                String pickupTimeType = notification.getString("pickup_time_type");
-                String message = notification.getString("body");
-                String title = notification.getString("title");
-
-
-                Utils.printLogs(TAG, "Notification Type Notification : " + notificationType);
-                Utils.printLogs(TAG, "Ride Id notification : " + rideId);
-                Utils.printLogs(TAG, "Pickup Time  : " + pickupTime);
-                Utils.printLogs(TAG, "Pickup Time Type : " + pickupTimeType);
-                Utils.printLogs(TAG, "tITLE : " + title);*/
-
-
                 Map<String, String> notificationData = remoteMessage.getData();
                 String notificationType = notificationData.get("notification_type");
                 String rideId = notificationData.get(ConstantValues.RIDE_ID);
@@ -86,13 +63,15 @@ public class CustomFirebaseMessagingService extends FirebaseMessagingService {
                 String pickupTimeType = notificationData.get("pickup_time_type");
                 String message = notificationData.get("message");
                 String title = notificationData.get("title");
-
+                String color = notificationData.get("color");
 
                 Utils.printLogs(TAG, "Notification Type Notification : " + notificationType);
                 Utils.printLogs(TAG, "Ride Id notification : " + rideId);
                 Utils.printLogs(TAG, "Pickup Time  : " + pickupTime);
                 Utils.printLogs(TAG, "Pickup Time Type : " + pickupTimeType);
-                Utils.printLogs(TAG, "tITLE : " + title);
+                Utils.printLogs(TAG, "Title : " + title);
+                Utils.printLogs(TAG, "Color : " + color);
+
                 /**
                  * Automatic Update when a new Notification is arrived.
                  */
@@ -104,7 +83,7 @@ public class CustomFirebaseMessagingService extends FirebaseMessagingService {
 
 
                 Class toBeOpenedClass = this.filterNotifications(Integer.parseInt(notificationType));
-                this.sendNotification(title, message, rideId, toBeOpenedClass, notificationType);
+                this.sendNotification(title, message, rideId, toBeOpenedClass, notificationType, color);
 
             } catch (Exception e) {
                 Utils.printLogs(TAG, "Exception : " + e.getMessage());
@@ -120,7 +99,7 @@ public class CustomFirebaseMessagingService extends FirebaseMessagingService {
      * @param messageBody FCM message body received.
      */
     private void sendNotification(String title, String messageBody, String rideId, Class toBeOpenedClass,
-                                  String status) {
+                                  String status, String color) {
 
         Intent intent = new Intent(this, toBeOpenedClass);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -131,13 +110,26 @@ public class CustomFirebaseMessagingService extends FirebaseMessagingService {
                 PendingIntent.FLAG_UPDATE_CURRENT);
 
         Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
+
+
+        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        String CHANNEL_ID = "com.app.bickupdriver";
+        String channelName = "bickup_driver";
+        int importance = NotificationManager.IMPORTANCE_HIGH;
+
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            NotificationChannel notificationChannel = new NotificationChannel(CHANNEL_ID, channelName, importance);
+            notificationManager.createNotificationChannel(notificationChannel);
+        }
+
+        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this, CHANNEL_ID)
                 .setSmallIcon(getNotificationIcon())
                 .setContentTitle(title)
                 .setContentText(messageBody)
                 .setAutoCancel(true)
                 .setSound(defaultSoundUri)
                 .setContentIntent(pendingIntent)
+                .setColor(Color.parseColor(color))
                 .setStyle(new NotificationCompat.BigTextStyle()
                         .bigText(messageBody));
 
@@ -147,9 +139,6 @@ public class CustomFirebaseMessagingService extends FirebaseMessagingService {
         if (useWhiteIcon) {
             notificationBuilder.setColor(Color.CYAN);
         }
-
-        NotificationManager notificationManager =
-                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
         notificationManager.notify(0 /* ID of notification */, notificationBuilder.build());
     }
@@ -180,7 +169,7 @@ public class CustomFirebaseMessagingService extends FirebaseMessagingService {
                 // DriverBickup Side
                 // When user creates a Ride and a push sent to driver
                 Utils.printLogs(TAG, "Status 1 ");
-                return GoodsActivity.class;
+                return BookingDetailsAcceptRejectActivity.class;
             case 2:
                 // DriverBickup Side
                 // When user assigns another driver.

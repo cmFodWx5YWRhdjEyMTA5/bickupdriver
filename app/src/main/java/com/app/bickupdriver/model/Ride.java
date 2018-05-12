@@ -18,6 +18,15 @@ import java.util.ArrayList;
  */
 public class Ride implements Serializable {
 
+
+    // Added on 09-05
+    @SerializedName("pickup_comments")
+    public String pickupComment;
+
+    @SerializedName("drop_comments")
+    public String dropComment;
+
+
     @SerializedName("drop_location_address")
     public String dropLocationAddress;
     @SerializedName("pickup_location_address")

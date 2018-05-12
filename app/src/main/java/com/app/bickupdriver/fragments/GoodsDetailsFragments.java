@@ -20,7 +20,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.app.bickupdriver.GoodsActivity;
+import com.app.bickupdriver.BookingDetailsAcceptRejectActivity;
 import com.app.bickupdriver.R;
 import com.app.bickupdriver.TypesGoods;
 import com.app.bickupdriver.interfaces.HandlerGoodsNavigations;
@@ -31,12 +31,12 @@ import com.xw.repo.BubbleSeekBar;
 public class GoodsDetailsFragments extends Fragment implements View.OnClickListener {
 
     public static String TAG=GoodsDetailsFragments.class.getSimpleName();
-    private GoodsActivity mGoodsActivity;
+    private BookingDetailsAcceptRejectActivity mBookingDetailsAcceptRejectActivity;
     private Activity mActivity;
     private Button btnSaveBooking;
     private Typeface mTypefaceRegular;
     private Typeface mTypefaceBold;
-    private GoodsActivity mActivityReference;
+    private BookingDetailsAcceptRejectActivity mActivityReference;
     private ImageView imgOneHelper;
     private ImageView imgTwoHelper;
     private ImageView imgTickOneHelper;
@@ -298,7 +298,7 @@ public class GoodsDetailsFragments extends Fragment implements View.OnClickListe
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        mActivityReference=(GoodsActivity)context;
+        mActivityReference=(BookingDetailsAcceptRejectActivity)context;
 
     }
 

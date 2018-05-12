@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.app.bickupdriver.GoodsActivity;
+import com.app.bickupdriver.BookingDetailsAcceptRejectActivity;
 import com.app.bickupdriver.R;
 import com.app.bickupdriver.TrackDriverActivity;
 import com.app.bickupdriver.model.Ride;
@@ -104,7 +104,7 @@ public class RideListRecyclerAdapter extends RecyclerView.Adapter<RideListRecycl
                     intent.putExtra("ride", rideList.get(position));
                     activity.startActivity(intent);
                 } else {
-                    Intent intent = new Intent(activity, GoodsActivity.class);
+                    Intent intent = new Intent(activity, BookingDetailsAcceptRejectActivity.class);
                     String ride_id = rideList.get(position).rideId;
                     intent.putExtra(ConstantValues.RIDE_ID, ride_id);
                     activity.startActivity(intent);

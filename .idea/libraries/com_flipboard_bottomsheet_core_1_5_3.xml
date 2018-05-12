@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="com.flipboard:bottomsheet-core-1.5.3">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/bottomsheet-core-1.5.3.aar/3be49bcc7d66cbe630ad58de149d1cf9/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/bottomsheet-core-1.5.3.aar/3be49bcc7d66cbe630ad58de149d1cf9/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/bottomsheet-core-1.5.3.aar/a98daad2d791ea3d19955624ddb40773/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/bottomsheet-core-1.5.3.aar/a98daad2d791ea3d19955624ddb40773/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

@@ -26,7 +26,7 @@
             app:riv_corner_radius_top_right="10dp" />-->
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/img_goods"
+            android:id="@+id/img_goods_booking_details_fragment"
             android:layout_width="@dimen/dp_70"
             android:layout_height="@dimen/dp_70"
             android:scaleType="centerCrop"

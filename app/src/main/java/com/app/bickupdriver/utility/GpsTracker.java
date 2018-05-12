@@ -15,9 +15,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.provider.Settings;
-import android.util.Log;
 
-import com.app.bickupdriver.GoodsActivity;
 import com.app.bickupdriver.MainActivity;
 import com.app.bickupdriver.TrackDriverActivity;
 

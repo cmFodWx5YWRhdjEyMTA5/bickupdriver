@@ -10,8 +10,11 @@
     <string name="title_activity_login">Sign in</string>
     <string name="facebook_app_id" translatable="false">2072705686282046</string>
     <string name="fb_login_protocol_scheme" translatable="false">fb2072705686282046</string>
-    <!--<string name="google_maps_key" translatable="false">AIzaSyBiOdHzYXYHCxWBKZSX2H5Fy7cjBwNL5-8</string> -->
-    <string name="google_maps_key">AIzaSyAB5rtn6Pi4w43KbbxUFJkRcwQMaaa2aV0</string><!-- API key 4-->
+    <!--<string name="google_maps_key" translatable="false">AIzaSyDMlnARqsTNIUxu1KdxNV7w6Q6TQ5yHppw</string>-->
+
+
+    <!--Manish Kumar on 10-05-18 with id - shalukhet@gmail.com and password - 9873122410-->
+    <string name="google_maps_key" translatable="true">AIzaSyD3gbU8f-b3s8xVojVU2VMM0gp49shhlio</string>
     <string name="gcm_sender_id">759505761052</string>
 
     <!-- Strings related to login -->
@@ -23,8 +26,7 @@
     <string name="error_invalid_password">This password is too short</string>
     <string name="error_incorrect_password">This password is incorrect</string>
     <string name="error_field_required">This field is required @@</string>
-    <string name="permission_rationale">"Contacts permissions are needed for providing email
-        completions."
+    <string name="permission_rationale">"Contacts permissions are needed for providing email completions."
     </string>
 
     <!-- TODO: Remove or change this placeholder text -->
@@ -283,4 +285,7 @@
         <item>Unload</item>
         <item>Delivered</item>
     </string-array>
+    <string name="title_activity_maps">Map</string>
+    <string name="today">today</string>
+    <string name="yesterday">yesterday</string>
 </resources>

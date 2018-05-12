@@ -66,6 +66,15 @@
             android:layout_marginTop="2dp"
             android:text="+91-8894635648"
             android:textColor="@color/grey_text_color" />
+
+        <TextView
+            android:id="@+id/tv_pickup_additional_comment"
+            style="@style/mediumTextSize"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:text="Pickup Additional Comment"
+            android:textColor="@color/grey_text_color" />
     </LinearLayout>
 
     <LinearLayout
@@ -109,7 +118,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_toEndOf="@+id/txt_helper"
-            android:text="@string/txt_pickup_contact_details"
+            android:text="@string/txt_drop_contact_details"
             android:textColor="@color/greyColor" />
 
         <TextView
@@ -130,6 +139,14 @@
             android:text="+91-8894635648"
             android:textColor="@color/grey_text_color" />
 
+        <TextView
+            android:id="@+id/tv_drop_additional_comment"
+            style="@style/mediumTextSize"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:text="Drop comment"
+            android:textColor="@color/grey_text_color" />
 
     </LinearLayout>
 
@@ -149,7 +166,6 @@
             android:layout_toEndOf="@+id/txt_helper"
             android:text="@string/txt_number_of_helpers"
             android:textColor="@color/greyColor" />
-
 
 
         <ImageView

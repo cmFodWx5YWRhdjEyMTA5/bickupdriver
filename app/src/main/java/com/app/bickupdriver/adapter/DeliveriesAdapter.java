@@ -15,6 +15,7 @@ import com.app.bickupdriver.R;
 import com.app.bickupdriver.model.Response;
 import com.app.bickupdriver.model.Ride;
 import com.app.bickupdriver.utility.ConstantValues;
+import com.app.bickupdriver.utility.Utils;
 import com.koushikdutta.ion.Ion;
 
 import java.util.ArrayList;
@@ -24,7 +25,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 /**
  * <H1>Bickup DriverBickup</H1>
  * <H1>DeliveriesAdapter</H1>
- *
+ * <p>
  * <p>Represents the Booking List Adapter which helps in listing the bookings</p>
  *
  * @author Divya Thakur
@@ -44,7 +45,7 @@ public class DeliveriesAdapter extends BaseAdapter {
     /**
      * Parameterized Constructor
      *
-     * @param context          holds the context
+     * @param context      holds the context
      * @param responseList holds the response list
      */
     public DeliveriesAdapter(Context context, int tabPosition, ArrayList<Response> responseList) {
@@ -86,14 +87,14 @@ public class DeliveriesAdapter extends BaseAdapter {
 
             if (convertView == null) {
 
-                if(tabPosition == 0) {
+                if (tabPosition == 0) {
                     convertView = inflater.inflate(R.layout.completed_deliveries_list_item,
                             null);
                     holderCompleted = new ViewHolderCompleted();
                     this.setWidgetReferencesForCompleted(convertView);
                     convertView.setTag(holderCompleted);
                     this.setTagForCompleted(convertView);
-                } else if(tabPosition == 1) {
+                } else if (tabPosition == 1) {
                     convertView = inflater.inflate(R.layout.missed_deliveries_list_item,
                             null);
                     holderMissed = new ViewHolderMissed();
@@ -102,12 +103,12 @@ public class DeliveriesAdapter extends BaseAdapter {
                     this.setTagForMissed(holderMissed, convertView);
                 }
             } else {
-                if(tabPosition == 0)
+                if (tabPosition == 0)
                     holderCompleted = (ViewHolderCompleted) convertView.getTag();
-                else if(tabPosition == 1)
+                else if (tabPosition == 1)
                     holderMissed = (ViewHolderMissed) convertView.getTag();
             }
-            if(tabPosition == 0)
+            if (tabPosition == 0)
                 this.editViewsForCompleted(holderCompleted, position);
             else
                 this.editViewsForMissed(holderMissed, position);
@@ -115,6 +116,8 @@ public class DeliveriesAdapter extends BaseAdapter {
 
         } catch (Exception e) {
             e.printStackTrace();
+            Utils.printLogs("HISTORY", "Exception in Delivery Adapter : " + e.getMessage());
+
         }
 
         return convertView;
@@ -133,14 +136,16 @@ public class DeliveriesAdapter extends BaseAdapter {
             holderCompleted.rlDateDeliveryLayout = view.findViewById(R.id.rlDateDeliveryLayout);
             holderCompleted.llRootLayout = view.findViewById(R.id.llRootLayout);
         } catch (Exception e) {
+            Utils.printLogs("HISTORY", "Exception in Delivery Adapter : " + e.getMessage());
             e.printStackTrace();
         }
     }
 
     /**
      * Identifying the views by using their ID's and setting the references
+     *
      * @param holderMissed Holds the View Holder
-     * @param view holds the view
+     * @param view         holds the view
      */
     private void setWidgetReferencesForMissed(ViewHolderMissed holderMissed, View view) {
 
@@ -175,8 +180,9 @@ public class DeliveriesAdapter extends BaseAdapter {
 
     /**
      * Sets the tags to the views
+     *
      * @param holderMissed Holds the View Holder
-     * @param view holds the view
+     * @param view         holds the view
      */
     private void setTagForMissed(ViewHolderMissed holderMissed, View view) {
 
@@ -194,8 +200,9 @@ public class DeliveriesAdapter extends BaseAdapter {
 
     /**
      * Sets the data on the views
+     *
      * @param holderCompleted Holds the object for View Holder
-     * @param position holds the position
+     * @param position        holds the position
      */
     private void editViewsForCompleted(ViewHolderCompleted holderCompleted, final int position) {
 
@@ -203,7 +210,7 @@ public class DeliveriesAdapter extends BaseAdapter {
 
             holderCompleted.tvDate.setText(responseList.get(position).date);
 
-            if(responseList.get(position).ride != null &&
+            if (responseList.get(position).ride != null &&
                     responseList.get(position).ride.size() > 0) {
 
                 holderCompleted.tvNoOfDeliveries.setText(responseList.get(position).ride.size()
@@ -222,7 +229,7 @@ public class DeliveriesAdapter extends BaseAdapter {
                 RatingBar rbDriverRating = view.findViewById(R.id.rbDriverRating);
 
                 ArrayList<Ride> rideList = responseList.get(position).ride;
-                for(int i = 0; i < rideList.size(); i ++) {
+                for (int i = 0; i < rideList.size(); i++) {
 
                     user_image_row_list.setId(i + position + 777);
                     row_user_name.setId(i + position + 555);
@@ -231,7 +238,7 @@ public class DeliveriesAdapter extends BaseAdapter {
                     row_apx_fare.setId(i + position + 999);
                     rbDriverRating.setId(i + position + 1111);
 
-                    if(rideList.get(i).goodsImage != null &&
+                    if (rideList.get(i).goodsImage != null &&
                             rideList.get(i).goodsImage.imageUrl != null) {
                         Ion.with(user_image_row_list)
                                 .placeholder(R.drawable.ac_sing_helper)
@@ -248,7 +255,7 @@ public class DeliveriesAdapter extends BaseAdapter {
                 holderCompleted.llRootLayout.addView(view);
             }
 
-         //   this.setImage(position);
+            //   this.setImage(position);
 
             //holderCompleted.tvNotificationTitle.setTag(position);
             holderCompleted.tvDate.setTag(position);     // This line is important
@@ -263,15 +270,16 @@ public class DeliveriesAdapter extends BaseAdapter {
 
     /**
      * Sets the data on the views
+     *
      * @param holderMissed Holds the object for View Holder
-     * @param position holds the position
+     * @param position     holds the position
      */
     private void editViewsForMissed(ViewHolderMissed holderMissed, final int position) {
 
         try {
 
             holderMissed.txt_today.setText(responseList.get(position).date);
-            if(responseList.get(position).ride != null &&
+            if (responseList.get(position).ride != null &&
                     responseList.get(position).ride.size() > 0) {
                 holderMissed.tvNoOfDeliveries.setText(responseList.get(position).ride.size()
                         + " Delivery(s)");
@@ -281,7 +289,7 @@ public class DeliveriesAdapter extends BaseAdapter {
                 holderMissed.llRootLayout.removeAllViews();
 
                 ArrayList<Ride> rideList = responseList.get(position).ride;
-                for(int i = 0; i < rideList.size(); i ++) {
+                for (int i = 0; i < rideList.size(); i++) {
 
                     final View view = layoutInflater.inflate(
                             R.layout.missed_delivery_list_item_layout,
@@ -297,7 +305,7 @@ public class DeliveriesAdapter extends BaseAdapter {
                     edt_pickup_location.setId(i + position + 333);
                     edt_drop_location.setId(i + position + 111);
 
-                    if(rideList.get(i).goodsImage != null &&
+                    if (rideList.get(i).goodsImage != null &&
                             rideList.get(i).goodsImage.imageUrl != null) {
                         Ion.with(user_image_row_list)
                                 .placeholder(R.drawable.ac_sing_helper)
@@ -312,7 +320,7 @@ public class DeliveriesAdapter extends BaseAdapter {
                 }
             }
 
-           // this.setImage(position);
+            // this.setImage(position);
 
             holderMissed.txt_today.setTag(position);     // This line is important
             holderMissed.tvNoOfDeliveries.setTag(position);

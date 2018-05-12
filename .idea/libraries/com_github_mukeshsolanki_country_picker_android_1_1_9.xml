@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="com.github.mukeshsolanki:country-picker-android-1.1.9">
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/country-picker-android-1.1.9.aar/1c0862e9d2cd309f97741594c1854a3c/res" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/country-picker-android-1.1.9.aar/1c0862e9d2cd309f97741594c1854a3c/jars/classes.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/country-picker-android-1.1.9.aar/1c486c45321d2e4df75d79e4f05e062c/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/country-picker-android-1.1.9.aar/1c486c45321d2e4df75d79e4f05e062c/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

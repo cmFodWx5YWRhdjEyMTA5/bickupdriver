@@ -64,6 +64,7 @@ import com.app.bickupdriver.utility.CMSActivity;
 import com.app.bickupdriver.utility.CommonMethods;
 import com.app.bickupdriver.utility.ConstantValues;
 import com.app.bickupdriver.utility.GpsTracker;
+import com.app.bickupdriver.utility.SharedPreferencesManager;
 import com.app.bickupdriver.utility.Utils;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -107,6 +108,7 @@ public class MainActivity extends AppCompatActivity implements
         OnMapReadyCallback, View.OnClickListener, LocationChangeCallback {
 
     private static final String TAG = "NAVIGATION";
+
 
     private Snackbar snackbar;
     private boolean mIsConnected;
@@ -157,6 +159,9 @@ public class MainActivity extends AppCompatActivity implements
         setGoogleMap();
         // CheckdrawerLayout.openDrawer(Gravity.RIGHT);
 
+
+        String firebaseRegistrationToken = SharedPreferencesManager.getGcmRegistrationId(this);
+        Utils.printLogs(TAG, "FCM Registration Token : " + firebaseRegistrationToken);
         this.checkForLocationPermission();
         this.getRevenueDetails();
         this.getRides();
@@ -233,8 +238,7 @@ public class MainActivity extends AppCompatActivity implements
                             Double.valueOf(rideList.get(i).pickupLatitude),
                             Double.valueOf(rideList.get(i).pickupLongitude));
 
-                    new MapRouteAsyncTask(MainActivity.this,
-                            urlTopass).execute();
+                    new MapRouteAsyncTask(MainActivity.this, urlTopass).execute();
                     i = rideList.size();
                 }
             }
@@ -713,7 +717,7 @@ public class MainActivity extends AppCompatActivity implements
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(MainActivity.this, GoodsActivity.class);
+                Intent intent = new Intent(MainActivity.this, BookingDetailsAcceptRejectActivity.class);
                 startActivity(intent);
                 openDialog.dismiss();
             }
@@ -980,7 +984,6 @@ public class MainActivity extends AppCompatActivity implements
     private void trackCurrentLocation() {
 
 
-
         gpsTracker = new GpsTracker(context, this);
         if (gpsTracker.canGetLocation()) {
             latitude = String.valueOf(gpsTracker.getLatitude());
@@ -1070,7 +1073,7 @@ public class MainActivity extends AppCompatActivity implements
             String encodedString = overviewPolylines.getString("points");
             List<LatLng> list = decodePoly(encodedString);
 
-            options = new PolylineOptions().width(20)
+            options = new PolylineOptions().width(Utils.THICKNESS_OF_POLYLINE)
                     .color(getResources().getColor(R.color.appcolor)).geodesic(true);
             for (int z = 0; z < list.size(); z++) {
                 LatLng point = list.get(z);

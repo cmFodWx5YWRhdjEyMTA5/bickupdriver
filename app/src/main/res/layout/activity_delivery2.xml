@@ -6,56 +6,61 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.app.bickupdriver.DeliveryActivity">
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <android.support.design.widget.AppBarLayout
-        android:id="@+id/appbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
-
-       <include layout="@layout/toolbar_layout"/>
-
-        <android.support.design.widget.TabLayout
-            android:id="@+id/tabs"
-            android:background="@color/colorPrimary"
-            app:tabTextColor="@color/greyColor"
-            app:tabSelectedTextColor="@color/appcolor"
-            app:tabTextAppearance="@style/MineCustomTabText"
-            app:tabIndicatorColor="@color/appcolor"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-    </android.support.design.widget.AppBarLayout>
-
-        <android.support.v4.view.ViewPager
-        android:id="@+id/container"
-        android:layout_below="@+id/appbar"
-        android:background="@color/greyColor"
-        android:layout_width="match_parent"
-
-        android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
-
-    </RelativeLayout>
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="30dp"
-        android:visibility="gone"
-        android:background="@color/black_transparent"
-        android:id="@+id/booking_container">
-        <com.wajahatkarim3.easyflipview.EasyFlipView
+            android:id="@+id/appbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:theme="@style/AppTheme.AppBarOverlay">
+
+            <include layout="@layout/toolbar_layout" />
+
+            <android.support.design.widget.TabLayout
+                android:id="@+id/tab_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimary"
+                app:tabIndicatorColor="@color/appcolor"
+                app:tabSelectedTextColor="@color/appcolor"
+                app:tabTextAppearance="@style/MineCustomTabText"
+                app:tabTextColor="@color/greyColor" />
+
+        </android.support.design.widget.AppBarLayout>
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/appbar"
+
+            android:background="@color/greyColor"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/booking_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/black_transparent"
+        android:padding="30dp"
+        android:visibility="gone">
+
+        <com.wajahatkarim3.easyflipview.EasyFlipView
             android:id="@+id/flip_view"
-            app:flipOnTouch="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:flipDuration="400"
             app:flipEnabled="true"
-            app:flipDuration="400">
-            <include layout="@layout/rate_driver_dialog"/>
-            <include layout="@layout/rate_driver_dialog"/>
+            app:flipOnTouch="true">
+
+            <include layout="@layout/rate_driver_dialog" />
+
+            <include layout="@layout/rate_driver_dialog" />
         </com.wajahatkarim3.easyflipview.EasyFlipView>
     </RelativeLayout>
 

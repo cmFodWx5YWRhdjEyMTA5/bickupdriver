@@ -4,7 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 
-import com.app.bickupdriver.GoodsActivity;
+import com.app.bickupdriver.BookingDetailsAcceptRejectActivity;
 import com.app.bickupdriver.MainActivity;
 import com.app.bickupdriver.TrackDriverActivity;
 
@@ -49,8 +49,8 @@ public class MapRouteAsyncTask extends AsyncTask<Void, Void, String> {
                 ((MainActivity)context).drawPath(result);
             else if(context instanceof TrackDriverActivity)
                 ((TrackDriverActivity)context).drawPath(result);
-            else if(context instanceof GoodsActivity)
-                ((GoodsActivity)context).drawPath(result);
+            else if(context instanceof BookingDetailsAcceptRejectActivity)
+                ((BookingDetailsAcceptRejectActivity)context).drawPath(result);
         }
     }
 }

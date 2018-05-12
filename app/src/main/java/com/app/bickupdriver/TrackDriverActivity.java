@@ -129,6 +129,7 @@ public class TrackDriverActivity extends AppCompatActivity implements OnMapReady
 
     private ImageView ivNavigation;
     private ImageView ivNavigationNormal;
+    private RelativeLayout layoutInNormalState;
     //private String rideId;
 
 
@@ -161,8 +162,7 @@ public class TrackDriverActivity extends AppCompatActivity implements OnMapReady
                 Double.valueOf(ride.pickupLatitude),
                 Double.valueOf(ride.pickupLongitude));
 
-        new MapRouteAsyncTask(TrackDriverActivity.this,
-                urlTopass).execute();
+        new MapRouteAsyncTask(TrackDriverActivity.this, urlTopass).execute();
     }
 
     /**
@@ -177,6 +177,7 @@ public class TrackDriverActivity extends AppCompatActivity implements OnMapReady
      * Fetches current Ride Status
      */
     private void getStatusOfRide() {
+        Utils.printLogs(TAG, "Getting status of Ride ... ");
         ApiInterface service;
         try {
             if (Utils.isNetworkAvailable(context)) {
@@ -209,6 +210,8 @@ public class TrackDriverActivity extends AppCompatActivity implements OnMapReady
                                 if (apiResponse.temp.statusList != null) {
                                     TrackDriverActivity.this.setStatusOfRide(
                                             apiResponse.temp.statusList);
+
+                                    Utils.printLogs(TAG, "Get Status of Ride : " + apiResponse.temp.statusList);
                                 } else {
                                     Utils.showToast(apiResponse.message, context);
                                 }
@@ -236,7 +239,7 @@ public class TrackDriverActivity extends AppCompatActivity implements OnMapReady
     }
 
     private void setStatusOfRide(ArrayList<Status> statusList) {
-
+        Utils.printLogs(TAG, "Setting status of Ride ... ");
         int i = 0;
         String[] statusArray = getResources().getStringArray(R.array.ride_status);
         if (statusList.get(i).status == 0) {
@@ -315,15 +318,29 @@ public class TrackDriverActivity extends AppCompatActivity implements OnMapReady
             String time = DateHelper.convertTimestampToTime(Long.valueOf(
                     statusList.get(i).timeStamp));
             txt_delivered_time.setText(time);
-            this.onBackPressed();
+
+
+            //this.onBackPressed();
+            // Open Payment Screen
+            openPaymentScreen();
+
         }
+    }
+
+    private void openPaymentScreen() {
+        Intent paymentScreenIntent = new Intent(this, PaymentActivity.class);
+        startActivity(paymentScreenIntent);
+        finish();
     }
 
 
     /**
      * Changes current Ride Status
      */
+
+    // driver/changeStatus when button is clicked.
     private void changeCurrentStatusOfRide() {
+        Utils.printLogs("STATUS", "Change current status of Ride ... ");
         ApiInterface service;
         try {
             if (Utils.isNetworkAvailable(context)) {
@@ -354,8 +371,10 @@ public class TrackDriverActivity extends AppCompatActivity implements OnMapReady
                                 Utils.printLogs(TAG, "onResponse : Success : -- " +
                                         apiResponse.temp.statusList);
                                 if (apiResponse.temp.statusList != null) {
+                                    Utils.printLogs(TAG, "Change Status of Ride : " + apiResponse.temp.statusList);
                                     TrackDriverActivity.this.setStatusOfRide(
                                             apiResponse.temp.statusList);
+
                                 } else {
                                     Utils.showToast(apiResponse.message, context);
                                 }
@@ -444,6 +463,8 @@ public class TrackDriverActivity extends AppCompatActivity implements OnMapReady
         //btnAssignAnother.setTypeface(mTypefaceRegular);
         btnAssignAnotherBottomSheet.setTypeface(mTypefaceRegular);
 
+        layoutInNormalState = findViewById(R.id.card_container);
+
         setTypeFaceToViews();
 
         View bottomSheet = findViewById(R.id.design_bottom_sheet);
@@ -456,29 +477,36 @@ public class TrackDriverActivity extends AppCompatActivity implements OnMapReady
         mBottomSheetBehavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
             @Override
             public void onStateChanged(@NonNull View bottomSheet, int newState) {
+                Utils.printLogs(TAG, "onStateChanged");
                 if (newState == BottomSheetBehavior.STATE_COLLAPSED) {
                     //toolbarLyout.setVisibility(View.VISIBLE);
+                    Utils.printLogs(TAG, "STATE Collapsed");
+                    layoutInNormalState.setVisibility(View.VISIBLE);
                 }
-
             }
 
             @Override
             public void onSlide(@NonNull View bottomSheet, float slideOffset) {
-
+                Utils.printLogs(TAG, "onSlide");
                 if (bottomSheet.getScrollY() == BottomSheetBehavior.STATE_DRAGGING)
                     mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+                Utils.printLogs(TAG, "STATE Expanded");
             }
         });
 
         txtTrackStatus.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
+
                 switch (event.getAction()) {
                     case MotionEvent.ACTION_DOWN:
                         mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+                        Utils.printLogs(TAG, "STATE Collapsed2");
                         break;
                     case MotionEvent.ACTION_UP:
                         mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+                        layoutInNormalState.setVisibility(View.GONE);
+                        Utils.printLogs(TAG, "STATE Expanded2");
                         break;
                     default:
                         break;
@@ -816,6 +844,7 @@ public class TrackDriverActivity extends AppCompatActivity implements OnMapReady
                 .position(new LatLng(gpsTracker.getLatitude(),
                         gpsTracker.getLongitude())));
 
+
         try {
             // Tranform the string into a json object
             final JSONObject json = new JSONObject(result);
@@ -828,7 +857,7 @@ public class TrackDriverActivity extends AppCompatActivity implements OnMapReady
             String encodedString = overviewPolylines.getString("points");
             List<LatLng> list = decodePoly(encodedString);
 
-            options = new PolylineOptions().width(20)
+            options = new PolylineOptions().width(Utils.THICKNESS_OF_POLYLINE)
                     .color(getResources().getColor(R.color.appcolor)).geodesic(true);
 
             for (int z = 0; z < list.size(); z++) {
@@ -1021,8 +1050,8 @@ public class TrackDriverActivity extends AppCompatActivity implements OnMapReady
             double lng = Double.valueOf(longitude);
             LatLng latLng = new LatLng(lat, lng);
 
-            points.add(latLng); //added
-            reDrawPolyLine(); //added
+            //points.add(latLng); //added
+            //reDrawPolyLine(); //added
 
         } catch (Exception e) {
             e.printStackTrace();

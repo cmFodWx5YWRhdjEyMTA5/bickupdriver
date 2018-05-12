@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.app.bickupdriver.GoodsActivity">
+    tools:context="com.app.bickupdriver.BookingDetailsAcceptRejectActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
