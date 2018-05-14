@@ -68,7 +68,7 @@ public class TypesGoods extends AppCompatActivity implements InternetConnectionB
         imgBack.setOnClickListener(this);
 
 
-        int openPage=getIntent().getIntExtra(TrackDriverActivity.OPENTYPESGOODS,0);
+        int openPage=getIntent().getIntExtra(TrackDriverActivityDriver.OPENTYPESGOODS,0);
         if(openPage==1){
             tv_header.setText(getResources().getString(R.string.txt_contacts_number));
             TypesGoodsAdapter typesGoodsAdapter=new TypesGoodsAdapter(this,array1,1);

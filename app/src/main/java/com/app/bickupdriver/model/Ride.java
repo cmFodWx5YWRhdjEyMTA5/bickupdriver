@@ -73,8 +73,12 @@ public class Ride implements Serializable {
 
     @SerializedName("pickup_contact_number")
     public String pickupContactNumber;
+
     @SerializedName("drop_contact_number")
     public String dropOffContactNumber;
+
+    @SerializedName("user_phone_number")
+    public String userContactNumber;
 
     @SerializedName("rating")
     public float rating;

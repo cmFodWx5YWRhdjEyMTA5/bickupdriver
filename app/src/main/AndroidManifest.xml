@@ -79,7 +79,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/custome_zoom" />
         <activity
-            android:name=".TrackDriverActivity"
+            android:name=".TrackDriverActivityDriver"
             android:screenOrientation="portrait" />
         <activity
             android:name="com.app.GoodsActivity"

@@ -17,7 +17,7 @@ import android.os.IBinder;
 import android.provider.Settings;
 
 import com.app.bickupdriver.MainActivity;
-import com.app.bickupdriver.TrackDriverActivity;
+import com.app.bickupdriver.TrackDriverActivityDriver;
 
 import io.socket.client.Socket;
 
@@ -101,8 +101,8 @@ public class GpsTracker extends Service implements LocationListener {
 							if((activity) != null && activity instanceof MainActivity)
 								((MainActivity)activity).onLocationChange(String.valueOf(latitude),
 										String.valueOf(longitude));
-							else if(activity != null && activity instanceof TrackDriverActivity)
-								((TrackDriverActivity)activity).onLocationChange(
+							else if(activity != null && activity instanceof TrackDriverActivityDriver)
+								((TrackDriverActivityDriver)activity).onLocationChange(
 										String.valueOf(latitude), String.valueOf(longitude));
 						}
 					}
@@ -291,8 +291,8 @@ public class GpsTracker extends Service implements LocationListener {
 		String longitude = String.valueOf(location.getLongitude());
 		if((activity) != null && activity instanceof MainActivity)
 			((MainActivity)activity).onLocationChange(latitude, longitude);
-		else if(activity != null && activity instanceof TrackDriverActivity)
-			((TrackDriverActivity)activity).onLocationChange(latitude, longitude);
+		else if(activity != null && activity instanceof TrackDriverActivityDriver)
+			((TrackDriverActivityDriver)activity).onLocationChange(latitude, longitude);
 	}
 
 	@Override

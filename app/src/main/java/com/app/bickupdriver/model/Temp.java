@@ -13,4 +13,10 @@ public class Temp implements Serializable {
 
         @SerializedName("status")
         public ArrayList<Status> statusList;
+
+        @SerializedName("user_phone_number")
+        public String userPhoneNumber;
+
+        @SerializedName("country_code")
+        public String countryCode;
 }

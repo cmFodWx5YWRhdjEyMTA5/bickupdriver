@@ -126,6 +126,14 @@
                 android:layout_alignParentTop="true"
                 android:src="@drawable/navigation" />
 
+            <ImageView
+                android:id="@+id/iv_call_user_bottomsheet"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:src="@drawable/call" />
+
             <TextView
                 android:id="@+id/txt_track_status"
                 android:layout_width="match_parent"

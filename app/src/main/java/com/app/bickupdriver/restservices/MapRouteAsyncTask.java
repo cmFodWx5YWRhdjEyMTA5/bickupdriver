@@ -6,7 +6,7 @@ import android.os.AsyncTask;
 
 import com.app.bickupdriver.BookingDetailsAcceptRejectActivity;
 import com.app.bickupdriver.MainActivity;
-import com.app.bickupdriver.TrackDriverActivity;
+import com.app.bickupdriver.TrackDriverActivityDriver;
 
 /**
  * Created by Divya Thakur on 6/12/17.
@@ -47,8 +47,8 @@ public class MapRouteAsyncTask extends AsyncTask<Void, Void, String> {
         if (result != null) {
             if(context instanceof MainActivity){}
                 //((MainActivity)context).drawPath(result);
-            else if(context instanceof TrackDriverActivity){}
-                //((TrackDriverActivity)context).drawPath(result);
+            else if(context instanceof TrackDriverActivityDriver){}
+                //((TrackDriverActivityDriver)context).drawPath(result);
             else if(context instanceof BookingDetailsAcceptRejectActivity){}
                 //((BookingDetailsAcceptRejectActivity)context).drawPath(result);
         }

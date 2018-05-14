@@ -45,13 +45,13 @@
                         app:riv_corner_radius_top_left="10dp"
                         app:riv_corner_radius_top_right="-0dp" />-->
 
-                    <de.hdodenhof.circleimageview.CircleImageView
+                    <!--<de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/img_driver"
                         android:layout_width="110dp"
                         android:layout_height="110dp"
                         android:scaleType="centerCrop"
                         android:src="@drawable/driver"
-                        android:visibility="gone" />
+                        android:visibility="gone" />-->
 
 
                     <LinearLayout
@@ -96,6 +96,16 @@
                 </RelativeLayout>
             </android.support.v7.widget.CardView>
         </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/iv_call_user"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/card_container"
+            android:layout_alignParentLeft="true"
+            android:layout_marginBottom="-35dp"
+            android:paddingTop="6dp"
+            android:src="@drawable/call" />
 
         <ImageView
             android:id="@+id/iv_navigation_normall"

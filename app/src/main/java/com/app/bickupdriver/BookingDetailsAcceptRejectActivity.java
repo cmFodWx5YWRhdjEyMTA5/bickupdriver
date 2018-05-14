@@ -411,7 +411,7 @@ public class BookingDetailsAcceptRejectActivity extends AppCompatActivity implem
 
     /*@Override
     public void callTrackDriverActivity() {
-        Intent intent = new Intent(this, TrackDriverActivity.class);
+        Intent intent = new Intent(this, TrackDriverActivityDriver.class);
         intent.putExtra("ride", rideNew);
         startActivity(intent);
         finish();
@@ -501,7 +501,7 @@ public class BookingDetailsAcceptRejectActivity extends AppCompatActivity implem
                                 if (apiResponse.response != null) {
                                     Log.e(TAG, "Valid");
                                     if (isAccepted == 1) {
-                                        Intent trackDriverIntent = new Intent(BookingDetailsAcceptRejectActivity.this, TrackDriverActivity.class);
+                                        Intent trackDriverIntent = new Intent(BookingDetailsAcceptRejectActivity.this, TrackDriverActivityDriver.class);
                                         trackDriverIntent.putExtra(ConstantValues.RIDE, ride);
                                         startActivity(trackDriverIntent);
                                         //mActivityReference.callTrackDriverActivity();
