@@ -23,10 +23,10 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.app.bickupdriver.EditProfileActivity;
-import com.app.bickupdriver.ImagesActivity;
+import com.app.bickupdriver.activity.EditProfileActivity;
+import com.app.bickupdriver.activity.ImagesActivity;
 import com.app.bickupdriver.R;
-import com.app.bickupdriver.ResetAndForgetPasswordActivity;
+import com.app.bickupdriver.activity.ResetAndForgetPasswordActivity;
 import com.app.bickupdriver.adapter.ViewPagerAdapter;
 import com.app.bickupdriver.controller.NetworkCallBack;
 import com.app.bickupdriver.controller.WebAPIManager;

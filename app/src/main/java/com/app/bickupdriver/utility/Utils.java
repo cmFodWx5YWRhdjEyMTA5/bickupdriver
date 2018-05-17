@@ -35,8 +35,10 @@ import org.json.JSONObject;
 import org.json.JSONTokener;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -58,6 +60,15 @@ public class Utils {
 
     //public static final int CUSTOM_SHARE_ARTICLE_DIALOG_CONST 				= 870;
 
+
+    // Time stamp : 1525261152000
+    // May 02,2018 17:09
+    public static String milliSecondToDateAndTime(long milliSeconds) {
+        SimpleDateFormat sdf = new SimpleDateFormat("MMM dd,yyyy HH:mm");
+        Date resultdate = new Date(milliSeconds);
+        String dateAndTime = sdf.format(resultdate);
+        return dateAndTime;
+    }
 
     @SuppressLint("MissingPermission")
     public static void currentLocation(GoogleMap mMap, Context context) {

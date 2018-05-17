@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.app.bickupdriver.activity.NotificationListActivity">
+
+
+    <include
+        android:id="@+id/include_toolbar_notification_list"
+        layout="@layout/toolbar_layout" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view_notification_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/include_toolbar_notification_list" />
+
+
+    <com.github.rahatarmanahmed.cpv.CircularProgressView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/circular_progress_view_notification_list"
+        android:layout_width="@dimen/dp_50"
+        android:layout_centerInParent="true"
+        android:layout_height="@dimen/dp_50"
+        android:visibility="gone"
+        app:cpv_animAutostart="true"
+        app:cpv_indeterminate="true"
+        app:cpv_color="@color/appcolor"/>
+
+</RelativeLayout>

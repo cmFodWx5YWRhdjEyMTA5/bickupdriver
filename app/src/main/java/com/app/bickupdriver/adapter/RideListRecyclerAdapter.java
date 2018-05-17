@@ -9,9 +9,9 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.app.bickupdriver.BookingDetailsAcceptRejectActivity;
+import com.app.bickupdriver.activity.BookingDetailsAcceptRejectActivity;
 import com.app.bickupdriver.R;
-import com.app.bickupdriver.TrackDriverActivityDriver;
+import com.app.bickupdriver.activity.TrackDriverActivityDriver;
 import com.app.bickupdriver.model.Ride;
 import com.app.bickupdriver.utility.ConstantValues;
 import com.app.bickupdriver.utility.DateHelper;
@@ -101,7 +101,7 @@ public class RideListRecyclerAdapter extends RecyclerView.Adapter<RideListRecycl
             public void onClick(View view) {
                 if (rideList.get(position).rideCompletedStatus == 1) {
                     Intent intent = new Intent(activity, TrackDriverActivityDriver.class);
-                    intent.putExtra(ConstantValues.RIDE, rideList.get(position));
+                    intent.putExtra(ConstantValues.RIDE_ID, rideList.get(position).rideId);
                     activity.startActivity(intent);
                 } else {
                     Intent intent = new Intent(activity, BookingDetailsAcceptRejectActivity.class);

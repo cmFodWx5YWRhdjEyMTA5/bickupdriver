@@ -16,8 +16,8 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.provider.Settings;
 
-import com.app.bickupdriver.MainActivity;
-import com.app.bickupdriver.TrackDriverActivityDriver;
+import com.app.bickupdriver.activity.MainActivity;
+import com.app.bickupdriver.activity.TrackDriverActivityDriver;
 
 import io.socket.client.Socket;
 

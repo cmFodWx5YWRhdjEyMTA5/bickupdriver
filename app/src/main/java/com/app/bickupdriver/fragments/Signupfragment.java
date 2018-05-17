@@ -6,7 +6,6 @@ import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -19,21 +18,20 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.app.bickupdriver.LoginActivity;
+import com.app.bickupdriver.activity.LoginActivity;
 import com.app.bickupdriver.R;
 import com.app.bickupdriver.controller.NetworkCallBack;
 import com.app.bickupdriver.controller.WebAPIManager;
 import com.app.bickupdriver.interfaces.GetSocialLoginResultInterface;
 import com.app.bickupdriver.interfaces.HandleLoginSignUpNavigation;
-import com.app.bickupdriver.model.DriverBickup;
 import com.app.bickupdriver.model.User;
 import com.app.bickupdriver.utility.CommonMethods;
 import com.app.bickupdriver.utility.ConstantValues;
+import com.app.bickupdriver.utility.SharedPreferencesManager;
 import com.app.bickupdriver.utility.Utils;
 import com.github.rahatarmanahmed.cpv.CircularProgressView;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.gson.JsonObject;
-import com.koushikdutta.async.Util;
 import com.koushikdutta.async.future.FutureCallback;
 import com.koushikdutta.ion.Ion;
 import com.koushikdutta.ion.Response;
@@ -41,7 +39,6 @@ import com.mukesh.countrypicker.CountryPicker;
 import com.mukesh.countrypicker.CountryPickerListener;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
@@ -396,6 +393,16 @@ public class Signupfragment extends Fragment implements GetSocialLoginResultInte
                 map.put(ConstantValues.USER_FIRSTNAME, data.getString("first_name"));
                 map.put(ConstantValues.USER_LASTNAME, data.getString("last_name"));
                 map.put(ConstantValues.COUNTRY_CODE, data.getString("country_code"));
+
+
+                /**
+                 * Save is_shopkeeper key into SharedPreferences.
+                 */
+                SharedPreferencesManager sharedPrefManager = new SharedPreferencesManager(getContext());
+                // TODO: 16/5/18  Change this Fixed Field
+                String referalCodeFromServer = data.getString("referal_code");
+                Utils.printLogs(TAG, "Referal Code ---- : -- " + referalCodeFromServer);
+                sharedPrefManager.saveStringData(SharedPreferencesManager.REFERRAL_CODE, referalCodeFromServer);
 
 
                 try {

@@ -7,7 +7,7 @@
     android:id="@+id/coordinator__activity_scheduled"
     android:orientation="vertical"
     android:background="@color/white"
-    tools:context="com.app.bickupdriver.ScheduledActivity">
+    tools:context="com.app.bickupdriver.activity.ScheduledActivity">
 
     <ScrollView
             android:layout_width="match_parent"

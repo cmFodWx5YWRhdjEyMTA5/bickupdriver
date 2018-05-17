@@ -4,9 +4,9 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 
-import com.app.bickupdriver.BookingDetailsAcceptRejectActivity;
-import com.app.bickupdriver.MainActivity;
-import com.app.bickupdriver.TrackDriverActivityDriver;
+import com.app.bickupdriver.activity.BookingDetailsAcceptRejectActivity;
+import com.app.bickupdriver.activity.MainActivity;
+import com.app.bickupdriver.activity.TrackDriverActivityDriver;
 
 /**
  * Created by Divya Thakur on 6/12/17.

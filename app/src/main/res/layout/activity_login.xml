@@ -5,7 +5,7 @@
     android:gravity="center_horizontal"
     android:id="@+id/cordinatorlayout"
     android:orientation="vertical"
-    tools:context="com.app.bickupdriver.LoginActivity">
+    tools:context="com.app.bickupdriver.activity.LoginActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"

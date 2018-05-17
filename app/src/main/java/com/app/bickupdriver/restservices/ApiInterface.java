@@ -15,11 +15,13 @@ import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 /**
  * Created by Divya Thakur on 4/12/17.
  */
 public interface ApiInterface {
+
 
     @GET(Urls.GET_COMPLETED_RIDES)
     Call<BaseArrayResponse> getListOfCompletedRides(@Header(ConstantValues.USER_ACCESS_TOKEN)
@@ -62,4 +64,7 @@ public interface ApiInterface {
             @Header("access_token") String accessToken
     );
 
+    @GET("notification")
+    Call<ServerResponseNotificationList> getNotificationList(
+            @Header("access_token") String accessToken);
 }

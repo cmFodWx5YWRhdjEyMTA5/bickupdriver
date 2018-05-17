@@ -1,6 +1,5 @@
 package com.app.bickupdriver.fragments;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -12,19 +11,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
-import com.app.bickupdriver.DeliveryActivity;
 import com.app.bickupdriver.R;
-import com.app.bickupdriver.adapter.BookingsAdapter;
 import com.app.bickupdriver.adapter.DeliveriesAdapter;
 import com.app.bickupdriver.controller.AppConstants;
 import com.app.bickupdriver.model.BaseArrayResponse;
-import com.app.bickupdriver.model.Response;
 import com.app.bickupdriver.restservices.ApiClientConnection;
 import com.app.bickupdriver.restservices.ApiInterface;
 import com.app.bickupdriver.utility.ConstantValues;
 import com.app.bickupdriver.utility.Utils;
-
-import java.util.ArrayList;
 
 import retrofit2.Call;
 import retrofit2.Callback;

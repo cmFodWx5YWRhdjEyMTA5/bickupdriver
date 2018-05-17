@@ -17,9 +17,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.app.bickupdriver.LoginActivity;
+import com.app.bickupdriver.activity.LoginActivity;
 import com.app.bickupdriver.R;
-import com.app.bickupdriver.ResetAndForgetPasswordActivity;
+import com.app.bickupdriver.activity.ResetAndForgetPasswordActivity;
 import com.app.bickupdriver.controller.NetworkCallBack;
 import com.app.bickupdriver.controller.WebAPIManager;
 import com.app.bickupdriver.model.User;

@@ -18,7 +18,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.app.bickupdriver.LoginActivity;
+import com.app.bickupdriver.activity.LoginActivity;
 import com.app.bickupdriver.R;
 import com.app.bickupdriver.controller.NetworkCallBack;
 import com.app.bickupdriver.controller.WebAPIManager;
@@ -27,6 +27,8 @@ import com.app.bickupdriver.interfaces.HandleLoginSignUpNavigation;
 import com.app.bickupdriver.model.User;
 import com.app.bickupdriver.utility.CommonMethods;
 import com.app.bickupdriver.utility.ConstantValues;
+import com.app.bickupdriver.utility.SharedPreferencesManager;
+import com.app.bickupdriver.utility.Utils;
 import com.github.rahatarmanahmed.cpv.CircularProgressView;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.gson.JsonObject;
@@ -44,14 +46,14 @@ import java.util.HashMap;
 import static com.facebook.FacebookSdk.getApplicationContext;
 
 
-public class LoginFragment extends Fragment implements GetSocialLoginResultInterface, View.OnClickListener,NetworkCallBack {
+public class LoginFragment extends Fragment implements GetSocialLoginResultInterface, View.OnClickListener, NetworkCallBack {
 
 
     private LoginActivity mActivityReference;
     private Activity activity;
     private EditText edtMobileNumber;
     private EditText edtPassword;
-    private Button  btnLogin;
+    private Button btnLogin;
     private ImageButton btnfacebook;
     private ImageButton btnGoogle;
     private TextView tvForgotPassword;
@@ -61,13 +63,14 @@ public class LoginFragment extends Fragment implements GetSocialLoginResultInter
     private Typeface mTypefaceBold;
     private String message;
 
-    public static final int REQUEST_CREATEUSER=101;
-    public static final int REQUEST_SOCIAL_LOGIN=102;
-    public static final int REQUEST_SOCIAL_SIGNUP=104;
-    public static final int REQUEST_LOGIN=103;
+    public static final int REQUEST_CREATEUSER = 101;
+    public static final int REQUEST_SOCIAL_LOGIN = 102;
+    public static final int REQUEST_SOCIAL_SIGNUP = 104;
+    public static final int REQUEST_LOGIN = 103;
     private CircularProgressView circularProgressBar;
     private TextView countryCode;
-    private String countryCodevalue="+91";
+    private String countryCodevalue = "+91";
+    private String TAG = "REFERRAL";
 
 
     public LoginFragment() {
@@ -83,28 +86,28 @@ public class LoginFragment extends Fragment implements GetSocialLoginResultInter
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-         View view=inflater.inflate(R.layout.fragment_login, container, false);
+        View view = inflater.inflate(R.layout.fragment_login, container, false);
         initializeViews(view);
         return view;
     }
 
     private void initializeViews(View view) {
-        activity=getActivity();
-        circularProgressBar=(CircularProgressView)view.findViewById(R.id.progress_view);
-        mTypefaceRegular=Typeface.createFromAsset(activity.getAssets(), ConstantValues.TYPEFACE_REGULAR);
-        mTypefaceBold=Typeface.createFromAsset(activity.getAssets(), ConstantValues.TYPEFACE_BOLD);
-        container=(LinearLayout)view.findViewById(R.id.container_login);
+        activity = getActivity();
+        circularProgressBar = (CircularProgressView) view.findViewById(R.id.progress_view);
+        mTypefaceRegular = Typeface.createFromAsset(activity.getAssets(), ConstantValues.TYPEFACE_REGULAR);
+        mTypefaceBold = Typeface.createFromAsset(activity.getAssets(), ConstantValues.TYPEFACE_BOLD);
+        container = (LinearLayout) view.findViewById(R.id.container_login);
 
-        countryCode=view.findViewById(R.id.edt_country_code);
+        countryCode = view.findViewById(R.id.edt_country_code);
         countryCode.setOnClickListener(this);
 
-        edtMobileNumber =(EditText)view.findViewById(R.id.edt_mobile_login);
-        edtPassword =(EditText)view.findViewById(R.id.edt_password_login);
-        btnLogin=(Button)view.findViewById(R.id.btn_login);
-        btnfacebook= (ImageButton)view.findViewById(R.id.btn_facebook_login);
-        btnGoogle= (ImageButton)view.findViewById(R.id.btn_google_login);
-        tvForgotPassword= (TextView)view.findViewById(R.id.txt_forgot_password_login);
-        tvSignUP=(TextView)view.findViewById(R.id.txt_signup_login);
+        edtMobileNumber = (EditText) view.findViewById(R.id.edt_mobile_login);
+        edtPassword = (EditText) view.findViewById(R.id.edt_password_login);
+        btnLogin = (Button) view.findViewById(R.id.btn_login);
+        btnfacebook = (ImageButton) view.findViewById(R.id.btn_facebook_login);
+        btnGoogle = (ImageButton) view.findViewById(R.id.btn_google_login);
+        tvForgotPassword = (TextView) view.findViewById(R.id.txt_forgot_password_login);
+        tvSignUP = (TextView) view.findViewById(R.id.txt_signup_login);
 
         tvSignUP.setTypeface(mTypefaceRegular);
         tvForgotPassword.setTypeface(mTypefaceRegular);
@@ -124,17 +127,17 @@ public class LoginFragment extends Fragment implements GetSocialLoginResultInter
 
 
     private boolean validateFields() {
-        if(!CommonMethods.getInstance().validateMobileNumber(edtMobileNumber.getText().toString(),6)){
+        if (!CommonMethods.getInstance().validateMobileNumber(edtMobileNumber.getText().toString(), 6)) {
             Toast.makeText(activity, activity.getResources().getString(R.string.txt_vaidate_mobile_number), Toast.LENGTH_SHORT).show();
             return false;
         }
 
 
-        if(!CommonMethods.getInstance().validateEditFeild(edtPassword.getText().toString())){
+        if (!CommonMethods.getInstance().validateEditFeild(edtPassword.getText().toString())) {
             Toast.makeText(activity, activity.getResources().getString(R.string.txt_vaidate_password), Toast.LENGTH_SHORT).show();
             return false;
-        }else{
-            if(edtPassword.getText().toString().length()<8){
+        } else {
+            if (edtPassword.getText().toString().length() < 8) {
                 Toast.makeText(activity, activity.getResources().getString(R.string.txt_vaidate_password_strength), Toast.LENGTH_SHORT).show();
                 return false;
             }
@@ -145,7 +148,7 @@ public class LoginFragment extends Fragment implements GetSocialLoginResultInter
 
     @Override
     public void onResume() {
-        if(edtMobileNumber!=null&&edtPassword!=null){
+        if (edtMobileNumber != null && edtPassword != null) {
             edtMobileNumber.setText("");
             edtPassword.setText("");
         }
@@ -155,7 +158,7 @@ public class LoginFragment extends Fragment implements GetSocialLoginResultInter
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        mActivityReference=(LoginActivity)context;
+        mActivityReference = (LoginActivity) context;
     }
 
 
@@ -190,24 +193,23 @@ public class LoginFragment extends Fragment implements GetSocialLoginResultInter
     }
 
 
-
     @Override
     public void onClick(View view) {
-        HandleLoginSignUpNavigation mHandleLoginSignUpNavigation =mActivityReference;
-        int id=view.getId();
-        switch (id){
+        HandleLoginSignUpNavigation mHandleLoginSignUpNavigation = mActivityReference;
+        int id = view.getId();
+        switch (id) {
             case R.id.btn_login:
-                if(validateFields()) {
-                    String mobileNumber=edtMobileNumber.getText().toString();
-                    String password=edtPassword.getText().toString();
-                    prepareuserLogin(mobileNumber.trim(),password.trim());
+                if (validateFields()) {
+                    String mobileNumber = edtMobileNumber.getText().toString();
+                    String password = edtPassword.getText().toString();
+                    prepareuserLogin(mobileNumber.trim(), password.trim());
                 }
                 break;
             case R.id.txt_signup_login:
                 mHandleLoginSignUpNavigation.callSignupFragment();
                 break;
             case R.id.txt_forgot_password_login:
-                mHandleLoginSignUpNavigation.callForgotAndReset(ConstantValues.FORGOT_PASSWORD,0);
+                mHandleLoginSignUpNavigation.callForgotAndReset(ConstantValues.FORGOT_PASSWORD, 0);
                 break;
             case R.id.edt_country_code:
                 openCountryCodeDialog();
@@ -216,13 +218,13 @@ public class LoginFragment extends Fragment implements GetSocialLoginResultInter
         }
     }
 
-    public  void  openCountryCodeDialog(){
+    public void openCountryCodeDialog() {
         final CountryPicker picker = CountryPicker.newInstance("Select Country");  // dialog title
         picker.setListener(new CountryPickerListener() {
             @Override
             public void onSelectCountry(String name, String code, String dialCode, int flagDrawableResID) {
                 picker.dismiss();
-                countryCodevalue=dialCode;
+                countryCodevalue = dialCode;
                 countryCode.setText(dialCode);
             }
         });
@@ -231,24 +233,24 @@ public class LoginFragment extends Fragment implements GetSocialLoginResultInter
     }
     // User Login process
 
-    public void  prepareuserLogin(final String mobileNumber, final String password) {
-        String createUserUrl= WebAPIManager.getInstance().getUserLoginUrl();
-        final JsonObject requestBody=new JsonObject();
+    public void prepareuserLogin(final String mobileNumber, final String password) {
+        String createUserUrl = WebAPIManager.getInstance().getUserLoginUrl();
+        final JsonObject requestBody = new JsonObject();
         requestBody.addProperty(ConstantValues.USER_MOBILENUMBER, mobileNumber);
         requestBody.addProperty(ConstantValues.USER_PASSWORD, password);
         requestBody.addProperty(ConstantValues.COUNTRY_CODE, countryCodevalue);
         requestBody.addProperty(ConstantValues.DEVICE_TOKEN,
                 FirebaseInstanceId.getInstance().getToken());
-                //CommonMethods.getUniqueDeviceId(mActivityReference));
-        userLogin(requestBody,createUserUrl,this,60*1000,REQUEST_LOGIN);
+        //CommonMethods.getUniqueDeviceId(mActivityReference));
+        userLogin(requestBody, createUserUrl, this, 60 * 1000, REQUEST_LOGIN);
     }
 
 
     private void userLogin(JsonObject requestBody, String createUserUrl, final NetworkCallBack loginActivity, int timeOut, final int requestCode) {
         circularProgressBar.setVisibility(View.VISIBLE);
-        Log.e(createUserUrl,requestBody.toString());
+        Log.e(createUserUrl, requestBody.toString());
         Ion.with(this)
-                .load("POST",createUserUrl)
+                .load("POST", createUserUrl)
                 .setJsonObjectBody(requestBody)
                 .asJsonObject()
                 .withResponse()
@@ -256,21 +258,21 @@ public class LoginFragment extends Fragment implements GetSocialLoginResultInter
                     @Override
                     public void onCompleted(Exception e, Response<JsonObject> result) {
                         circularProgressBar.setVisibility(View.GONE);
-                        if(e!=null){
+                        if (e != null) {
                             Toast.makeText(getApplicationContext(), getResources().getString(R.string.txt_Netork_error), Toast.LENGTH_SHORT).show();
                             return;
                         }
                         Log.e("LoginFragment", result.getResult().toString());
                         int status = result.getHeaders().code();
                         JsonObject resultObject = result.getResult();
-                        String value=String.valueOf(resultObject);
+                        String value = String.valueOf(resultObject);
                         try {
-                            JSONObject jsonObject=new JSONObject(value);
+                            JSONObject jsonObject = new JSONObject(value);
                             message = jsonObject.getString("message");
                         } catch (JSONException e1) {
                             e1.printStackTrace();
                         }
-                        switch (status){
+                        switch (status) {
                             case 422:
                             case 400:
                             case 500:
@@ -278,7 +280,7 @@ public class LoginFragment extends Fragment implements GetSocialLoginResultInter
                                 break;
                             case 200:
                             case 202:
-                                loginActivity.onSuccess(resultObject,requestCode,status);
+                                loginActivity.onSuccess(resultObject, requestCode, status);
                                 break;
                             default:
                                 Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
@@ -290,9 +292,9 @@ public class LoginFragment extends Fragment implements GetSocialLoginResultInter
 
     @Override
     public void onSuccess(JsonObject data, int requestCode, int statusCode) {
-        switch (requestCode){
+        switch (requestCode) {
             case REQUEST_LOGIN:
-                ParseuserLoginResponse parseuserLoginResponse=new ParseuserLoginResponse();
+                ParseuserLoginResponse parseuserLoginResponse = new ParseuserLoginResponse();
                 parseuserLoginResponse.execute(data.toString());
                 break;
         }
@@ -303,38 +305,50 @@ public class LoginFragment extends Fragment implements GetSocialLoginResultInter
     }
 
 
-
-    class ParseuserLoginResponse extends AsyncTask<String,Void,HashMap<String,String>> {
+    class ParseuserLoginResponse extends AsyncTask<String, Void, HashMap<String, String>> {
 
         @Override
         protected HashMap<String, String> doInBackground(String... strings) {
-            String email,accessToken,phoneNumber,userId,message,flag="0";
-            HashMap<String,String> map=new HashMap<>();
-            String response=strings[0];
+            String email, accessToken, phoneNumber, userId, message, flag = "0";
+            HashMap<String, String> map = new HashMap<>();
+            String response = strings[0];
             try {
-                JSONObject jsonObject=new JSONObject(response);
-                JSONObject data=jsonObject.getJSONObject("response");
-                message= jsonObject.getString("message");
-                flag= jsonObject.getString("flag");
-                map.put("flag",flag);
-                map.put("message",message);
-                if(data.has("profile_status")){
-                    map.put("profile_status",data.getString("profile_status"));
+                JSONObject jsonObject = new JSONObject(response);
+                JSONObject data = jsonObject.getJSONObject("response");
+                message = jsonObject.getString("message");
+                flag = jsonObject.getString("flag");
+                map.put("flag", flag);
+                map.put("message", message);
+                if (data.has("profile_status")) {
+                    map.put("profile_status", data.getString("profile_status"));
                 }
-                map.put(ConstantValues.USER_EMAILADDRESS,data.getString("email"));
-                map.put(ConstantValues.USER_MOBILENUMBER,data.getString("phone_number"));
-                map.put(ConstantValues.USER_ID,data.getString("driver_id"));
-                map.put(ConstantValues.USER_ACCESS_TOKEN,data.getString("access_token"));
-                map.put(ConstantValues.USER_FIRSTNAME,data.getString("first_name"));
-                map.put(ConstantValues.USER_LASTNAME,data.getString("last_name"));
-                map.put(ConstantValues.COUNTRY_CODE,data.getString("country_code"));
+                map.put(ConstantValues.USER_EMAILADDRESS, data.getString("email"));
+                map.put(ConstantValues.USER_MOBILENUMBER, data.getString("phone_number"));
+                map.put(ConstantValues.USER_ID, data.getString("driver_id"));
+                map.put(ConstantValues.USER_ACCESS_TOKEN, data.getString("access_token"));
+                map.put(ConstantValues.USER_FIRSTNAME, data.getString("first_name"));
+                map.put(ConstantValues.USER_LASTNAME, data.getString("last_name"));
+                map.put(ConstantValues.COUNTRY_CODE, data.getString("country_code"));
+
+                /**
+                 *
+                 */
+
+                /**
+                 * Save is_shopkeeper key into SharedPreferences.
+                 */
+                SharedPreferencesManager sharedPrefManager = new SharedPreferencesManager(getContext());
+                // TODO: 16/5/18  Change this Fixed Field
+                String referalCodeFromServer = data.getString("referal_code");
+                Utils.printLogs(TAG, "Referal Code ---- : -- " + referalCodeFromServer);
+                sharedPrefManager.saveStringData(SharedPreferencesManager.REFERRAL_CODE, referalCodeFromServer);
 
 
                 try {
-                    JSONObject jsonArray=data.getJSONObject("profile_image");
-                    String insurenceFrontImage=jsonArray.getString("image_url");
-                    map.put(ConstantValues.USER_IMAGE,insurenceFrontImage);
-                }catch (Exception e){
+                    JSONObject jsonArray = data.getJSONObject("profile_image");
+                    String insurenceFrontImage = jsonArray.getString("image_url");
+                    map.put(ConstantValues.USER_IMAGE, insurenceFrontImage);
+                } catch (Exception e) {
                 }
 
             } catch (Exception e) {
@@ -345,8 +359,8 @@ public class LoginFragment extends Fragment implements GetSocialLoginResultInter
 
         @Override
         protected void onPostExecute(HashMap<String, String> hashMap) {
-            String flag=hashMap.get("flag");
-            if(flag!=null) {
+            String flag = hashMap.get("flag");
+            if (flag != null) {
                 String message = hashMap.get("message");
                 User.getInstance().createUser(activity,
                         hashMap.get(ConstantValues.USER_ACCESS_TOKEN),
@@ -362,8 +376,8 @@ public class LoginFragment extends Fragment implements GetSocialLoginResultInter
                 if (flag.equalsIgnoreCase("0")) {
                     mActivityReference.callForgotAndReset(ConstantValues.OTP, 1);
                 } else {
-                    String profilestatus=hashMap.get("profile_status");
-                    if(profilestatus!=null) {
+                    String profilestatus = hashMap.get("profile_status");
+                    if (profilestatus != null) {
                         if (profilestatus.equalsIgnoreCase("1")) {
                             mActivityReference.callForgotAndReset(ConstantValues.PERSONAL_DETAILS, 0);
                         }
@@ -383,13 +397,13 @@ public class LoginFragment extends Fragment implements GetSocialLoginResultInter
                             mActivityReference.callForgotAndReset(ConstantValues.VEHICAL_IMAGES, 0);
                         }
                         if (profilestatus.equalsIgnoreCase("7")) {
-                            User.getInstance().setVarified(true,mActivityReference,true);
+                            User.getInstance().setVarified(true, mActivityReference, true);
                             mActivityReference.callMainActivity();
                         }
                     }
                 }
                 Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();
-            }else {
+            } else {
                 mActivityReference.callForgotAndReset(ConstantValues.OTP, 1);
             }
         }

@@ -18,7 +18,21 @@ public class SharedPreferencesManager {
     public static final String PREFS_USER_CREDENTIALS_FILE = "UserCredentialsFile";
     private static final String TAG = SharedPreferencesManager.class.getSimpleName();
     public static String GCM_REGISTRATION_ID = "GcmRegistrationKey";
+    private static SharedPreferences sharedPreferences;
+    public static final String REFERRAL_CODE = "referral_code";
 
+
+
+    private Context context;
+    private SharedPreferences.Editor editor;
+
+    public SharedPreferencesManager(){
+
+    }
+
+    public SharedPreferencesManager(Context context){
+        this.context = context;
+    }
 
     /**
      * Stores the registration ID in the application's Shared Preferences
@@ -31,8 +45,7 @@ public class SharedPreferencesManager {
         Utils.printLogs(TAG, "Inside saveGCMRegistrationID()");
 
         try {
-
-            SharedPreferences sharedPreferences = context.getSharedPreferences(
+            sharedPreferences = context.getSharedPreferences(
                     PREFS_USER_CREDENTIALS_FILE, 0);
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.putString(GCM_REGISTRATION_ID, regId);
@@ -56,12 +69,11 @@ public class SharedPreferencesManager {
 
         try {
 
-            SharedPreferences preferencesReader = context.getSharedPreferences(
+            sharedPreferences = context.getSharedPreferences(
                     PREFS_USER_CREDENTIALS_FILE, Context.MODE_PRIVATE);
             // Read the shared preference value
 
-            return preferencesReader.getString(
-                    GCM_REGISTRATION_ID, null);
+            return sharedPreferences.getString(GCM_REGISTRATION_ID, null);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -69,4 +81,17 @@ public class SharedPreferencesManager {
         Utils.printLogs(TAG, "Outside getGcmRegistrationId()");
         return null;
     }
+
+    public void saveStringData(String key, String value) {
+        sharedPreferences = context.getSharedPreferences(PREFS_USER_CREDENTIALS_FILE, Context.MODE_PRIVATE);
+        editor = sharedPreferences.edit();
+        editor.putString(key, value);
+        editor.apply();
+    }
+
+    public String getStringData(String key) {
+        sharedPreferences = context.getSharedPreferences(PREFS_USER_CREDENTIALS_FILE, Context.MODE_PRIVATE);
+        return sharedPreferences.getString(key, "---");
+    }
+
 }

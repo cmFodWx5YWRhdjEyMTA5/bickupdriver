@@ -10,9 +10,9 @@ import android.media.RingtoneManager;
 import android.net.Uri;
 import android.support.v4.app.NotificationCompat;
 
-import com.app.bickupdriver.BookingDetailsAcceptRejectActivity;
+import com.app.bickupdriver.activity.BookingDetailsAcceptRejectActivity;
 import com.app.bickupdriver.R;
-import com.app.bickupdriver.SplashActivity;
+import com.app.bickupdriver.activity.SplashActivity;
 import com.app.bickupdriver.utility.ConstantValues;
 import com.app.bickupdriver.utility.Utils;
 import com.google.firebase.messaging.FirebaseMessagingService;

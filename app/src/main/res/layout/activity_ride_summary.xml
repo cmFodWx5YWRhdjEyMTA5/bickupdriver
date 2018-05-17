@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.app.bickupdriver.activity.RideSummary">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <include
+                android:id="@+id/include_toolbar_payment_screen"
+                layout="@layout/toolbar_layout" />
+
+            <fragment
+                android:id="@+id/google_map_payment_info"
+                class="com.google.android.gms.maps.SupportMapFragment"
+                android:layout_width="match_parent"
+                android:layout_height="250dp" />
+
+            <!--250dp-->
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="20dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_driver_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Kishan Kumar Mathur"
+                        android:textColor="@color/grey_text_color"
+                        android:textSize="16dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Maruti Suzuki"
+                        android:textColor="@color/grey_text_color"
+                        android:textSize="16dp" />
+                </LinearLayout>
+
+                <!--<Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="42dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:background="@color/appcolor"
+                    android:text="$250"
+                    android:textColor="@color/color_white" />-->
+            </RelativeLayout>
+
+
+            <!--UnderLine-->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/silver" />
+
+            <!--Layout for Pickup and Drop-->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <LinearLayout
+                    android:id="@+id/pic_drop_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:clickable="false"
+                        android:focusable="false"
+                        android:src="@drawable/pick_location" />
+
+                    <View
+                        android:layout_width="0.5dp"
+                        android:layout_height="@dimen/dp_45"
+                        android:layout_marginTop="-10dp"
+                        android:background="@color/greyColor" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="-8dp"
+                        android:clickable="false"
+                        android:focusable="false"
+                        android:src="@drawable/drop_location" />
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:id="@+id/label_pickup_locations"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/pic_drop_view">
+
+                    <TextView
+                        android:id="@+id/btn_tag_pickup"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:clickable="false"
+                        android:text="@string/txt_pick_up"
+                        android:textColor="@color/greyColor"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/tv_pickup_location_ride_history"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/btn_tag_pickup"
+                        android:layout_marginEnd="@dimen/dp_40"
+                        android:clickable="false"
+                        android:ellipsize="end"
+                        android:paddingBottom="@dimen/dp_5"
+                        android:paddingTop="0dp"
+                        android:singleLine="true"
+                        android:textColor="@color/grey_text_color"
+                        android:textSize="13sp" />
+                </RelativeLayout>
+
+                <View
+                    android:id="@+id/viewa"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_below="@+id/label_pickup_locations"
+                    android:layout_toRightOf="@+id/pic_drop_view"
+                    android:alpha="0.4"
+                    android:background="@color/greyColor" />
+
+
+                <RelativeLayout
+                    android:id="@+id/liner_btn_drops"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/viewa"
+                    android:layout_toRightOf="@+id/pic_drop_view">
+
+                    <TextView
+                        android:id="@+id/btn_tag_drop"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:clickable="false"
+                        android:text="@string/txt_drop"
+                        android:textColor="@color/greyColor"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/tv_drop_location_ride_history"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/btn_tag_drop"
+                        android:layout_marginEnd="@dimen/dp_40"
+                        android:clickable="false"
+                        android:ellipsize="end"
+                        android:paddingBottom="@dimen/dp_5"
+                        android:paddingTop="0dp"
+                        android:singleLine="true"
+                        android:textColor="@color/grey_text_color"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:id="@+id/tv_ride_completion_time"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginTop="50dp"
+                        android:text="07/06/2017, 02:20 pm" />
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/screen_tab">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="10dp"
+                    android:paddingLeft="20dp"
+                    android:paddingTop="10dp"
+                    android:text="Receipt"
+                    android:textColor="@color/grey_text_color" />
+            </LinearLayout>
+
+
+            <!--Layout to display Fare-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp"
+                android:visibility="visible">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Ride Fare"
+                        android:textColor="@color/grey_text_color" />
+
+                    <TextView
+                        android:id="@+id/tv_ride_fare"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:text="$50"
+                        android:textColor="@color/grey_text_color" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Toll Tax "
+                        android:textColor="@color/grey_text_color" />
+
+                    <TextView
+                        android:id="@+id/tv_toll_tax"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:text="$50"
+                        android:textColor="@color/grey_text_color" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Helper Cost"
+                        android:textColor="@color/grey_text_color" />
+
+                    <TextView
+                        android:id="@+id/tv_helper_fare"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:text="$50"
+                        android:textColor="@color/grey_text_color" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/screen_tab"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Total"
+                        android:textColor="@color/grey_text_color"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tv_total_fare"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:text="$50"
+                        android:textColor="@color/grey_text_color"
+                        android:textStyle="bold" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:gravity="center"
+                android:text="Your ride has been completed"
+                android:textColor="@color/appcolor" />
+
+
+            <!--<LinearLayout
+                android:id="@+id/layout_payment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:background="@drawable/border_color_grey"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Choose Payment Method"
+                    android:textColor="@color/appcolor"
+                    android:textSize="18dp" />
+
+                &lt;!&ndash;UnderLine&ndash;&gt;
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="18dp"
+                    android:background="@color/silver" />
+
+                <RadioGroup
+                    android:id="@+id/rg_payment_type"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:padding="10dp">
+
+                    <RadioButton
+                        android:id="@+id/rb_card_payment"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:buttonTint="@color/appcolor"
+                        android:layoutDirection="rtl"
+                        android:text="Credit/Debit/ATM Card"
+                        android:textAlignment="textStart" />
+
+                    <RadioButton
+                        android:id="@+id/rb_cod_payment"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:layout_marginTop="20dp"
+                        android:buttonTint="@color/appcolor"
+                        android:layoutDirection="rtl"
+                        android:text="Cash Payment"
+                        android:textAlignment="textStart" />
+                </RadioGroup>
+            </LinearLayout>-->
+
+            <!--<Button
+                android:id="@+id/btn_proceed_to_pay"
+                android:layout_width="match_parent"
+                android:layout_height="42dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="20dp"
+                android:background="@color/appcolor"
+                android:text="Pay $0"
+                android:textAllCaps="false"
+                android:textColor="@color/color_white" />-->
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

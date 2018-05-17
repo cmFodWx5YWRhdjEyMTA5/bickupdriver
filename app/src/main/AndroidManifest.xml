@@ -28,11 +28,11 @@
         <!-- android:launchMode="singleTask" -->
 
         <activity
-            android:name=".MainActivity"
+            android:name=".activity.MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".SplashActivity"
+            android:name=".activity.SplashActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
@@ -43,7 +43,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".LoginActivity"
+            android:name=".activity.LoginActivity"
             android:label="@string/title_activity_login"
             android:screenOrientation="portrait" />
 
@@ -62,62 +62,59 @@
             </intent-filter>
         </receiver>
 
-        <activity
+        <!--<activity
             android:name=".BaseActivity"
             android:label="@string/title_activity_base"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme" />-->
         <activity
-            android:name=".ResetAndForgetPasswordActivity"
+            android:name=".activity.ResetAndForgetPasswordActivity"
             android:largeHeap="true"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".TypesGoods"
-            android:screenOrientation="portrait" />
         <activity
             android:name=".utility.ZoomActivity"
             android:screenOrientation="portrait"
             android:theme="@style/custome_zoom" />
         <activity
-            android:name=".TrackDriverActivityDriver"
+            android:name=".activity.TrackDriverActivityDriver"
             android:screenOrientation="portrait" />
-        <activity
+        <!--<activity
             android:name="com.app.GoodsActivity"
+            android:screenOrientation="portrait" />-->
+        <activity
+            android:name=".activity.BookingDetailsAcceptRejectActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".BookingDetailsAcceptRejectActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".DeliveryActivity"
+            android:name=".activity.DeliveryActivity"
             android:label="@string/title_activity_delivery"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".ScheduledActivity"
+            android:name=".activity.ScheduledActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".SettingActivity"
+            android:name=".activity.SettingActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".PickupLocationActivity"
+            android:name=".activity.PickupLocationActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".InviteAndEarn"
+            android:name=".activity.InviteAndEarn"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".EditProfileActivity"
+            android:name=".activity.EditProfileActivity"
             android:largeHeap="true"
             android:screenOrientation="portrait" />
-        <activity
+        <!--<activity
             android:name=".RatedriverActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait" />-->
         <activity
-            android:name=".RevenueActivity"
+            android:name=".activity.RevenueActivity"
             android:label="@string/title_activity_revenue"
             android:theme="@style/AppTheme" />
         <activity android:name=".utility.CMSActivity" />
         <activity
-            android:name=".ImagesActivity"
+            android:name=".activity.ImagesActivity"
             android:theme="@style/TransparentCompat" />
 
         <service android:name=".notifications.CustomFirebaseMessagingService">
@@ -132,9 +129,10 @@
         </service>
 
         <activity
-            android:name=".MapsActivity"
+            android:name=".activity.MapsActivity"
             android:label="@string/title_activity_maps" />
-        <activity android:name=".PaymentActivity" />
+        <activity android:name=".activity.RideSummary" />
+        <activity android:name=".activity.NotificationListActivity"></activity>
     </application>
 
 </manifest>

@@ -2,6 +2,8 @@
 <resources>
     <color name="colorPrimary">#ffffff</color>
     <color name="colorPrimaryDark">#FFF1F1F1</color>
+    <color name="color_white">#ffffff</color>
+
     <color name="colorAccent">#FFAAAAAA</color>
     <color name="appcolor">#2cbfc9</color>
     <color name="btn_color">#2cbfc9</color>
@@ -21,4 +23,6 @@
     <color name="screen_tab">#FFE7E6E6</color>
     <color name="black_transparent">#73000000</color>
     <color name="grey_light">#FFFDFDFD</color>
+    <color name="silver">#FFCDD6DB</color>
+
 </resources>

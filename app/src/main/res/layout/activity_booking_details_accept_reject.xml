@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.app.bickupdriver.BookingDetailsAcceptRejectActivity">
+    tools:context="com.app.bickupdriver.activity.BookingDetailsAcceptRejectActivity">
 
     <include
         android:id="@+id/toolbar_layout_booking_details"
