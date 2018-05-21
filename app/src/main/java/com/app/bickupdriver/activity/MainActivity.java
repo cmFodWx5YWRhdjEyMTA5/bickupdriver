@@ -24,8 +24,6 @@ import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -34,7 +32,6 @@ import android.support.v7.widget.PagerSnapHelper;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SnapHelper;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
@@ -65,7 +62,7 @@ import com.app.bickupdriver.utility.CommonMethods;
 import com.app.bickupdriver.utility.ConstantValues;
 import com.app.bickupdriver.utility.GpsTracker;
 import com.app.bickupdriver.utility.MapUtils;
-import com.app.bickupdriver.utility.SharedPreferencesManager;
+import com.app.bickupdriver.utility.SharedPrefManager;
 import com.app.bickupdriver.utility.Utils;
 import com.directions.route.Route;
 import com.directions.route.RouteException;
@@ -87,6 +84,9 @@ import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.gson.Gson;
 import com.koushikdutta.ion.Ion;
+import com.yarolegovich.slidingrootnav.SlideGravity;
+import com.yarolegovich.slidingrootnav.SlidingRootNav;
+import com.yarolegovich.slidingrootnav.SlidingRootNavBuilder;
 
 import org.json.JSONObject;
 
@@ -98,7 +98,6 @@ import java.util.List;
 import io.socket.client.IO;
 import io.socket.client.Socket;
 import io.socket.emitter.Emitter;
-import nl.psdcompany.duonavigationdrawer.views.DuoDrawerLayout;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -121,8 +120,8 @@ public class MainActivity extends AppCompatActivity implements
     private Button btnStartLoading;
     private Typeface mTypefaceRegular;
     private Typeface mTypefaceBold;
-    private DuoDrawerLayout drawerLayout;
-    private ImageView navigationDrawer;
+    //private DuoDrawerLayout drawerLayout;
+    private ImageView ivHamburgerIcon;
     private RecyclerView recyclerViewBookings;
 
     //private String TAG = getClass().getSimpleName();
@@ -156,19 +155,51 @@ public class MainActivity extends AppCompatActivity implements
      */
     private int isDriver = 1;
 
+
+    // Sliding Root Navigation.
+    private SlidingRootNavBuilder slidingRootNavBuilder;
+    private SlidingRootNav slidingRootNav;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        new Utils(MainActivity.this).loadLocale();
         setContentView(R.layout.activity_main);
+
+
+        SharedPrefManager sharedPrefManager = SharedPrefManager.getInstance(this);
+        String appLanguageCode = sharedPrefManager.getStringData(SharedPrefManager.APP_LANGUAGE);
+        Utils.printLogs(TAG, "App Language Code : " + appLanguageCode);
+        if (appLanguageCode.equals(ConstantValues.LANGUAGE_ARABIC_CODE)) {
+            slidingRootNavBuilder = new SlidingRootNavBuilder(this)
+                    .withMenuOpened(false)
+                    .withContentClickableWhenMenuOpened(false)
+                    .withSavedState(savedInstanceState)
+                    .withGravity(SlideGravity.RIGHT)
+                    .withMenuLayout(R.layout.drawer_layout);
+            slidingRootNav = slidingRootNavBuilder.inject();
+        } else {
+            slidingRootNavBuilder = new SlidingRootNavBuilder(this)
+                    .withMenuOpened(false)
+                    .withContentClickableWhenMenuOpened(false)
+                    .withSavedState(savedInstanceState)
+                    .withGravity(SlideGravity.LEFT)
+                    .withMenuLayout(R.layout.drawer_layout);
+            slidingRootNav = slidingRootNavBuilder.inject();
+        }
+
         mActivityreference = MainActivity.this;
         polylines = new ArrayList<>();
+
+
         intializeViews();
         // setLayoutForSmallTraveller();
         setGoogleMap();
         // CheckdrawerLayout.openDrawer(Gravity.RIGHT);
 
 
-        String firebaseRegistrationToken = SharedPreferencesManager.getGcmRegistrationId(this);
+        String firebaseRegistrationToken = SharedPrefManager.getGcmRegistrationId(this);
         Utils.printLogs(TAG, "FCM Registration Token : " + firebaseRegistrationToken);
         this.checkForLocationPermission();
         this.getRevenueDetails();
@@ -415,74 +446,6 @@ public class MainActivity extends AppCompatActivity implements
             e.printStackTrace();
         }
     }
-
-
-    /**
-     * Retrieves the driver's ongoing rides, scheduled rides etc.
-     */
-    /*private void getRides() {
-        Log.d("NAVIGATION", "Getting ride details from server ... ");
-        ApiInterface service;
-        try {
-            if (Utils.isNetworkAvailable(context)) {
-                final ProgressDialog progressDialog = Utils.showProgressDialog(context,
-                        AppConstants.DIALOG_PLEASE_WAIT);
-                service = ApiClientConnection.getInstance().createService();
-
-                SharedPreferences sharedPreferences = getSharedPreferences(
-                        ConstantValues.USER_PREFERENCES,
-                        Context.MODE_PRIVATE);
-
-                String accessToken = sharedPreferences.getString(
-                        ConstantValues.USER_ACCESS_TOKEN, "");
-
-                Call<RideArrayResponse> call = service.getRideDetails(accessToken);
-
-                call.enqueue(new Callback<RideArrayResponse>() {
-                    @Override
-                    public void onResponse(Call<RideArrayResponse> call,
-                                           Response<RideArrayResponse> response) {
-                        if (progressDialog != null && progressDialog.isShowing())
-                            progressDialog.dismiss();
-                        try {
-                            if (response.isSuccessful()) {
-                                RideArrayResponse apiResponse = response.body();
-                                Utils.printLogs(TAG, "onResponse : Success : -- " +
-                                        apiResponse.response);
-                                ArrayList<Ride> rideList = apiResponse.response;
-                                if (rideList != null) {
-                                    MainActivity.this.setBookingList(rideList);
-                                    if (MainActivity.this.checkForLocationPermission()) {
-                                        MainActivity.this.rideList = rideList;
-                                        MainActivity.this.fetchRouteDetails(rideList);
-
-                                    }
-                                } else {
-                                    Utils.showToast(apiResponse.message, context);
-                                }
-                            } else {
-                                Utils.printLogs(TAG, "onResponse : Failure : -- " +
-                                        response.body());
-                            }
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(Call<RideArrayResponse> call, Throwable t) {
-                        if (progressDialog != null && progressDialog.isShowing())
-                            progressDialog.dismiss();
-                        Utils.printLogs(TAG, "onFailure : -- " + t.getCause());
-                    }
-                });
-            } else {
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }*/
-
     /**
      * Sets Google Map
      */
@@ -510,19 +473,19 @@ public class MainActivity extends AppCompatActivity implements
         valueBookingPovided = (TextView) findViewById(R.id.value_booking_provided);
         labelRevenue = (TextView) findViewById(R.id.label_revenue);
         valueRevenue = (TextView) findViewById(R.id.value_revenue);
-        txtOnline = (TextView) findViewById(R.id.txt_online);
+        // txtOnline = (TextView) findViewById(R.id.txt_online);
         labelJobProvided.setTypeface(mTypefaceRegular);
         valueJobProvided.setTypeface(mTypefaceBold);
         labelRevenue.setTypeface(mTypefaceRegular);
         valueRevenue.setTypeface(mTypefaceBold);
         valueBookingPovided.setTypeface(mTypefaceBold);
-        txtOnline.setTypeface(mTypefaceRegular);
+        //txtOnline.setTypeface(mTypefaceRegular);
 
         btnStartLoading = (Button) findViewById(R.id.btn_start_loading);
         btnStartLoading.setOnClickListener(this);
         btnStartLoading.setTypeface(mTypefaceRegular);
-        navigationDrawer = (ImageView) findViewById(R.id.navigation_menu);
-        navigationDrawer.setOnClickListener(this);
+        ivHamburgerIcon = (ImageView) findViewById(R.id.iv_hamburger_icon);
+        ivHamburgerIcon.setOnClickListener(this);
 
 
         findViewById(R.id.box_container).setOnClickListener(this);
@@ -539,37 +502,6 @@ public class MainActivity extends AppCompatActivity implements
         findViewById(R.id.invite_and_earn_container).setOnClickListener(this);
         findViewById(R.id.change_password_container).setOnClickListener(this);
         findViewById(R.id.help_container).setOnClickListener(this);
-
-        drawerLayout = (DuoDrawerLayout) findViewById(R.id.drawer_layout);
-
-        drawerLayout.setDrawerListener(new DrawerLayout.DrawerListener() {
-            @Override
-            public void onDrawerSlide(View drawerView, float slideOffset) {
-            }
-
-            @Override
-            public void onDrawerOpened(View drawerView) {
-            }
-
-            @Override
-            public void onDrawerClosed(View drawerView) {
-            }
-
-            @Override
-            public void onDrawerStateChanged(int newState) {
-            }
-        });
-
-     /*   mCoordinatorLayout = (CoordinatorLayout) findViewById(R.id.coordinator_layout);
-        Toolbar toolbar= (Toolbar)findViewById(R.id.toolbar_main_activity);
-        TextView tv_header = (TextView) toolbar.findViewById(R.id.txt_activty_header);
-        toolbar.hideOverflowMenu();
-        toolbar.showContextMenu();
-        tv_header.setText(getString(R.string.app_name));
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setHomeButtonEnabled(true);*/
     }
 
     private void setBookingList(ArrayList<Ride> rides) {
@@ -653,23 +585,24 @@ public class MainActivity extends AppCompatActivity implements
 
     @Override
     public void onBackPressed() {
-        // DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
-            drawerLayout.closeDrawer(GravityCompat.START);
-        }
-        new AlertDialog.Builder(this)
-                .setIcon(android.R.drawable.ic_dialog_alert)
-                .setTitle("")
-                .setMessage(getResources().getString(R.string.txt_close_app))
-                .setPositiveButton(getResources().getString(R.string.txt_yes), new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        finishAffinity();
-                    }
 
-                })
-                .setNegativeButton(getResources().getString(R.string.txt_No), null)
-                .show();
+        if (slidingRootNav.isMenuOpened()) {
+            slidingRootNav.closeMenu(true);
+        } else {
+            new AlertDialog.Builder(this)
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .setTitle("")
+                    .setMessage(getResources().getString(R.string.txt_close_app))
+                    .setPositiveButton(getResources().getString(R.string.txt_yes), new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            finishAffinity();
+                        }
+
+                    })
+                    .setNegativeButton(getResources().getString(R.string.txt_No), null)
+                    .show();
+        }
     }
 
     private void checkInternetconnection() {
@@ -709,8 +642,8 @@ public class MainActivity extends AppCompatActivity implements
         } else if (id == R.id.nav_send) {
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
+/*        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);*/
         return true;
     }
 
@@ -861,19 +794,6 @@ public class MainActivity extends AppCompatActivity implements
         }
     }
 
-    /*private void fixZoom() {
-        List<LatLng> points = options.getPoints(); // route is instance of PolylineOptions
-
-        LatLngBounds.Builder bc = new LatLngBounds.Builder();
-
-        for (LatLng item : points) {
-            bc.include(item);
-        }
-
-        googleMap.setPadding(10, 100, 10, 300);
-        googleMap.moveCamera(CameraUpdateFactory.newLatLngBounds(bc.build(), 50));
-    }*/
-
     @Override
     public void onClick(View view) {
         int id = view.getId();
@@ -889,19 +809,17 @@ public class MainActivity extends AppCompatActivity implements
                 MapUtils.currentLocation(googleMap, MainActivity.this);
                 break;
 
-            case R.id.navigation_menu:
-                if (drawerLayout.isDrawerOpen(Gravity.RIGHT)) {
-                    drawerLayout.closeDrawer(Gravity.RIGHT);
-                } else {
-                    drawerLayout.openDrawer(Gravity.RIGHT);
-                }
+            case R.id.iv_hamburger_icon:
+
+                slidingRootNav.openMenu(true);
+
                 break;
             case R.id.menu_delivery:
                 Intent intent = new Intent(this, DeliveryActivity.class);
                 startActivity(intent);
                 break;
             case R.id.menu_setting:
-                Intent setting = new Intent(this, SettingActivity.class);
+                Intent setting = new Intent(this, SettingsActivity.class);
                 startActivity(setting);
                 break;
             case R.id.userimage:
@@ -1095,130 +1013,6 @@ public class MainActivity extends AppCompatActivity implements
                 }
             }
         });
-    }
-
-    /*public void drawPath(String result) {
-
-        if (line != null) {
-            googleMap.clear();
-        }
-
-
-        // Drop off location marker
-        googleMap.addMarker(new MarkerOptions()
-                .position(dropLatLng)
-                .icon(BitmapDescriptorFactory
-                        .fromResource(R.drawable.drop_location_pin))
-                .title(destinationAddress));
-
-        // Pickup location marker
-        googleMap.addMarker(new MarkerOptions()
-                .position(pickupLatLng)
-                .icon(BitmapDescriptorFactory
-                        .fromResource(R.drawable.drop_location_pin))
-                .title(pickupAddress));
-
-        // Current location marker
-        googleMap.addMarker(new MarkerOptions()
-                .flat(true)
-                .icon(BitmapDescriptorFactory
-                        .fromResource(R.drawable.pin_location_pin))
-                .anchor(0.5f, 0.5f)
-                .position(new LatLng(gpsTracker.getLatitude(),
-                        gpsTracker.getLongitude())));
-
-        try {
-            // Tranform the string into a json object
-            final JSONObject json = new JSONObject(result);
-            JSONArray routeArray = json.getJSONArray("routes");
-            Log.e(TAG, routeArray.toString() + " : " + routeArray.length());
-            JSONObject routes = routeArray.getJSONObject(0);
-            JSONObject overviewPolylines = routes
-                    .getJSONObject("overview_polyline");
-            String encodedString = overviewPolylines.getString("points");
-            List<LatLng> list = decodePoly(encodedString);
-
-            options = new PolylineOptions().width(Utils.THICKNESS_OF_POLYLINE)
-                    .color(getResources().getColor(R.color.appcolor)).geodesic(true);
-            for (int z = 0; z < list.size(); z++) {
-                LatLng point = list.get(z);
-                options.add(point);
-            }
-            line = googleMap.addPolyline(options);
-
-            this.fixZoom();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }*/
-
-    /**
-     * Decodes the polyline
-     *
-     * @param encoded
-     * @return
-     */
-    private List<LatLng> decodePoly(String encoded) {
-
-        List<LatLng> poly = new ArrayList<LatLng>();
-        int index = 0, len = encoded.length();
-        int lat = 0, lng = 0;
-
-        while (index < len) {
-            int b, shift = 0, result = 0;
-            do {
-                b = encoded.charAt(index++) - 63;
-                result |= (b & 0x1f) << shift;
-                shift += 5;
-            } while (b >= 0x20);
-            int dlat = ((result & 1) != 0 ? ~(result >> 1) : (result >> 1));
-            lat += dlat;
-
-            shift = 0;
-            result = 0;
-            do {
-                b = encoded.charAt(index++) - 63;
-                result |= (b & 0x1f) << shift;
-                shift += 5;
-            } while (b >= 0x20);
-            int dlng = ((result & 1) != 0 ? ~(result >> 1) : (result >> 1));
-            lng += dlng;
-
-            LatLng p = new LatLng((((double) lat / 1E5)),
-                    (((double) lng / 1E5)));
-            poly.add(p);
-        }
-
-        return poly;
-    }
-
-    /**
-     * Creates the URL for drawing the polyline on google map
-     *
-     * @param sourcelat
-     * @param sourcelog
-     * @param destlat
-     * @param destlog
-     * @return
-     */
-    private String makeURL(double sourcelat, double sourcelog, double destlat,
-                           double destlog, double wayPointLat, double wayPointLng) {
-        StringBuilder urlString = new StringBuilder();
-        urlString.append("http://maps.googleapis.com/maps/api/directions/json");
-        urlString.append("?origin=");// from
-        urlString.append(Double.toString(sourcelat));
-        urlString.append(",");
-        urlString.append(Double.toString(sourcelog));
-        urlString.append("&destination=");// to
-        urlString.append(Double.toString(destlat));
-        urlString.append(",");
-        urlString.append(Double.toString(destlog));
-        urlString.append("&sensor=false&mode=driving&alternatives=true");
-        urlString.append("&waypoints=");
-        urlString.append(Double.toString(wayPointLat));
-        urlString.append(",");
-        urlString.append(Double.toString(wayPointLng));
-        return urlString.toString();
     }
 
     @Override

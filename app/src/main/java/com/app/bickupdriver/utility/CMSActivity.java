@@ -15,7 +15,7 @@ import com.app.bickupdriver.fragments.ContentFragment;
 import com.app.bickupdriver.fragments.FaqFragment;
 import com.app.bickupdriver.fragments.ForgotPassword;
 import com.app.bickupdriver.fragments.HelpFragment;
-import com.app.bickupdriver.fragments.InviteAndEarnScreen;
+import com.app.bickupdriver.fragments.InviteAndEarnFragment;
 import com.app.bickupdriver.interfaces.CallTitle;
 
 public class CMSActivity extends AppCompatActivity implements CallTitle{
@@ -70,8 +70,8 @@ public class CMSActivity extends AppCompatActivity implements CallTitle{
                 break;
             case 5:
                 tv_header.setText(getResources().getString(R.string.txt_invite_earn));
-                Fragment inviteAndEarn = new InviteAndEarnScreen();
-                callfragment(inviteAndEarn, InviteAndEarnScreen.TAG);
+                Fragment inviteAndEarn = new InviteAndEarnFragment();
+                callfragment(inviteAndEarn, InviteAndEarnFragment.TAG);
                 break;
             case 6:
                 tv_header.setText(getResources().getString(R.string.txt_change_password));

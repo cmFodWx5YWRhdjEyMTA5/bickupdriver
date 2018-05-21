@@ -2,82 +2,88 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="#FAFAFA"
+    android:orientation="vertical"
     tools:context="com.app.bickupdriver.activity.RevenueActivity$PlaceholderFragment">
 
-  <RelativeLayout
-      android:layout_width="match_parent"
-      android:layout_height="40dp"
-      android:paddingLeft="@dimen/dp_20"
-      android:paddingRight="@dimen/dp_20"
-      android:background="@color/screen_background">
-      <TextView
-          android:layout_width="wrap_content"
-          android:layout_height="match_parent"
-          android:gravity="center_vertical"
-          android:layout_alignParentStart="true"
-          android:id="@+id/txt_date"
-          style="@style/mediumTextSize"
-          android:textColor="@color/grey_text_color"
-          android:text="10,September,2017"/>
-      <TextView
-          android:layout_width="wrap_content"
-          android:layout_height="match_parent"
-          android:gravity="center_vertical"
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/screen_background"
+        android:paddingEnd="@dimen/dp_20"
+        android:paddingStart="@dimen/dp_20">
 
-          android:id="@+id/txt_transection"
-          android:layout_alignParentEnd="true"
-          style="@style/mediumTextSize"
-          android:textColor="@color/grey_text_color"
-          android:text="4 Transections"/>
+        <TextView
+            android:id="@+id/txt_date"
+            style="@style/mediumTextSize"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:gravity="center_vertical"
+            android:text="10,September,2017"
+            android:textColor="@color/grey_text_color" />
 
-  </RelativeLayout>
-    <include layout="@layout/row_transection_layout"/>
+        <TextView
+            android:id="@+id/txt_transection"
+            style="@style/mediumTextSize"
+            android:layout_width="wrap_content"
+
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:gravity="center_vertical"
+            android:text="4 Transections"
+            android:textColor="@color/grey_text_color" />
+
+    </RelativeLayout>
+
+    <include layout="@layout/row_transection_layout" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingEnd="@dimen/dp_20"
-        android:paddingStart="@dimen/dp_20"
-        android:padding="@dimen/dp_10"
-        android:gravity="end">
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:gravity="end"
-        style="@style/mediumTextSize"
-        android:id="@+id/txt_total_label"
-        android:textColor="@color/grey_text_color"
-        android:text="Total Amount "/>
+        android:orientation="horizontal"
+        android:padding="@dimen/dp_10"
+        android:paddingEnd="@dimen/dp_20"
+        android:paddingStart="@dimen/dp_20">
+
         <TextView
+            android:id="@+id/txt_total_label"
+            style="@style/mediumTextSize"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="end"
+            android:text="Total Amount "
+            android:textColor="@color/grey_text_color" />
+
+        <TextView
             android:id="@+id/txt_total"
             style="@style/largeTextSize"
-            android:textColor="@color/grey_text_color"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="end"
             android:text=" - $84"
-            />
+            android:textColor="@color/grey_text_color" />
     </LinearLayout>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="bottom">
-    <Button
-        android:id="@+id/btn_change"
-        style="@style/btn_style"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_75"
-        android:layout_below="@+id/text_enter_mobile"
-        android:layout_marginEnd="20dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="15dp"
-        android:paddingBottom="@dimen/dp_14"
 
-        android:layout_marginBottom="@dimen/dp_10"
-        android:stateListAnimator="@null"
-        android:text="Pay To Admin $3,500"
-        android:textAllCaps="false" />
+        <Button
+            android:id="@+id/btn_change"
+            style="@style/btn_style"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_75"
+            android:layout_below="@+id/text_enter_mobile"
+            android:layout_marginBottom="@dimen/dp_10"
+            android:layout_marginEnd="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="15dp"
+            android:paddingBottom="@dimen/dp_14"
+            android:stateListAnimator="@null"
+            android:text="Pay To Admin $3,500"
+            android:textAllCaps="false" />
     </RelativeLayout>
 </LinearLayout>

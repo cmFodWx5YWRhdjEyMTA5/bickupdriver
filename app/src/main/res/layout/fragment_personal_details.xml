@@ -152,8 +152,6 @@
         android:layout_below="@+id/text_enter_mobile"
         android:layout_marginBottom="@dimen/dp_50"
         android:layout_marginEnd="@dimen/dp_18"
-        android:layout_marginLeft="-4dp"
-        android:layout_marginRight="-4dp"
         android:layout_marginStart="@dimen/dp_18"
         android:paddingBottom="@dimen/dp_12"
         android:text="@string/txt_proceed"
@@ -172,7 +170,7 @@
             android:layout_centerHorizontal="true"
             android:background="@color/white"
             android:gravity="center"
-            android:text="Step 1 of 6"
+            android:text="@string/text_step_1_of_6"
             android:textColor="@color/grey_text_color" />
 
         <TextView
@@ -184,7 +182,7 @@
             android:background="@color/white"
             android:gravity="center"
             android:paddingEnd="@dimen/dp_18"
-            android:text="Skip"
+            android:text="@string/text_skip"
             android:textColor="@color/grey_text_color" />
     </RelativeLayout>
 

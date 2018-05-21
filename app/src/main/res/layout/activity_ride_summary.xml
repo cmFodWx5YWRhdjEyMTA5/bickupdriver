@@ -111,7 +111,7 @@
                     android:id="@+id/label_pickup_locations"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_toRightOf="@+id/pic_drop_view">
+                    android:layout_toEndOf="@+id/pic_drop_view">
 
                     <TextView
                         android:id="@+id/btn_tag_pickup"
@@ -142,7 +142,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="0.5dp"
                     android:layout_below="@+id/label_pickup_locations"
-                    android:layout_toRightOf="@+id/pic_drop_view"
+                    android:layout_toEndOf="@+id/pic_drop_view"
                     android:alpha="0.4"
                     android:background="@color/greyColor" />
 
@@ -152,7 +152,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/viewa"
-                    android:layout_toRightOf="@+id/pic_drop_view">
+                    android:layout_toEndOf="@+id/pic_drop_view">
 
                     <TextView
                         android:id="@+id/btn_tag_drop"
@@ -196,9 +196,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingBottom="10dp"
-                    android:paddingLeft="20dp"
+                    android:paddingStart="20dp"
                     android:paddingTop="10dp"
-                    android:text="Receipt"
+                    android:text="@string/text_receipt"
                     android:textColor="@color/grey_text_color" />
             </LinearLayout>
 
@@ -218,14 +218,14 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Ride Fare"
+                        android:text="@string/text_ride_fare"
                         android:textColor="@color/grey_text_color" />
 
                     <TextView
                         android:id="@+id/tv_ride_fare"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true"
                         android:text="$50"
                         android:textColor="@color/grey_text_color" />
                 </RelativeLayout>
@@ -238,14 +238,14 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Toll Tax "
+                        android:text="@string/text_toll_tax"
                         android:textColor="@color/grey_text_color" />
 
                     <TextView
                         android:id="@+id/tv_toll_tax"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true"
                         android:text="$50"
                         android:textColor="@color/grey_text_color" />
                 </RelativeLayout>
@@ -258,14 +258,14 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Helper Cost"
+                        android:text="@string/text_helper_cost"
                         android:textColor="@color/grey_text_color" />
 
                     <TextView
                         android:id="@+id/tv_helper_fare"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true"
                         android:text="$50"
                         android:textColor="@color/grey_text_color" />
                 </RelativeLayout>
@@ -280,7 +280,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Total"
+                        android:text="@string/text_total"
                         android:textColor="@color/grey_text_color"
                         android:textStyle="bold" />
 
@@ -288,7 +288,7 @@
                         android:id="@+id/tv_total_fare"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true"
                         android:text="$50"
                         android:textColor="@color/grey_text_color"
                         android:textStyle="bold" />
@@ -300,7 +300,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
                 android:gravity="center"
-                android:text="Your ride has been completed"
+                android:text="@string/text_your_ride_has_been_completed"
                 android:textColor="@color/appcolor" />
 
 

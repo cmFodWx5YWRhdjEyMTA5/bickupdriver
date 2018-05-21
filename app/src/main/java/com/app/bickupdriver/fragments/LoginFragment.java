@@ -27,7 +27,7 @@ import com.app.bickupdriver.interfaces.HandleLoginSignUpNavigation;
 import com.app.bickupdriver.model.User;
 import com.app.bickupdriver.utility.CommonMethods;
 import com.app.bickupdriver.utility.ConstantValues;
-import com.app.bickupdriver.utility.SharedPreferencesManager;
+import com.app.bickupdriver.utility.SharedPrefManager;
 import com.app.bickupdriver.utility.Utils;
 import com.github.rahatarmanahmed.cpv.CircularProgressView;
 import com.google.firebase.iid.FirebaseInstanceId;
@@ -337,11 +337,11 @@ public class LoginFragment extends Fragment implements GetSocialLoginResultInter
                 /**
                  * Save is_shopkeeper key into SharedPreferences.
                  */
-                SharedPreferencesManager sharedPrefManager = new SharedPreferencesManager(getContext());
+                SharedPrefManager sharedPrefManager = new SharedPrefManager(getContext());
                 // TODO: 16/5/18  Change this Fixed Field
                 String referalCodeFromServer = data.getString("referal_code");
                 Utils.printLogs(TAG, "Referal Code ---- : -- " + referalCodeFromServer);
-                sharedPrefManager.saveStringData(SharedPreferencesManager.REFERRAL_CODE, referalCodeFromServer);
+                sharedPrefManager.saveStringData(SharedPrefManager.REFERRAL_CODE, referalCodeFromServer);
 
 
                 try {

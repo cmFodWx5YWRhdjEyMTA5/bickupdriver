@@ -57,7 +57,6 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     compile project(path: ':volley')
-    compile project(path: ':duo-navigation-drawer')
     compile project(path: ':calender')
     compile 'com.android.support:appcompat-v7:26.1.0'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
@@ -97,6 +96,8 @@ dependencies {
     implementation 'com.android.support:design:26.0.0-alpha1'
     compile 'com.github.jd-alexander:library:1.1.0'
 
+
+    compile 'com.yarolegovich:sliding-root-nav:1.1.0'
 
 }
 apply plugin: 'com.google.gms.google-services'

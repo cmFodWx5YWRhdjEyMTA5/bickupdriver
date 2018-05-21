@@ -28,20 +28,10 @@ public class MissedRidesFragment extends Fragment {
     private String TAG = "HISTORY";
     Activity activity;
     ListView listView;
-    private String[] array = {"Single Bed", "Refrigerator", "Single Bed"};
-    //private ArrayList<Response> responseList;
-    //private ArrayList<Response> completedResponseList;
-    //private ArrayList<Response> missedResponseList;
-
+    //private String[] array = {"Single Bed", "Refrigerator", "Single Bed"};
     public MissedRidesFragment() {
-        //this.responseList = responseList;
-        // Required empty public constructor
     }
 
-    /*@SuppressLint("ValidFragment")
-    public MissedRidesFragment(ArrayList<Response> responseList) {
-        //this.responseList = responseList;
-    }*/
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

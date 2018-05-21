@@ -13,9 +13,6 @@
     <string name="google_maps_key" translatable="true">AIzaSyAii67abjE2wMSGs0qJOcotiDbiYZnUqA8</string>
     <!--<string name="google_maps_key" translatable="true">AIzaSyCwJAyPGwP7So9Y9GVeKaugFPlImi8sQyM</string>-->
 
-
-    <!--Manish Kumar on 10-05-18 with id - shalukhet@gmail.com and password - 9873122410-->
-    <!--<string name="google_maps_key" translatable="false">AIzaSyD3gbU8f-b3s8xVojVU2VMM0gp49shhlio</string>-->
     <string name="gcm_sender_id">759505761052</string>
 
     <!-- Strings related to login -->
@@ -217,7 +214,7 @@
     <string name="txt_disagree">Disagree</string>
     <string name="txt_assign_another_driver">Do you really want to assign it to another driver?</string>
     <string name="txt_logout_confirmation">Are you sure that you want to logout?</string>
-    <string name="txt_close_app">Are you sure that you want to close the app?</string>
+    <string name="txt_close_app">Are you sure you want to close the app?</string>
     <string name="txt_yes">Yes</string>
     <string name="txt_No">No</string>
 
@@ -290,4 +287,28 @@
     <string name="title_activity_maps">Map</string>
     <string name="today">today</string>
     <string name="yesterday">yesterday</string>
+    <string name="text_change_language">Change Language</string>
+    <string name="text_select_language">Select Language</string>
+    <string name="text_language_arabic">Arabic</string>
+    <string name="text_language_english">English</string>
+    <string name="text_change_language_message">Are you sure ? you want to change language to</string>
+    <string name="text_please_select_a_language">Please select a language</string>
+    <string name="text_cancel">Cancel</string>
+    <string name="text_ok">Ok</string>
+    <string name="text_alert">Alert</string>
+    <string name="text_you_have_a_ride_which_is_still_on_the_way">You have a ride which is still on the way, please complete it first</string>
+    <string name="text_booking_number">Booking Number :</string>
+    <string name="text_receipt">Receipt</string>
+    <string name="text_ride_fare">Ride Fare</string>
+    <string name="text_toll_tax">Toll Tax</string>
+    <string name="text_helper_cost">Helper Cost</string>
+    <string name="text_total">Total</string>
+    <string name="text_your_ride_has_been_completed">Your ride has been completed.</string>
+    <string name="text_select_resource">Select resource</string>
+    <string name="text_camera">Camera</string>
+    <string name="text_gallery">Gallery</string>
+    <string name="text_step_1_of_6">Step 1 of 6</string>
+    <string name="text_skip">Skip</string>
+    <string name="text_no_internet_connection">Internet connection is not available</string>
+    <string name="text_ride_summary">Ride Summary</string>
 </resources>

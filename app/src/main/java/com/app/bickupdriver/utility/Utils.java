@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.content.res.Configuration;
 import android.database.Cursor;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -40,6 +41,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * <H1>Bickup DriverBickup</H1>
@@ -60,6 +62,15 @@ public class Utils {
 
     //public static final int CUSTOM_SHARE_ARTICLE_DIALOG_CONST 				= 870;
 
+    private Context context;
+
+    public Utils() {
+    }
+
+    public Utils(Context context) {
+        this.context = context;
+    }
+
 
     // Time stamp : 1525261152000
     // May 02,2018 17:09
@@ -69,6 +80,29 @@ public class Utils {
         String dateAndTime = sdf.format(resultdate);
         return dateAndTime;
     }
+
+    /**
+     * Change Language :
+     */
+    public void loadLocale() {
+        SharedPrefManager sharedPrefManager = new SharedPrefManager(context);
+        String appLanguage = sharedPrefManager.getStringData(SharedPrefManager.APP_LANGUAGE);
+        setLocale(appLanguage);
+    }
+
+    public void setLocale(String languageCode) {
+        Locale locale = new Locale(languageCode);
+        Locale.setDefault(locale);
+        Configuration configuration = new Configuration();
+        configuration.locale = locale;
+        context.getApplicationContext().getResources().updateConfiguration(configuration, context.getApplicationContext().getResources().getDisplayMetrics());
+        /**
+         * Save Selected Language to Shared Preferences
+         */
+        SharedPrefManager sharedPrefManager = new SharedPrefManager(context);
+        sharedPrefManager.saveStringData(SharedPrefManager.APP_LANGUAGE, languageCode);
+    }
+
 
     @SuppressLint("MissingPermission")
     public static void currentLocation(GoogleMap mMap, Context context) {

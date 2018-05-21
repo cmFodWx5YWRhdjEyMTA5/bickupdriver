@@ -67,7 +67,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="center_horizontal"
-                            android:paddingLeft="5dp"
+                            android:paddingStart="5dp"
                             android:text="@string/txt_on_the_way_time"
                             android:textColor="@color/greyColor"
                             android:textSize="@dimen/sp_16" />
@@ -77,7 +77,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="center_horizontal"
-                            android:paddingLeft="5dp"
+                            android:paddingStart="5dp"
                             android:text="05:30 min"
                             android:textColor="@color/grey_text_color"
                             android:textSize="@dimen/sp_18" />
@@ -102,7 +102,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_above="@+id/card_container"
-            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
             android:layout_marginBottom="-35dp"
             android:paddingTop="6dp"
             android:src="@drawable/call" />
@@ -112,7 +112,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_above="@+id/card_container"
-            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
             android:layout_marginBottom="-35dp"
             android:paddingTop="6dp"
             android:src="@drawable/navigation" />

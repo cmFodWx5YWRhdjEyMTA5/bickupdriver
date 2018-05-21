@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -9,12 +10,12 @@
         android:background="@color/black_transparent">
 
         <ImageView
-            android:layout_marginRight="@dimen/dp_20"
             android:id="@+id/crossImage"
             android:layout_width="@dimen/dp_28"
             android:layout_height="@dimen/dp_28"
             android:layout_above="@+id/view_pager"
             android:layout_alignParentEnd="true"
+            android:layout_marginEnd="@dimen/dp_20"
             android:src="@drawable/delete" />
 
         <android.support.v4.view.ViewPager
@@ -22,7 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_200"
             android:layout_centerInParent="true"
-            android:visibility="visible"></android.support.v4.view.ViewPager>
+            android:visibility="visible" />
 
     </RelativeLayout>
 

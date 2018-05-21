@@ -34,7 +34,7 @@ public class CompletedRidesFragment extends Fragment {
     private static final String TAG = "HISTORY";
     private ListView listView;
     private Activity activity;
-    private String[] array = {"Single Bed", "Refrigerator", "Single Bed"};
+    //private String[] array = {"Single Bed", "Refrigerator", "Single Bed"};
     //TextView textView;
 
     public CompletedRidesFragment() {

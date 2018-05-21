@@ -64,14 +64,8 @@ import retrofit2.Response;
 public class BookingDetailsAcceptRejectActivity extends AppCompatActivity implements View.OnClickListener, RoutingListener, OnMapReadyCallback {
 
     private TextView txtHeader;
-    //private RelativeLayout rlContainer;
-    //private Typeface mTypefaceRegular;
-    //private Typeface mTypefaceBold;
     private boolean mIsConnected;
-    //private Context mActivityreference;
     private Snackbar snackbar;
-    //private String TAG = getClass().getSimpleName();
-    //private Context context = BookingDetailsAcceptRejectActivity.this;
     public Ride ride;
     public String rideId;
     private BroadcastReceiver broadcastReceiver;
@@ -186,40 +180,10 @@ public class BookingDetailsAcceptRejectActivity extends AppCompatActivity implem
 
     }
 
-    /*private void addBookingDetailsFragment() {
-        Utils.printLogs(TAG, "Adding Booking Details Fragment ...");
-        txtHeader.setText("Booking Number - " + rideId);
-        bookingDetailsAcceptRejectFragment = new BookingDetailsAcceptRejectFragment();
-        getSupportFragmentManager().beginTransaction().add(R.id.goods_activity_container,
-                bookingDetailsAcceptRejectFragment).addToBackStack(BookingDetailsAcceptRejectFragment.Tag).commit();
-    }*/
-
     @Override
     protected void onResume() {
         super.onResume();
-        /*checkInternetconnection();
-        if (AppController.getInstance() != null) {
-            AppController.getInstance().setConnectivityListener(this);
-        }*/
     }
-
-    /*private void checkInternetconnection() {
-        mIsConnected = CommonMethods.getInstance().checkInterNetConnection(mActivityreference);
-        if (mIsConnected) {
-            if (snackbar != null) {
-                snackbar.dismiss();
-            }
-        } else {
-            showSnackBar(getResources().getString(R.string.iconnection_availability));
-        }
-    }*/
-
-    /*public void showSnackBar(String mString) {
-       *//* snackbar = Snackbar
-                .make(mCoordinatorLayout, mString, Snackbar.LENGTH_INDEFINITE);
-        snackbar.setText(mString);
-        snackbar.show();*//*
-    }*/
 
     private void initializeViews() {
 
@@ -396,30 +360,6 @@ public class BookingDetailsAcceptRejectActivity extends AppCompatActivity implem
         }
     }
 
-    /*@Override
-    public void callBookingDetailsFragment() {
-        BookingDetailsAcceptRejectFragment bookingDetailsAcceptRejectFragments = new BookingDetailsAcceptRejectFragment();
-        txtHeader.setText(getResources().getString(R.string.txt_view_details));
-        getSupportFragmentManager().beginTransaction().replace(R.id.goods_activity_container,
-                bookingDetailsAcceptRejectFragments).addToBackStack(BookingDetailsAcceptRejectFragment.Tag).commit();
-    }*/
-
-    /*@Override
-    public void callGoodsFragment() {
-        GoodsDetailsFragments goodsDetailsFragments = new GoodsDetailsFragments();
-        txtHeader.setText(getResources().getString(R.string.txt_goods_details));
-        getSupportFragmentManager().beginTransaction().replace(R.id.goods_activity_container,
-                goodsDetailsFragments).addToBackStack(GoodsDetailsFragments.TAG).commit();
-    }*/
-
-    /*@Override
-    public void callTrackDriverActivity() {
-        Intent intent = new Intent(this, TrackDriverActivityDriver.class);
-        intent.putExtra("ride", rideNew);
-        startActivity(intent);
-        finish();
-    }*/
-
     @Override
     public void onClick(View view) {
         int id = view.getId();
@@ -430,11 +370,12 @@ public class BookingDetailsAcceptRejectActivity extends AppCompatActivity implem
 
             //***********
 
-            case R.id.btn_confirm_booking:
-              /*  if(validateFields()){
+            /*case R.id.btn_confirm_booking:
+               if(validateFields()){
                     showPopUp();
-                }*/
-                break;
+                }
+                break;*/
+
             case R.id.btn_accept:
                 this.acceptOrRejectDelivery(1);
                 break;
@@ -531,8 +472,7 @@ public class BookingDetailsAcceptRejectActivity extends AppCompatActivity implem
                                 //btnAccept.setEnabled(false);
                                 //btnReject.setEnabled(false);
                                 if (MainActivity.isOngoing)
-                                    Utils.showToast("You have a ride which is still on " +
-                                            "the way, please complete it first.", BookingDetailsAcceptRejectActivity.this);
+                                    Utils.showToast(getString(R.string.text_you_have_a_ride_which_is_still_on_the_way), BookingDetailsAcceptRejectActivity.this);
                                 //Utils.showToast(response.body().message, getContext());
                             }
                         } catch (Exception e) {
@@ -561,7 +501,7 @@ public class BookingDetailsAcceptRejectActivity extends AppCompatActivity implem
         //final Ride rideNew = mActivityReference.rideNew;
         if (ride != null) {
 
-            toolbarText.setText("Booking Number - " + ride.rideId);
+            toolbarText.setText(getString(R.string.text_booking_number) + ride.rideId);
 
             valueBookingDate.setText(DateHelper.convertTimestampToDate("dd-MM-yyyy",
                     ride.timestamp));
@@ -683,22 +623,6 @@ public class BookingDetailsAcceptRejectActivity extends AppCompatActivity implem
     }
 
 
-
-
-
-
-
-    /*@Override
-    public void onNetworkConnectionChanged(boolean isConnected) {
-        if (isConnected) {
-            if (snackbar != null) {
-                snackbar.dismiss();
-            }
-        } else {
-            //showSnackBar(getResources().getString(R.string.iconnection_availability));
-        }
-    }*/
-
     @Override
     public void onBackPressed() {
         Intent mainIntent = new Intent(this, MainActivity.class);
@@ -773,8 +697,4 @@ public class BookingDetailsAcceptRejectActivity extends AppCompatActivity implem
 
         googleMap.moveCamera(CameraUpdateFactory.newLatLngBounds(latLngBounds, routePadding));
     }
-
-    /*public void drawPath(String result) {
-        bookingDetailsAcceptRejectFragment.drawPath(result);
-    }*/
 }

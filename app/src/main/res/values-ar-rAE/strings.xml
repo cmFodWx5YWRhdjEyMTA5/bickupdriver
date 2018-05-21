@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Bickup Driver</string>
+
+    <!--sidebar text-->
+    <string name="txt_deliveries">التسليم</string>
+    <string name="txt_payment_info">معلومات الدفع</string>
+    <string name="txt_setting">إعدادات</string>
+    <string name="txt_invite_earn">دعوة وكسب</string>
+    <string name="txt_contactus">اتصل بنا</string>
+    <string name="txt_about_us">معلومات عنا</string>
+    <string name="txt_privacy_policy">سياسة الخصوصية</string>
+    <string name="txt_change_password">تغيير كلمة السر</string>
+    <string name="txt_faq">التعليمات</string>
+    <string name="txt_help">مساعدة</string>
+    <string name="txt_revenue">إيرادات</string>
+
+    <string name="txt_close_app">هل أنت متأكد من أنك تريد إغلاق التطبيق؟</string>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</resources>

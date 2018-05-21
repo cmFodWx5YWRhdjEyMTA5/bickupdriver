@@ -167,13 +167,6 @@ public class DeliveryActivity extends AppCompatActivity implements View.OnClickL
         }
     }
 
-   /* public void showSnackBar(String mString) {
-        snackbar = Snackbar
-                .make(mCoordinatorLayout, mString, Snackbar.LENGTH_INDEFINITE);
-        snackbar.setText(mString);
-        snackbar.show();
-    }*/
-
     @Override
     public void onNetworkConnectionChanged(boolean isConnected) {
         if (isConnected) {

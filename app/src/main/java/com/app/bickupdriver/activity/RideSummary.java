@@ -135,7 +135,7 @@ public class RideSummary extends AppCompatActivity implements View.OnClickListen
                 }
             });
         } else {
-            Utils.showToast("No Internet Connection", this);
+            Utils.showToast(getString(R.string.text_no_internet_connection), this);
         }
     }
 
@@ -164,7 +164,6 @@ public class RideSummary extends AppCompatActivity implements View.OnClickListen
 
         LatLng pickupLatLng = new LatLng(pickupLatitude, pickupLongitude);
         LatLng dropLatLng = new LatLng(dropLatitude, dropLongitude);
-
 
         /**
          * Zoom the Map
@@ -244,7 +243,7 @@ public class RideSummary extends AppCompatActivity implements View.OnClickListen
     }
 
     private void setData() {
-        tvToolbarText.setText("Ride Summary");
+        tvToolbarText.setText(R.string.text_ride_summary);
 
         rideId = getIntent().getStringExtra(ConstantValues.RIDE_ID);
         FragmentManager fragmentManager = getSupportFragmentManager();

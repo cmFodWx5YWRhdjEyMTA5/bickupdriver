@@ -19,6 +19,8 @@ import com.app.bickupdriver.utility.Utils;
 import com.koushikdutta.ion.Ion;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -49,10 +51,10 @@ public class DeliveriesAdapter extends BaseAdapter {
      * @param responseList holds the response list
      */
     public DeliveriesAdapter(Context context, int tabPosition, ArrayList<Response> responseList) {
-
         this.context = context;
         this.tabPosition = tabPosition;
         this.responseList = responseList;
+        Collections.reverse(responseList);
     }
 
     @Override

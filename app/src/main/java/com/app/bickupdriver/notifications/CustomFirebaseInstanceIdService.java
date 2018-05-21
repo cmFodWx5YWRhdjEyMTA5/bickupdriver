@@ -1,6 +1,6 @@
 package com.app.bickupdriver.notifications;
 
-import com.app.bickupdriver.utility.SharedPreferencesManager;
+import com.app.bickupdriver.utility.SharedPrefManager;
 import com.app.bickupdriver.utility.Utils;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.FirebaseInstanceIdService;
@@ -24,6 +24,6 @@ public class CustomFirebaseInstanceIdService extends FirebaseInstanceIdService {
         // Get updated InstanceID token.
         String refreshedToken = FirebaseInstanceId.getInstance().getToken();
         Utils.printLogs(TAG, "Refreshed token: " + refreshedToken);
-        SharedPreferencesManager.saveGCMRegistrationID(getApplicationContext(), refreshedToken);
+        SharedPrefManager.saveGCMRegistrationID(getApplicationContext(), refreshedToken);
     }
 }

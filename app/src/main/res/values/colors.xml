@@ -25,4 +25,33 @@
     <color name="grey_light">#FFFDFDFD</color>
     <color name="silver">#FFCDD6DB</color>
 
+
+    <color name="colorBlue">#0000ff</color>
+    <color name="colorGreen">#00ff00</color>
+    <color name="colorRed">#ff0000</color>
+    <color name="colorAppDark">#33b5e5</color>
+    <color name="colorScreenTab">#FFE7E6E6</color>
+    <color name="colorApp">#2cbfc9</color>
+    <color name="colorButton">#2cbfc9</color>
+    <color name="colorButtonPressed">#D127EFEF</color>
+    <color name="colorGrey">#aaaaaa</color>
+    <color name="colorEditText">#000000</color>
+    <color name="colorTintEditText">#D127EFEF</color>
+    <color name="colorButtonText">#ffffff</color>
+    <color name="colorTextHeading">#FFAAAAAA</color>
+    <color name="colorOtpText">#e6ba13</color>
+    <color name="colorGreyText">#333333</color>
+    <color name="colorBlack">#000000</color>
+    <color name="colorBronze">#FF7B574B</color>
+    <color name="colorSilver">#FFCDD6DB</color>
+    <color name="colorGold">#FFFDC008</color>
+    <color name="colorRedDard">#d32f2e</color>
+    <color name="colorWhite">#ffffff</color>
+    <color name="colorScreenBackground">#FFE7E6E6</color>
+    <color name="colorBlackTransparent">#82000000</color>
+    <color name="colorGreyLight">#FFFDFDFD</color>
+    <color name="colorBackground">#DFD1D0</color>
+    <color name="colorHint">#000000</color>
+    <color name="colorGreyC">#cccccc</color>
+    <color name="colorSelectedTime">#5b5b5b</color>
 </resources>

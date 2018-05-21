@@ -25,7 +25,7 @@
             android:background="#fff">
 
             <ImageView
-                android:id="@+id/navigation_menu"
+                android:id="@+id/iv_hamburger_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
@@ -58,25 +58,25 @@
                 <ImageView
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:layout_marginLeft="@dimen/dp_5"
+                    android:layout_marginStart="@dimen/dp_5"
                     android:src="@drawable/ac_star" />
 
                 <ImageView
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:layout_marginLeft="@dimen/dp_5"
+                    android:layout_marginStart="@dimen/dp_5"
                     android:src="@drawable/ac_star" />
 
                 <ImageView
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:layout_marginLeft="@dimen/dp_5"
+                    android:layout_marginStart="@dimen/dp_5"
                     android:src="@drawable/ac_star" />
 
                 <ImageView
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:layout_marginLeft="@dimen/dp_5"
+                    android:layout_marginStart="@dimen/dp_5"
                     android:src="@drawable/de_star" />
             </LinearLayout>
 
@@ -91,7 +91,7 @@
                     android:id="@+id/iv_notification_home"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="@dimen/dp_16"
+                    android:layout_marginEnd="@dimen/dp_16"
                     android:padding="@dimen/dp_4"
                     android:src="@drawable/notification" />
 

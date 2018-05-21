@@ -6,7 +6,7 @@
     android:background="@color/appcolor"
     android:orientation="vertical"
     android:paddingBottom="20dp"
-    android:paddingLeft="8dp"
+    android:paddingStart="8dp"
     android:paddingTop="30dp">
 
     <RelativeLayout
@@ -20,7 +20,7 @@
             android:layout_height="65dp"
             android:layout_marginTop="10dp"
 
-            android:paddingLeft="3dp">
+            android:paddingStart="3dp">
             <!--<com.makeramen.roundedimageview.RoundedImageView
                 android:layout_width="55dp"
                 android:layout_height="55dp"
@@ -53,7 +53,7 @@
             android:id="@+id/user_detail_container"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
+            android:layout_marginStart="5dp"
             android:layout_toEndOf="@+id/rl_profile_edt_img"
             android:orientation="vertical"
             android:paddingTop="13dp">
@@ -78,11 +78,12 @@
         </LinearLayout>
 
 
+        <!--Layout for Online-->
         <LinearLayout
-            android:layout_marginTop="4dp"
-            android:layout_toRightOf="@+id/user_detail_container"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_toEndOf="@+id/user_detail_container">
 
             <TextView
                 android:id="@+id/txt_online"
@@ -90,7 +91,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
-                android:layout_marginRight="5dp"
+                android:layout_marginEnd="5dp"
                 android:gravity="center_vertical"
                 android:text="Online"
                 android:textColor="@color/white"
@@ -100,7 +101,7 @@
                 android:id="@+id/simpleSwitch"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
+                android:layout_marginEnd="10dp"
                 android:checked="true"
                 android:gravity="center_vertical"
                 android:theme="@style/SwitchCompatTheme"
@@ -136,7 +137,7 @@
             <TextView
                 android:id="@+id/txt_delivery"
                 style="@style/mediumTextSize"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:text="@string/txt_deliveries"
@@ -161,9 +162,8 @@
             <TextView
                 android:id="@+id/txt_payment_info"
                 style="@style/mediumTextSize"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:gravity="center_vertical"
                 android:text="@string/txt_revenue"
                 android:textColor="#ffffff" />
@@ -186,9 +186,8 @@
 
             <TextView
                 style="@style/mediumTextSize"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:gravity="center_vertical"
                 android:text="@string/txt_setting"
                 android:textColor="#ffffff" />
@@ -211,9 +210,8 @@
 
             <TextView
                 style="@style/mediumTextSize"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:gravity="center_vertical"
                 android:text="@string/txt_invite_earn"
                 android:textColor="#ffffff" />
@@ -236,9 +234,8 @@
 
             <TextView
                 style="@style/mediumTextSize"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:gravity="center_vertical"
                 android:text="@string/txt_contactus"
                 android:textColor="#ffffff" />
@@ -261,9 +258,8 @@
 
             <TextView
                 style="@style/mediumTextSize"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:gravity="center_vertical"
                 android:text="@string/txt_about_us"
                 android:textColor="#ffffff" />
@@ -286,9 +282,8 @@
 
             <TextView
                 style="@style/mediumTextSize"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:gravity="center_vertical"
                 android:text="@string/txt_privacy_policy"
                 android:textColor="#ffffff" />
@@ -311,9 +306,8 @@
 
             <TextView
                 style="@style/mediumTextSize"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:gravity="center_vertical"
                 android:text="@string/txt_change_password"
                 android:textColor="#ffffff" />
@@ -336,9 +330,8 @@
 
             <TextView
                 style="@style/mediumTextSize"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:gravity="center_vertical"
                 android:text="@string/txt_faq"
                 android:textColor="#ffffff" />
@@ -361,9 +354,8 @@
 
             <TextView
                 style="@style/mediumTextSize"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:gravity="center_vertical"
                 android:text="@string/txt_help"
                 android:textColor="#ffffff" />

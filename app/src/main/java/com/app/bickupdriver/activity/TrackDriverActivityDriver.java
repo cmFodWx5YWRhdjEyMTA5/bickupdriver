@@ -651,116 +651,6 @@ public class TrackDriverActivityDriver extends AppCompatActivity implements OnMa
         });
     }
 
-    /*private void fixZoom() {
-        List<LatLng> points = options.getPoints(); // route is instance of PolylineOptions
-
-        LatLngBounds.Builder bc = new LatLngBounds.Builder();
-
-        for (LatLng item : points) {
-            bc.include(item);
-        }
-
-        googleMap.setPadding(10, 130, 10, 500);
-        googleMap.moveCamera(CameraUpdateFactory.newLatLngBounds(bc.build(), 50));
-    }*/
-
-    /*private void hidebottom() {
-        View decorView = getWindow().getDecorView();
-
-        int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                | View.SYSTEM_UI_FLAG_FULLSCREEN;
-        decorView.setSystemUiVisibility(uiOptions);
-    }
-
-    private void showPopUp() {
-        final Dialog openDialog = new Dialog(this);
-        openDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        openDialog.setContentView(R.layout.assign_driver_dialog);
-        openDialog.setTitle("Custom Dialog Box");
-        openDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-        Button btnAgree = (Button) openDialog.findViewById(R.id.btn_agree);
-        Button btnDisAgree = (Button) openDialog.findViewById(R.id.btn_disagree);
-
-        btnAgree.setTypeface(mTypefaceRegular);
-        btnDisAgree.setTypeface(mTypefaceRegular);
-        btnAgree.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openDialog.dismiss();
-
-                Intent intent = new Intent(TrackDriverActivityDriver.this, TypesGoods.class);
-                intent.putExtra(OPENTYPESGOODS, 1);
-                startActivity(intent);
-            }
-        });
-        btnDisAgree.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                openDialog.dismiss();
-            }
-        });
-        openDialog.show();
-    }*/
-
-    /**
-     * Fetches current ride details
-     *//*
-    private void fetchRideDetails() {
-
-        ApiInterface service;
-        try {
-            if (Utils.isNetworkAvailable(context)) {
-
-                final ProgressDialog progressDialog = Utils.showProgressDialog(context,
-                        AppConstants.DIALOG_PLEASE_WAIT);
-
-                service = ApiClientConnection.getInstance().createService();
-
-                SharedPreferences sharedPreferences = getSharedPreferences(
-                        ConstantValues.USER_PREFERENCES,
-                        Context.MODE_PRIVATE);
-
-                String accessToken = sharedPreferences.getString(
-                        ConstantValues.USER_ACCESS_TOKEN, "");
-
-                Call<RideObjectResponse> call = service.getParticularRideDetails(accessToken,
-                        ride.rideId);
-
-                call.enqueue(new Callback<RideObjectResponse>() {
-                    @Override
-                    public void onResponse(Call<RideObjectResponse> call,
-                                           Response<RideObjectResponse> response) {
-                        if (progressDialog != null && progressDialog.isShowing())
-                            progressDialog.dismiss();
-                        try {
-                            if (response.isSuccessful()) {
-                                RideObjectResponse apiResponse = response.body();
-                                Utils.printLogs(TAG, "onResponse : Success : -- " +
-                                        apiResponse.ride);
-                                rideNew = apiResponse.ride;
-                            } else {
-                                Utils.printLogs(TAG, "onResponse : Failure : -- " +
-                                        response.body());
-                            }
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(Call<RideObjectResponse> call, Throwable t) {
-                        if (progressDialog != null && progressDialog.isShowing())
-                            progressDialog.dismiss();
-                        Utils.printLogs(TAG, "onFailure : -- " + t.getCause());
-                    }
-                });
-            } else {
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }*/
     private void setTypeFaceToViews() {
         txtTrackStatusBottomSheet = findViewById(R.id.track_status_bottomSheet);
 
@@ -788,7 +678,6 @@ public class TrackDriverActivityDriver extends AppCompatActivity implements OnMa
         checkbox_reached_drop_off = findViewById(R.id.checkbox_reached_drop_off);
         checkbox_unload = findViewById(R.id.checkbox_unload);
         checkbox_delivered = findViewById(R.id.checkbox_delivered);
-
         txtTrackStatusBottomSheet.setTypeface(mTypefaceRegular);
         txtBookingStatusTime.setTypeface(mTypefaceRegular);
         txtBookingStatus.setTypeface(mTypefaceRegular);
@@ -826,10 +715,6 @@ public class TrackDriverActivityDriver extends AppCompatActivity implements OnMa
 
                 }
             });
-
-            /*if (this.checkForLocationPermission()) {
-                this.trackCurrentLocation();
-            }*/
         }
     }
 
@@ -975,135 +860,6 @@ public class TrackDriverActivityDriver extends AppCompatActivity implements OnMa
         }
     }
 
-    /*public void drawPath(String result) {
-
-        if (line != null) {
-            googleMap.clear();
-        }
-
-        // Drop off location marker
-        googleMap.addMarker(new MarkerOptions()
-                .position(new LatLng(Double.valueOf(ride.dropLatitude),
-                        Double.valueOf(ride.dropLongitude)))
-                .icon(BitmapDescriptorFactory
-                        .fromResource(R.drawable.drop_location_pin))
-                .title(ride.dropLocationAddress));
-
-        // Pickup location marker
-        googleMap.addMarker(new MarkerOptions()
-                .position(new LatLng(Double.valueOf(ride.pickupLatitude),
-                        Double.valueOf(ride.pickupLongitude)))
-                .icon(BitmapDescriptorFactory
-                        .fromResource(R.drawable.drop_location_pin))
-                .title(ride.pickupLocationAddress));
-
-        // Current location marker
-        googleMap.addMarker(new MarkerOptions()
-                .flat(true)
-                .icon(BitmapDescriptorFactory
-                        .fromResource(R.drawable.pin_location_pin))
-                .anchor(0.5f, 0.5f)
-                .position(new LatLng(gpsTracker.getLatitude(),
-                        gpsTracker.getLongitude())));
-
-
-        try {
-            // Tranform the string into a json object
-            final JSONObject json = new JSONObject(result);
-
-            JSONArray routeArray = json.getJSONArray("routes");
-            JSONObject routes = routeArray.getJSONObject(0);
-            JSONObject overviewPolylines = routes
-                    .getJSONObject("overview_polyline");
-
-            String encodedString = overviewPolylines.getString("points");
-            List<LatLng> list = decodePoly(encodedString);
-
-            options = new PolylineOptions().width(Utils.THICKNESS_OF_POLYLINE)
-                    .color(getResources().getColor(R.color.appcolor)).geodesic(true);
-
-            for (int z = 0; z < list.size(); z++) {
-                LatLng point = list.get(z);
-                options.add(point);
-            }
-
-            line = googleMap.addPolyline(options);
-
-            this.fixZoom();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }*/
-
-    /**
-     * Decodes the polyline
-     *
-     * @param encoded
-     * @return
-     */
-    /*private List<LatLng> decodePoly(String encoded) {
-
-        List<LatLng> poly = new ArrayList<LatLng>();
-        int index = 0, len = encoded.length();
-        int lat = 0, lng = 0;
-
-        while (index < len) {
-            int b, shift = 0, result = 0;
-            do {
-                b = encoded.charAt(index++) - 63;
-                result |= (b & 0x1f) << shift;
-                shift += 5;
-            } while (b >= 0x20);
-            int dlat = ((result & 1) != 0 ? ~(result >> 1) : (result >> 1));
-            lat += dlat;
-
-            shift = 0;
-            result = 0;
-            do {
-                b = encoded.charAt(index++) - 63;
-                result |= (b & 0x1f) << shift;
-                shift += 5;
-            } while (b >= 0x20);
-            int dlng = ((result & 1) != 0 ? ~(result >> 1) : (result >> 1));
-            lng += dlng;
-
-            LatLng p = new LatLng((((double) lat / 1E5)),
-                    (((double) lng / 1E5)));
-            poly.add(p);
-        }
-
-        return poly;
-    }*/
-
-    /**
-     * Creates the URL for drawing the polyline on google map
-     *
-     * @param sourcelat
-     * @param sourcelog
-     * @param destlat
-     * @param destlog
-     * @return
-     */
-/*    private String makeURL(double sourcelat, double sourcelog, double destlat,
-                           double destlog, double wayPointLat, double wayPointLng) {
-        StringBuilder urlString = new StringBuilder();
-        urlString.append("http://maps.googleapis.com/maps/api/directions/json");
-        urlString.append("?origin=");// from
-        urlString.append(Double.toString(sourcelat));
-        urlString.append(",");
-        urlString.append(Double.toString(sourcelog));
-        urlString.append("&destination=");// to
-        urlString.append(Double.toString(destlat));
-        urlString.append(",");
-        urlString.append(Double.toString(destlog));
-        urlString.append("&sensor=false&mode=driving&alternatives=true");
-        urlString.append("&waypoints=");
-        urlString.append(Double.toString(wayPointLat));
-        urlString.append(",");
-        urlString.append(Double.toString(wayPointLng));
-        return urlString.toString();
-    }*/
-
     /**
      * Updates the location on map
      */
@@ -1220,23 +976,6 @@ public class TrackDriverActivityDriver extends AppCompatActivity implements OnMa
         }
     }
 
-    /**
-     * Redraws the path on map as the current latlng gets changed
-     */
-    /*private void reDrawPolyLine() {
-
-        // googleMap.clear();  //clears all Markers and Polylines
-
-
-        PolylineOptions options = new PolylineOptions().width(20).color(
-                getResources().getColor(R.color.appcolor)).geodesic(true);
-        for (int i = 0; i < points.size(); i++) {
-            LatLng point = points.get(i);
-            options.add(point);
-        }
-        //  addMarker(); //add Marker in current position
-        line = googleMap.addPolyline(options); //add Polyline
-    }*/
     protected void createLocationRequest() {
         mLocationRequest = new LocationRequest();
         mLocationRequest.setInterval(INTERVAL);
@@ -1278,6 +1017,5 @@ public class TrackDriverActivityDriver extends AppCompatActivity implements OnMa
 
     @Override
     public void onRoutingCancelled() {
-
     }
 }

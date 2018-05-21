@@ -152,7 +152,7 @@ public class CustomFirebaseMessagingService extends FirebaseMessagingService {
 
         boolean useWhiteIcon = (android.os.Build.VERSION.SDK_INT
                 >= android.os.Build.VERSION_CODES.LOLLIPOP);
-        return useWhiteIcon ? R.mipmap.ic_launcher_round : R.mipmap.ic_launcher;
+        return useWhiteIcon ? R.mipmap.ic_launcher_round : R.mipmap.ic_launcher_round;
         //return R.drawable.app_icon;
     }
 
@@ -162,6 +162,7 @@ public class CustomFirebaseMessagingService extends FirebaseMessagingService {
      * @param status Holds the status
      * @return the corresponding class to be moved on
      */
+
     private Class filterNotifications(int status) {
 
         switch (status) {
